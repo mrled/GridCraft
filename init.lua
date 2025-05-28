@@ -6,11 +6,18 @@ if not hs then
   print("Hammerspoon not running, exiting...")
   return
 end
-local Util = require("GridCraft.Util")
-local WebView = require("GridCraft.WebView")
+
+local Util = dofile(hs.spoons.resourcePath("Util.lua"))
+local WebView = dofile(hs.spoons.resourcePath("WebView.lua"))
 
 
 local M = {}
+M.__index = M
+M.name = "GridCraft"
+M.version = "0.1.0"
+M.author = "Micah R Ledbetter <me@micahrl.com>"
+M.homepage = "https://github.com/mrled/GridCraft"
+M.license = "MIT - https://opensource.org/licenses/MIT"
 
 
 --[[
@@ -52,8 +59,6 @@ M.action = function(arg)
     action.actionDesc = arg.actionDesc
   end
 
-  -- action.icon = hs.image.imageFromName(hs.image.systemImageNames.InvalidDataFreestandingTemplate):encodeAsURLString(false, "png")
-  -- action.icon = "data:image/svg+xml;base64," .. Util.base64(Util.moduleFileContents("img/app-window.svg"))
   action.icon = nil
   if arg.icon ~= nil then
     action.icon = arg.icon
@@ -77,26 +82,6 @@ end
 
 
 --[[
-  Create an icon from the contents of a file
-
-  Returns an <img> tag with a data URI for the icon
-]]
-M.iconFile = function(filePath)
-  local iconData = Util.moduleFileContents(filePath)
-  if not iconData then
-    print("No icon found for " .. filePath)
-    return nil
-  end
-  local iconB64 = Util.base64(iconData)
-  local imgElement = string.format(
-    [[<img src="data:image/svg+xml;base64,%s" alt="Icon" width="64" height="64"]],
-    iconB64
-  )
-  return imgElement
-end
-
-
---[[
   Create an icon from a Phosphor icon name
 
   Returns an <svg> tag with the icon
@@ -105,8 +90,8 @@ M.iconPhosphor = function(name, weight)
   if not weight then
     weight = "regular"
   end
-  local iconPath = string.format("phosphor/node_modules/@phosphor-icons/core/assets/%s/%s.svg", weight, name)
-  local iconData = Util.moduleFileContents(iconPath)
+  local iconPath = string.format("phosphor/assets/%s/%s.svg", weight, name)
+  local iconData = Util.fileContents(hs.spoons.resourcePath(iconPath))
   if not iconData then
     print(
       string.format(

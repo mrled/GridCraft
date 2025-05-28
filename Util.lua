@@ -24,23 +24,11 @@ M.getApplicationIconDataUri = function(appName, application)
   end
 end
 
---[[
-  Get the path to a file relative to the GridCraft module root
-]]
-M.moduleFilePath = function(relPath)
-  local debugInfo = debug.getinfo(1, "S")
-  local thisFilePath = debugInfo.source:sub(2)
-  local thisFileDir = thisFilePath:match("(.*/)")
-  local fullPath = thisFileDir .. relPath
-  return fullPath
-end
-
 
 --[[
-  Get file contains for a path relative to the GridCraft module root
+  Get file contains for a path
 ]]
-M.moduleFileContents = function(relPath)
-  local fullPath = M.moduleFilePath(relPath)
+M.fileContents = function(fullPath)
   local file = io.open(fullPath, "r")
   if file then
     local contents = file:read("*a")
@@ -55,7 +43,6 @@ end
 --[[
   Dependency-free base64 encoder
 ]]
-
 M.base64 = function(data)
   local b = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
   return ((data:gsub('.', function(x)

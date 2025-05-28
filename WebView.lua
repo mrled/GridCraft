@@ -2,14 +2,14 @@
    A centered web view for displaying HTML content.
 ]]
 
-local Util = require "GridCraft.Util"
+local Util = dofile(hs.spoons.resourcePath("Util.lua"))
 
 local M = {}
 
 --[[
   CSS for the view
 ]]
-M.css = Util.moduleFileContents("WebView.css")
+M.css = Util.fileContents(hs.spoons.resourcePath("WebView.css"))
 
 local centeredWebView = function(content, width, height)
   -- The screen with the currently focused window
@@ -69,22 +69,6 @@ end
 
 
 --[[
-  Load Phosphor icons from a local file
-]]
-local getPhosphorSvg = function()
-  local phosphorSvgRaw = Util.moduleFileContents("img/Phosphor.svg")
-  if phosphorSvgRaw then
-    -- Remove the XML declaration and DOCTYPE if present
-    local phosphorSvg = phosphorSvgRaw:gsub("^<%?xml.-%?>%s*\n<!DOCTYPE.-%>\n?", "")
-    -- The result should be a single giant SVG element with all icons
-    return phosphorSvg
-  else
-    return ""
-  end
-end
-
-
---[[
   HTML for the entire web view
 ]]
 local webViewHtml = function(title, itemTable)
@@ -93,14 +77,6 @@ local webViewHtml = function(title, itemTable)
       <head>
         <title>%s</title>
         <style>%s</style>
-        %s
-        <!--<script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2"></script>-->
-        <style>
-          @font-face {
-            font-family: 'Phosphor';
-            src: url('data:font/woff2;base64,%s') format('woff2');
-          }
-        </style>
       </head>
       <body>
         <table>
@@ -110,14 +86,18 @@ local webViewHtml = function(title, itemTable)
     </html>
    ]]
 
-  return string.format(
+  local result = string.format(
     webViewMenuMessageTemplate,
     title,
     M.css,
-    getPhosphorSvg(),
-    Util.moduleFileContents("img/Phosphor.woff2"), -- Base64-encoded WOFF2 font
     itemTable
   )
+
+  -- local tmpHtml = assert(io.open("/tmp/webview.html", "w"))
+  -- tmpHtml:write(result)
+  -- tmpHtml:close()
+
+  return result
 end
 
 

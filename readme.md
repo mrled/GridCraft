@@ -4,17 +4,28 @@ An action menu based on Starcraft 2 Grid Hotkeys
 
 ## Installing
 
-1.  Copy this directory to your HammerSpoon config
-2.  Install a local copy of [Phosphor icons](https://phosphoricons.com/)
-    ```sh
-    cd GridCraft/phosphor
-    npm install
-    ```
-3.  Define your grid configuration
+Build the spoon and install it from the command-line:
+
+```sh
+make dist/GridCraft.spoon
+mkdir -p ~/.hammerspoon/Spoons
+cp -r dist/GridCraft.spoon ~/.hammerspoon/Spoons/
+```
+
+(You can also double-click the `GridCraft.spoon` directory in the Finder and it should install it for you.)
+
+### Installing in development
+
+For development, you may want to use the repo directly:
+
+```sh
+cd /path/to/GridCraft
+make phosphor
+cd ~/.hammerspoon/Spoons
+ln -s /path/to/GridCraft GridCraft.spoon
+```
 
 ## Configuring
-
-See how I use it in [my Hammerspoon `init.lua`](../init.lua).
 
 Here's a simplified example.
 This one makes a small 3x3 grid for the keys:
@@ -30,9 +41,9 @@ It looks like this:
 <img src="./screenshot.png" alt="Screenshot of GridKeys in action" />
 
 ```lua
-local GridCraft = require("GridCraft")
+hs.loadSpoon("GridCraft")
 
-GridCraft.modal(
+spoon.GridCraft.modal(
   -- The hokey to invoke this is ctrl-shift-f11
   { "ctrl", "shift" },
   "f11",
@@ -44,10 +55,10 @@ GridCraft.modal(
     -- The table for the top row
     {
       -- Regular applications passed with appName pull the icon from the application
-      GridCraft.action { key = "w", appName = "Terminal" },
-      GridCraft.action { key = "e", appName = "ChatGPT" },
+      spoon.GridCraft.action { key = "w", appName = "Terminal" },
+      spoon.GridCraft.action { key = "e", appName = "ChatGPT" },
       -- Here's a more complicated action
-      GridCraft.action {
+      spoon.GridCraft.action {
         key = "r",
         -- You can make custom actions by passing any Lua function to the action parameter,
         -- even one you define yourself!
@@ -56,21 +67,21 @@ GridCraft.modal(
         actionDesc = "Lock screen",
         -- To use a Phosphor icon, pass the icon name and weight.
         -- Phosphor icons are automatically colored the same color as the description text.
-        icon = GridCraft.iconPhosphor("lock", "regular")
+        icon = spoon.GridCraft.iconPhosphor("lock", "regular")
       },
     },
     -- The table for the middle row
     {
-      GridCraft.action { key = "s", appName = "1Password" },
-      GridCraft.action { key = "d", appName = "OmniFocus" },
-      GridCraft.action { key = "f", appName = "Finder" },
+      spoon.GridCraft.action { key = "s", appName = "1Password" },
+      spoon.GridCraft.action { key = "d", appName = "OmniFocus" },
+      spoon.GridCraft.action { key = "f", appName = "Finder" },
     },
     -- The table for the bottom row
     {
-      GridCraft.action { key = "x", appName = "Firefox" },
+      spoon.GridCraft.action { key = "x", appName = "Firefox" },
       -- By default it displays the application name, override that with actionDesc
-      GridCraft.action { key = "c", appName = "Visual Studio Code", actionDesc = "VS Code" },
-      GridCraft.action {
+      spoon.GridCraft.action { key = "c", appName = "Visual Studio Code", actionDesc = "VS Code" },
+      spoon.GridCraft.action {
         key = "v",
         action = hs.reload,
         actionDesc = "hs.reload",
@@ -86,6 +97,10 @@ GridCraft.modal(
   "GridKeys Example"
 )
 ```
+
+## Other configuration examples
+
+- [Micah's `init.lua`](https://github.com/mrled/dhd/blob/master/hbase/.hammerspoon/init.lua)
 
 ## Notes
 
