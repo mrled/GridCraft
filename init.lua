@@ -29,6 +29,7 @@ key: (string) A key to trigger the action
 actionDesc: (string) A description for the action (optional if appName is passed)
 appName: (string) The name of an application to switch to (mutually exclusive with action)
 action: (function) An action to take
+icon: (string) An <svg> or <img> tag to display as the icon for the action (optional)
 
 Note: if appName is passed, the action is automatically set to hs.application.launchOrFocus(app)
 Note: if appName is passed and actionDesc is nil, appName will be used for actionDesc
