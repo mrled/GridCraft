@@ -90,6 +90,11 @@ spoon.GridCraft.modal(
         -- (In lua, strings starting with [[ and ending with ]] can include single and double quotes,
         -- as well as newlines, so they are convenient for HTML/SVG elements.)
         icon = [[<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline points="184 104 232 104 232 56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M188.4,192a88,88,0,1,1,1.83-126.23L232,104" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>]]
+        -- In fact, you can also use a Uniocode string for an "icon" instead inside a span element with the "icon" class.
+        -- E.g. a letter:
+        -- icon = [[<span class="icon">C</span>]]
+        -- Or an emoji:
+        -- icon = [[<span class="icon">💬</span>]]
       },
     },
   },
