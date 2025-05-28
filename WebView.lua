@@ -56,10 +56,10 @@ local itemTableHtml = function(actionTable)
             </a>
           </td>
           ]],
-        action.url or "", -- href value
+        action.url or "",  -- href value
         action.icon,
-        hotkeyLabel,      -- hotkey
-        action.actionDesc -- visible description
+        hotkeyLabel,       -- hotkey
+        action.description -- visible description
       )
     end
     tableHtml = tableHtml .. rowHtml .. "</tr>"

@@ -54,9 +54,9 @@ spoon.GridCraft.modal(
   {
     -- The table for the top row
     {
-      -- Regular applications passed with appName pull the icon from the application
-      spoon.GridCraft.action { key = "w", appName = "Terminal" },
-      spoon.GridCraft.action { key = "e", appName = "ChatGPT" },
+      -- Regular applications passed with application pull the icon from the application
+      spoon.GridCraft.action { key = "w", application = "Terminal" },
+      spoon.GridCraft.action { key = "e", application = "ChatGPT" },
       -- Here's a more complicated action
       spoon.GridCraft.action {
         key = "r",
@@ -64,7 +64,7 @@ spoon.GridCraft.modal(
         -- even one you define yourself!
         -- Here we use one that is built in to Hammerspoon that will lock the screen.
         action = hs.caffeinate.lockScreen,
-        actionDesc = "Lock screen",
+        description = "Lock screen",
         -- To use a Phosphor icon, pass the icon name and weight.
         -- Phosphor icons are automatically colored the same color as the description text.
         icon = spoon.GridCraft.iconPhosphor("lock", "regular")
@@ -72,19 +72,19 @@ spoon.GridCraft.modal(
     },
     -- The table for the middle row
     {
-      spoon.GridCraft.action { key = "s", appName = "1Password" },
-      spoon.GridCraft.action { key = "d", appName = "OmniFocus" },
-      spoon.GridCraft.action { key = "f", appName = "Finder" },
+      spoon.GridCraft.action { key = "s", application = "1Password" },
+      spoon.GridCraft.action { key = "d", application = "OmniFocus" },
+      spoon.GridCraft.action { key = "f", application = "Finder" },
     },
     -- The table for the bottom row
     {
-      spoon.GridCraft.action { key = "x", appName = "Firefox" },
-      -- By default it displays the application name, override that with actionDesc
-      spoon.GridCraft.action { key = "c", appName = "Visual Studio Code", actionDesc = "VS Code" },
+      spoon.GridCraft.action { key = "x", application = "Firefox" },
+      -- By default it displays the application name, override that with description
+      spoon.GridCraft.action { key = "c", application = "Visual Studio Code", description = "VS Code" },
       spoon.GridCraft.action {
         key = "v",
         action = hs.reload,
-        actionDesc = "hs.reload",
+        description = "hs.reload",
         -- The icon can be anything that returns a <svg> or <img> tag.
         -- This one is using a raw Phosphor icon to show how it works.
         -- (In lua, strings starting with [[ and ending with ]] can include single and double quotes,

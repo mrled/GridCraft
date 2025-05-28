@@ -23,59 +23,54 @@ M.license = "MIT - https://opensource.org/licenses/MIT"
 --[[
 action(): An action to take when a shortcut key is pressed
 
-Params:
-mods: Modifier keys as could be passed to hs.hotkey.modal.new(), like {"cmd", "ctrl"} or {}
-key: (string) A key to trigger the action
-actionDesc: (string) A description for the action (optional if appName is passed)
-appName: (string) The name of an application to switch to (mutually exclusive with action)
-action: (function) An action to take
-icon: (string) An <svg> or <img> tag to display as the icon for the action (optional)
+Basic parameters:
+  mods: (table) Modifier keys like {"cmd", "ctrl"} to trigger the action along with the key. Use {} for no modifiers
+  key: (string) A key to trigger the action along with the modifiers, like "x" or "F11".
+    Together, the mods and key are passed to hs.hotkey.bind() to create a regular Hammerspoon hotkey.
+  action: (function) An action to take
+  description: (string) A description for the action
+  icon: (string) An <svg> or <img> tag to display as the icon for the action (optional)
 
-Note: if appName is passed, the action is automatically set to hs.application.launchOrFocus(app)
-Note: if appName is passed and actionDesc is nil, appName will be used for actionDesc
+Convenience parameters:
+  empty: (boolean) If true, the action is set to a no-op function and the description is set to "No action"
+    This is useful for creating empty slots in the grid.
+    Overrides action, description, and icon.
+  application: (string) The name of an application to switch to (mutually exclusive with action).
+    Overrides action.
+    If description/icon are not provided, set to app name/icon.
+
+Note: if application is passed, the action is automatically set to hs.application.launchOrFocus(app)
+Note: if application is passed and description is nil, application will be used for description
 ]]
 M.action = function(arg)
   local action = {}
 
   action.mods = arg.mods or {}
   action.key = arg.key
+  action.action = arg.action or function() end
+  action.description = arg.description or ""
+  action.icon = arg.icon or M.iconPhosphor("app-window", "regular")
 
   if arg.empty then
     action.action = function() end
-    action.actionDesc = "No action"
+    action.description = "No action"
     action.icon = M.emptyIcon()
     return action
-  end
-
-  if arg.appName then
-    action.appName = arg.appName
-    action.action = function() hs.application.launchOrFocus(action.appName) end
-  else
-    action.action = arg.action
-  end
-
-  if arg.appName and not arg.actionDesc then
-    action.actionDesc = arg.appName
-  else
-    action.actionDesc = arg.actionDesc
-  end
-
-  action.icon = nil
-  if arg.icon ~= nil then
-    action.icon = arg.icon
-  elseif arg.appName then
-    -- Don't use hs.application.find() -- that only works for running apps!
-    -- local app = hs.application.find(arg.appName)
-    local appPath = Util.findApplicationPath(arg.appName)
-    local appIcon = M.iconMacFile(appPath)
-    if appIcon then
-      action.icon = appIcon
+  elseif arg.application then
+    action.application = arg.application
+    action.action = function() hs.application.launchOrFocus(action.application) end
+    if not arg.description then
+      action.description = action.application
     end
-  end
-
-  if action.icon == nil then
-    print("No icon found for " .. action.key)
-    action.icon = M.iconPhosphor("app-window", "regular")
+    if arg.icon == nil then
+      -- Don't use hs.application.find() -- that only works for running apps!
+      -- local app = hs.application.find(arg.application)
+      local appPath = Util.findApplicationPath(arg.application)
+      local appIcon = M.iconMacFile(appPath)
+      if appIcon then
+        action.icon = appIcon
+      end
+    end
   end
 
   return action
@@ -147,19 +142,19 @@ Parameters:
     Map keys from the keyGrid to action tables, like:
     {
       {
-        GridCraft.action { key = "1", appName = "1Password" },
-        GridCraft.action { key = "2", appName = "Day One" },
-        GridCraft.action { key = "3", appName = "Photos" },
+        GridCraft.action { key = "1", application = "1Password" },
+        GridCraft.action { key = "2", application = "Day One" },
+        GridCraft.action { key = "3", application = "Photos" },
         GridCraft.action { key = "4", empty = true },
         GridCraft.action { key = "5", empty = true },
       },
       {
         GridCraft.action { key = "q", empty = true },
-        -- GridCraft.action { key = "q", appName = "Messages"},
-        GridCraft.action { key = "w", appName = "Mattermost" },
-        GridCraft.action { key = "e", appName = "Visual Studio Code" },
-        GridCraft.action { key = "r", appName = "Bear" },
-        GridCraft.action { key = "t", appName = "Terminal" },
+        -- GridCraft.action { key = "q", application = "Messages"},
+        GridCraft.action { key = "w", application = "Mattermost" },
+        GridCraft.action { key = "e", application = "Visual Studio Code" },
+        GridCraft.action { key = "r", application = "Bear" },
+        GridCraft.action { key = "t", application = "Terminal" },
       },
     }
     Note that we are constrained to using array tables rather than key-value tobles
