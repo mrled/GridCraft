@@ -2,6 +2,10 @@
 
 An action menu based on Starcraft 2 Grid Hotkeys
 
+It looks like this:
+
+<img src="./screenshot.png" alt="Screenshot of GridKeys in action" />
+
 ## Installing
 
 Build the spoon and install it from the command-line:
@@ -34,10 +38,6 @@ This one makes a tiny 2x2 grid for the keys:
 E R
 D F
 ```
-
-It looks like this:
-
-<img src="./screenshot.png" alt="Screenshot of GridKeys in action" />
 
 ```lua
 hs.loadSpoon("GridCraft")
