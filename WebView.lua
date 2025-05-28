@@ -12,23 +12,16 @@ local M = {}
 M.css = Util.fileContents(hs.spoons.resourcePath("WebView.css"))
 
 local centeredWebView = function(content, width, height)
-  -- The screen with the currently focused window
-  local mainScreen = hs.screen.mainScreen()
-
-  -- A rect containing coordinates of the entire frame, including dock and menu
-  local mainFrame = mainScreen:fullFrame()
-
-  -- Coordinates to center the web view in the main frame
-  local wvLeftCoord = ((mainFrame.w - mainFrame.x) / 2) - (width / 2)
-  local wvTopCoord = ((mainFrame.h - mainFrame.y) / 2) - (height / 2)
-  local wvRect = hs.geometry.rect(wvLeftCoord, wvTopCoord, width, height)
-
-  local wv = hs.webview.new(wvRect)
+  -- Initial dimenmsions/position don't matter
+  local wvRect = hs.geometry.rect(10, 10, 10, 10)
+  local wv     = hs.webview.new(wvRect)
   wv:windowStyle({ "borderless", "nonactivating" })
   wv:transparent(true)
   wv:bringToFront(true)
   wv:closeOnEscape(true)
   wv:html(content)
+  -- Resize and center the web view
+  M.resizeCenter(wv, width, height)
   return wv
 end
 
@@ -111,6 +104,32 @@ M.webView = function(title, items, width, height)
   local html = webViewHtml(title, itemTable)
   local wv = centeredWebView(html, width or 1024, height or 768)
   return wv
+end
+
+
+--[[
+  Resize and center a web view
+]]
+M.resizeCenter = function(wv, width, height)
+  if wv == nil then
+    return
+  end
+
+  -- Force the screen to refresh, to ensure that reloading the config
+  -- will pick up any changes to screen layout since the first load.
+  hs.screen.allScreens()
+
+  -- The screen with the currently focused window
+  local mainScreen  = hs.screen.mainScreen()
+
+  -- A rect containing coordinates of the entire frame, including dock and menu
+  local mainFrame   = mainScreen:fullFrame()
+
+  -- Coordinates to center the web view in the main frame
+  local wvLeftCoord = mainFrame.x + (mainFrame.w - width) / 2
+  local wvTopCoord  = mainFrame.y + (mainFrame.h - height) / 2
+
+  wv:frame(hs.geometry.rect(wvLeftCoord, wvTopCoord, width, height))
 end
 
 

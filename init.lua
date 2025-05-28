@@ -21,44 +21,43 @@ M.license = "MIT - https://opensource.org/licenses/MIT"
 
 
 --[[
-action(): An action to take when a shortcut key is pressed
+hotkey(): A hotkey and its handler
 
 Basic parameters:
   mods: (table) Modifier keys like {"cmd", "ctrl"} to trigger the action along with the key. Use {} for no modifiers
   key: (string) A key to trigger the action along with the modifiers, like "x" or "F11".
     Together, the mods and key are passed to hs.hotkey.bind() to create a regular Hammerspoon hotkey.
-  action: (function) An action to take
+  handler: (function) Code to run when the key is pressed
   description: (string) A description for the action
   icon: (string) An <svg> or <img> tag to display as the icon for the action (optional)
 
 Convenience parameters:
-  empty: (boolean) If true, the action is set to a no-op function and the description is set to "No action"
+  empty: (boolean) If true, the handler is set to a no-op function and the description is set to "No action".
     This is useful for creating empty slots in the grid.
-    Overrides action, description, and icon.
-  application: (string) The name of an application to switch to (mutually exclusive with action).
-    Overrides action.
+    Overrides handler, description, and icon.
+  application: (string) The name of an application to switch to.
+    Overrides handler.
     If description/icon are not provided, set to app name/icon.
-
-Note: if application is passed, the action is automatically set to hs.application.launchOrFocus(app)
-Note: if application is passed and description is nil, application will be used for description
+  submenu: (table) A table of actions to create a submenu for this action.
+    Overrides handler.
 ]]
 M.action = function(arg)
   local action = {}
 
   action.mods = arg.mods or {}
   action.key = arg.key
-  action.action = arg.action or function() end
+  action.handler = arg.handler or function() end
   action.description = arg.description or ""
   action.icon = arg.icon or M.iconPhosphor("app-window", "regular")
 
   if arg.empty then
-    action.action = function() end
+    action.handler = function() end
     action.description = "No action"
     action.icon = M.emptyIcon()
     return action
   elseif arg.application then
     action.application = arg.application
-    action.action = function() hs.application.launchOrFocus(action.application) end
+    action.handler = function() hs.application.launchOrFocus(action.application) end
     if not arg.description then
       action.description = action.application
     end
@@ -71,6 +70,15 @@ M.action = function(arg)
         action.icon = appIcon
       end
     end
+  elseif arg.submenu then
+    action.submenu = M.grid(
+    -- The first two arguments are for a GLOBAL hotkey, so we set them to nil.
+      nil,
+      nil,
+      arg.submenu,
+      action.description
+    )
+    -- Can't set action here, have to do it from the parent modal
   end
 
   return action
@@ -132,41 +140,39 @@ end
 
 
 --[[
-modal(): Create a new modal hotkey
+grid(): Create a new grid of hotkeys
 
 Parameters:
   mods: Modifier keys as could be4 passed to hs.hotkey.modal.new(), like {"cmd", "ctrl"} or {}
   key: A key to trigger the modal hotkey as could be passed to hs.hotkey.modal.new(), like "t"
   actionTable: (table) A table of rows, each of which is a table of actions.
     e.g. to represent the left half of a qwerty keyboard, you might use:
-    Map keys from the keyGrid to action tables, like:
     {
       {
-        GridCraft.action { key = "1", application = "1Password" },
-        GridCraft.action { key = "2", application = "Day One" },
-        GridCraft.action { key = "3", application = "Photos" },
-        GridCraft.action { key = "4", empty = true },
-        GridCraft.action { key = "5", empty = true },
+        GridCraft.handler { key = "1", application = "1Password" },
+        GridCraft.handler { key = "2", application = "Day One" },
+        GridCraft.handler { key = "3", application = "Photos" },
+        GridCraft.handler { key = "4", empty = true },
+        GridCraft.handler { key = "5", empty = true },
       },
       {
-        GridCraft.action { key = "q", empty = true },
-        -- GridCraft.action { key = "q", application = "Messages"},
-        GridCraft.action { key = "w", application = "Mattermost" },
-        GridCraft.action { key = "e", application = "Visual Studio Code" },
-        GridCraft.action { key = "r", application = "Bear" },
-        GridCraft.action { key = "t", application = "Terminal" },
+        GridCraft.handler { key = "q", application = "Messages"},
+        GridCraft.handler { key = "w", application = "Mattermost" },
+        GridCraft.handler { key = "e", application = "Visual Studio Code" },
+        GridCraft.handler { key = "r", application = "Bear" },
+        GridCraft.handler { key = "t", application = "Terminal" },
       },
     }
     Note that we are constrained to using array tables rather than key-value tobles
     so that the order is preserved.
   title: A message prefix to display when communicating to the user about this hot key
 ]]
-M.modal = function(mods, key, actionTable, title)
-  local modality = {}
-  modality.triggerKey = hs.hotkey.modal.new(mods, key)
-  modality.activeWebView = nil
+M.grid = function(mods, key, actionTable, title)
+  local result = {}
+  result.triggerKey = hs.hotkey.modal.new(mods, key)
+  result.activeWebView = nil
 
-  modality.alertStyle = {
+  result.alertStyle = {
     fillColor = {
       white = 0.45,
       alpha = 1,
@@ -176,22 +182,38 @@ M.modal = function(mods, key, actionTable, title)
     fadeOutDuration = 0,
   }
 
-  print("modal: " .. title .. " " .. hs.inspect(mods) .. " " .. key)
+  print("GridCraft grid: " .. title .. " " .. hs.inspect(mods) .. " " .. hs.inspect(key))
 
-  -- define explicit ways out: either press escape or the trigger key
-  modality.triggerKey:bind({}, "escape", function() modality.triggerKey:exit() end)
-  modality.triggerKey:bind(mods, key, function() modality.triggerKey:exit() end)
+  -- Press escape to close the grid
+  result.triggerKey:bind({}, "escape", function() result.triggerKey:exit() end)
+  -- If a trigger key was passed, press it to close the grid
+  if key ~= nil then
+    result.triggerKey:bind(mods, key, function() result.triggerKey:exit() end)
+  end
 
   for _, keyRow in pairs(actionTable) do
     for _, action in pairs(keyRow) do
       if action ~= nil and action.key ~= nil then
-        if action.empty == true then
-          -- do nothing
-        else
-          modality.triggerKey:bind({}, action.key, function()
-            action.action()
-            modality.triggerKey:exit()
-          end)
+        -- Bind the subkey to the action
+        result.triggerKey:bind(action.mods, action.key, function()
+          action.handler()
+          result.triggerKey:exit()
+        end)
+        -- Set the action handler for the submenu.
+        -- (We must do this here because we need modality in scope)
+        if action.submenu then
+          action.handler = function()
+            -- Stop showing the parent
+            result:stop()
+            -- Stop the parent hotkey
+            result.triggerKey:exit()
+            -- Set the parent's hotkey to close the child submenu
+            -- If the user hits the main hotkey, then enters a submenu, and then hits the main hotkey again,
+            -- this will close both, rather than display the main menu on top of the submenu.
+            action.submenu.triggerKey:bind(mods, key, function() action.submenu.triggerKey:exit() end)
+            -- Show the submenu
+            action.submenu:start()
+          end
         end
       end
     end
@@ -199,29 +221,30 @@ M.modal = function(mods, key, actionTable, title)
 
   -- Create the web view here, and only show/hide it in the callback functions.
   -- This means it is rendered when new() is called, and show() displays it instantly.
-  modality.activeWebView = WebView.webView(title, actionTable, 1024, 768)
+  result.activeWebView = WebView.webView(title, actionTable, 1024, 768)
 
-  modality.triggerKey.exitWithMessage = function(self, message)
-    hs.alert.show(title .. "\n\n" .. message, modality.alertStyle)
+  result.triggerKey.exitWithMessage = function(self, message)
+    hs.alert.show(title .. "\n\n" .. message, result.alertStyle)
     self:exit()
   end
 
-  modality.triggerKey.entered = function(self)
-    modality.activeWebView:show()
+  result.triggerKey.entered = function(self)
+    WebView.resizeCenter(result.activeWebView, 1024, 768)
+    result.activeWebView:show()
   end
 
-  modality.triggerKey.exited = function(self)
-    modality.activeWebView:hide()
+  result.triggerKey.exited = function(self)
+    result.activeWebView:hide()
   end
 
-  modality.start = function(self)
+  result.start = function(self)
     self.triggerKey:enter()
   end
-  modality.stop = function(self)
+  result.stop = function(self)
     self.triggerKey:exit()
   end
 
-  return modality
+  return result
 end
 
 

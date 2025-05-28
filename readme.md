@@ -28,12 +28,11 @@ ln -s /path/to/GridCraft GridCraft.spoon
 ## Configuring
 
 Here's a simplified example.
-This one makes a small 3x3 grid for the keys:
+This one makes a tiny 2x2 grid for the keys:
 
 ```text
-W E R
-S D F
-X C V
+E R
+D F
 ```
 
 It looks like this:
@@ -43,76 +42,110 @@ It looks like this:
 ```lua
 hs.loadSpoon("GridCraft")
 
-spoon.GridCraft.modal(
-  -- The hokey to invoke this is ctrl-shift-f11
-  { "ctrl", "shift" },
-  "f11",
-  -- Now we have a table of tables to represent the grid.
-  -- (Lua has a data structure called "tables" which can array-like, as we have them here.
-  -- They can also be associative key=value tables, but we don't need to know about those to configure GridCraft.)
-  -- Our 3x3 grid has 3 rows, and each row has 3 keys
+local appsSubmenu = {
   {
     -- The table for the top row
     {
       -- Regular applications passed with application pull the icon from the application
-      spoon.GridCraft.action { key = "w", application = "Terminal" },
-      spoon.GridCraft.action { key = "e", application = "ChatGPT" },
-      -- Here's a more complicated action
-      spoon.GridCraft.action {
-        key = "r",
-        -- You can make custom actions by passing any Lua function to the action parameter,
-        -- even one you define yourself!
-        -- Here we use one that is built in to Hammerspoon that will lock the screen.
-        action = hs.caffeinate.lockScreen,
-        description = "Lock screen",
-        -- To use a Phosphor icon, pass the icon name and weight.
-        -- Phosphor icons are automatically colored the same color as the description text.
-        icon = spoon.GridCraft.iconPhosphor("lock", "regular")
-      },
-    },
-    -- The table for the middle row
-    {
-      spoon.GridCraft.action { key = "s", application = "1Password" },
-      spoon.GridCraft.action { key = "d", application = "OmniFocus" },
-      spoon.GridCraft.action { key = "f", application = "Finder" },
+      spoon.GridCraft.action { key = "e", application = "Terminal" },
+      spoon.GridCraft.action { key = "r", application = "Firefox" },
     },
     -- The table for the bottom row
     {
-      spoon.GridCraft.action { key = "x", application = "Firefox" },
-      -- By default it displays the application name, override that with description
-      spoon.GridCraft.action { key = "c", application = "Visual Studio Code", description = "VS Code" },
-      spoon.GridCraft.action {
-        key = "v",
-        action = hs.reload,
-        description = "hs.reload",
-        -- The icon can be anything that returns a <svg> or <img> tag.
-        -- This one is using a raw Phosphor icon to show how it works.
-        -- (In lua, strings starting with [[ and ending with ]] can include single and double quotes,
-        -- as well as newlines, so they are convenient for HTML/SVG elements.)
-        icon = [[<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline points="184 104 232 104 232 56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M188.4,192a88,88,0,1,1,1.83-126.23L232,104" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>]]
-        -- In fact, you can also use a Uniocode string for an "icon" instead inside a span element with the "icon" class.
-        -- E.g. a letter:
-        -- icon = [[<span class="icon">C</span>]]
-        -- Or an emoji:
-        -- icon = [[<span class="icon">💬</span>]]
-      },
+      -- Applicaions will use their name as the description, or you can override it
+      spoon.GridCraft.action { key = "d", application = "Visual Studio Code", description = "VS Code" },
+      spoon.GridCraft.action { key = "f", application = "Finder" },
+    },
+  }
+}
+
+local primaryMenu = {
+  -- The table for the top row
+  {
+    -- The E key of the maiun menu invokes the submenu defined above
+    spoon.GridCraft.action {
+      key = "e",
+      submenu = appsSubmenu,
+      description = "apps",
+      -- To use a Phosphor icon, pass the icon name and weight.
+      -- Phosphor icons are automatically colored the same color as the description text.
+      icon = spoon.GridCraft.iconPhosphor("app-store-logo", "regular")
+    },
+    spoon.GridCraft.action {
+      key = "r",
+      -- You can make custom actions by passing any Lua function to the action parameter,
+      -- even one you define yourself!
+      -- Here we use one that is built in to Hammerspoon that will lock the screen.
+      handler = hs.caffeinate.lockScreen,
+      description = "Lock screen",
+      -- You can also use a string for an icon, including single characters and emoji,
+      -- as long as its wrapped in a span with the icon class:
+      icon = [[<span class="icon">🔒</span>]]
     },
   },
+  -- The table for the bottom row
+  {
+    spoon.GridCraft.action {
+      key = "d",
+      -- Reload the Hammerspoon configuration
+      handler = hs.reload,
+      description = "hs.reload",
+      -- The icon can a string with an <svg> or <img> tag, like this:
+      icon = [[<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline points="184 104 232 104 232 56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M188.4,192a88,88,0,1,1,1.83-126.23L232,104" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>]]
+    },
+    spoon.GridCraft.action {
+      key = "f",
+      -- Run any Lua code you want
+      handler = function()
+        print("You can run any Lua code you want in a function")
+      end,
+      description = "Console",
+      icon = spoon.GridCraft.iconPhosphor("terminal-window", "regular")
+    },
+  },
+}
+
+spoon.GridCraft.grid(
+  -- The hokey to invoke this is ctrl-shift-f11
+  { "ctrl", "shift" },
+  "f11",
+  -- The table of tables for the hotkey grid, defined above
+  primaryMenu,
   -- This a title that is just nice for logging in the Hammerspoon console.
   "GridKeys Example"
 )
 ```
 
-## Other configuration examples
+## Other configuration examples and recommendations
 
 - [Micah's `init.lua`](https://github.com/mrled/dhd/blob/master/hbase/.hammerspoon/init.lua)
+- Try a keyboard with programmable keys running [QMK](https://qmk.fm/) or [ZMK](https://zmk.dev/)
+  and put an F-key somewhere easy to reach.
+  You can just hit one button, without even holding down a modifier key.
 
-## Notes
+## FAQ
 
-- You can encode an image file as base64 and include it inline, like this:
-  `"data:image/svg+xml;base64," .. Util.base64("/path/to/your-icon.png")`
+### What's up with Lua "tables"?
 
-## Recommendations
+Lua has a data structure called "tables" which can array-like, as we have them here.
 
-Get a keyboard with programmable keys running [QMK](https://qmk.fm/) or [ZMK](https://zmk.dev/)
-and put an F-key somewhere easy to reach.
+```lua
+{ 1, 2, 3, "etc" }
+```
+
+They can also be associative key=value tables, but we don't need to know about those to configure GridCraft.
+
+We need tables of tables --- Lua's version of nested arrays ---
+in order to represent a grid of rows of hotkeys.
+
+### How can I use an image on the filesystem?
+
+You can encode an image file as base64 and include it inline, like this:
+`"data:image/svg+xml;base64," .. Util.base64("/path/to/your-icon.png")`
+
+### How can I control what monitor display the grid when it's invoked?
+
+Enabled "Displays have separate spaces" in macOS:
+System Settings.app -> "Desktop and Dock" in left side bar -> "Mission Control" section -> "Displays have separate Spaces".
+
+Unfortunately this requires logging out and back in.
