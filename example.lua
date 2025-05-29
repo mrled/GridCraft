@@ -57,8 +57,13 @@ local primaryMenu = {
   {
     spoon.GridCraft.action {
       key = "d",
-      -- Reload the Hammerspoon configuration
-      handler = hs.reload,
+      -- Reload the Hammerspoon configuration after delay to show the key selection animation.
+      -- (Without the delay, the reload happens immediately, before the animationm runs.)
+      handler = function()
+        hs.timer.doAfter(spoon.GridCraft.animationSeconds, function()
+          hs.reload()
+        end)
+      end,
       description = "hs.reload",
       -- The icon can a string with an <svg> or <img> tag, like this:
       icon = [[<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline points="184 104 232 104 232 56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M188.4,192a88,88,0,1,1,1.83-126.23L232,104" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>]]

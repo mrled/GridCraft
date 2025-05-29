@@ -3,6 +3,7 @@
 ]]
 
 local Action = dofile(hs.spoons.resourcePath("Action.lua"))
+local Constants = dofile(hs.spoons.resourcePath("Constants.lua"))
 local Grid = dofile(hs.spoons.resourcePath("Grid.lua"))
 local Icon = dofile(hs.spoons.resourcePath("Icon.lua"))
 
@@ -24,5 +25,8 @@ M.iconPhosphor = Icon.iconPhosphor
 M.iconMacFile = Icon.iconMacFile
 M.emptyIcon = Icon.emptyIcon
 M.exampleConfigFile = hs.spoons.resourcePath("example.lua")
+
+-- Exported constants
+M.animationSeconds = Constants.animationSeconds
 
 return M
