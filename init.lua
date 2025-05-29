@@ -172,16 +172,6 @@ M.grid = function(mods, key, actionTable, title)
   result.triggerKey = hs.hotkey.modal.new(mods, key)
   result.activeWebView = nil
 
-  result.alertStyle = {
-    fillColor = {
-      white = 0.45,
-      alpha = 1,
-    },
-    strokeWidth = 10,
-    fadeInDuration = 0,
-    fadeOutDuration = 0,
-  }
-
   print("GridCraft grid: " .. title .. " " .. hs.inspect(mods) .. " " .. hs.inspect(key))
 
   -- Press escape to close the grid
@@ -222,11 +212,6 @@ M.grid = function(mods, key, actionTable, title)
   -- Create the web view here, and only show/hide it in the callback functions.
   -- This means it is rendered when new() is called, and show() displays it instantly.
   result.activeWebView = WebView.webView(title, actionTable, 1024, 768)
-
-  result.triggerKey.exitWithMessage = function(self, message)
-    hs.alert.show(title .. "\n\n" .. message, result.alertStyle)
-    self:exit()
-  end
 
   result.triggerKey.entered = function(self)
     WebView.resizeCenter(result.activeWebView, 1024, 768)
