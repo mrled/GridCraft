@@ -31,46 +31,46 @@ Convenience parameters:
     Overrides handler.
 ]]
 M.action = function(arg)
-    local action = {}
+  local action = {}
 
-    action.mods = arg.mods or {}
-    action.key = arg.key
-    action.handler = arg.handler or function() end
-    action.description = arg.description or ""
-    action.icon = arg.icon or Icon.iconPhosphor("app-window", "regular")
+  action.mods = arg.mods or {}
+  action.key = arg.key
+  action.handler = arg.handler or function() end
+  action.description = arg.description or ""
+  action.icon = arg.icon or Icon.iconPhosphor("app-window", "regular")
 
-    if arg.empty then
-        action.handler = function() end
-        action.description = "No action"
-        action.icon = Icon.emptyIcon()
-        return action
-    elseif arg.application then
-        action.application = arg.application
-        action.handler = function() hs.application.launchOrFocus(action.application) end
-        if not arg.description then
-            action.description = action.application
-        end
-        if arg.icon == nil then
-            -- Don't use hs.application.find() -- that only works for running apps!
-            -- local app = hs.application.find(arg.application)
-            local appPath = Util.findApplicationPath(arg.application)
-            local appIcon = Icon.iconMacFile(appPath)
-            if appIcon then
-                action.icon = appIcon
-            end
-        end
-    elseif arg.submenu then
-        action.submenu = Grid.grid(
-        -- The first two arguments are for a GLOBAL hotkey, so we set them to nil.
-            nil,
-            nil,
-            arg.submenu,
-            action.description
-        )
-        -- Can't set action here, have to do it from the parent modal
-    end
-
+  if arg.empty then
+    action.handler = function() end
+    action.description = "No action"
+    action.icon = Icon.emptyIcon()
     return action
+  elseif arg.application then
+    action.application = arg.application
+    action.handler = function() hs.application.launchOrFocus(action.application) end
+    if not arg.description then
+      action.description = action.application
+    end
+    if arg.icon == nil then
+      -- Don't use hs.application.find() -- that only works for running apps!
+      -- local app = hs.application.find(arg.application)
+      local appPath = Util.findApplicationPath(arg.application)
+      local appIcon = Icon.iconMacFile(appPath)
+      if appIcon then
+        action.icon = appIcon
+      end
+    end
+  elseif arg.submenu then
+    action.submenu = Grid.grid(
+    -- The first two arguments are for a GLOBAL hotkey, so we set them to nil.
+      nil,
+      nil,
+      arg.submenu,
+      action.description
+    )
+    -- Can't set action here, have to do it from the parent modal
+  end
+
+  return action
 end
 
 return M
