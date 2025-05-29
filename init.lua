@@ -182,8 +182,8 @@ M.grid = function(mods, key, actionTable, title)
     result.triggerKey:bind(mods, key, function() result.triggerKey:exit() end)
   end
 
-  for _, keyRow in pairs(actionTable) do
-    for _, action in pairs(keyRow) do
+  for _, keyRow in ipairs(actionTable) do
+    for _, action in ipairs(keyRow) do
       if action ~= nil and action.key ~= nil then
         -- Bind the subkey to the action
         result.triggerKey:bind(action.mods, action.key, function()
