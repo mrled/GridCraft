@@ -11,6 +11,11 @@ local M = {}
 ]]
 M.css = Util.fileContents(hs.spoons.resourcePath("WebView.css"))
 
+--[[
+  JavaScript for the view
+]]
+M.js = Util.fileContents(hs.spoons.resourcePath("WebView.js"))
+
 local centeredWebView = function(content, width, height)
   -- Initial dimenmsions/position don't matter
   local wvRect = hs.geometry.rect(10, 10, 10, 10)
@@ -40,7 +45,7 @@ local itemTableHtml = function(actionTable)
       end
       rowHtml = rowHtml .. string.format(
         [[
-          <td class="key">
+          <td id="%s" class="key">
             <a href="%s">
               %s
               <br/>
@@ -49,6 +54,7 @@ local itemTableHtml = function(actionTable)
             </a>
           </td>
           ]],
+        action.keyId,
         action.url or "",  -- href value
         action.icon,
         hotkeyLabel,       -- hotkey
@@ -70,6 +76,7 @@ local webViewHtml = function(title, itemTable)
       <head>
         <title>%s</title>
         <style>%s</style>
+        <script>%s</script>
       </head>
       <body>
         <table>
@@ -83,6 +90,7 @@ local webViewHtml = function(title, itemTable)
     webViewMenuMessageTemplate,
     title,
     M.css,
+    M.js,
     itemTable
   )
 
