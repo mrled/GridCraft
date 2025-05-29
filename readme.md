@@ -6,6 +6,12 @@ It looks like this:
 
 <img src="./screenshot.png" alt="Screenshot of GridKeys in action" />
 
+<details open>
+  <summary>Click to collapse</summary>
+  <img src="./screenrecording.gif" alt="Screen recording of GridKeys in action" />
+  <p>Or view a <a href="screenrecording.mp4">higher quality video</a>.</p>
+</details>
+
 ## Installing
 
 Build the spoon and install it from the command-line:
