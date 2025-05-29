@@ -165,14 +165,15 @@ Parameters:
     }
     Note that we are constrained to using array tables rather than key-value tobles
     so that the order is preserved.
-  title: A message prefix to display when communicating to the user about this hot key
+  title: (string) (optional) A message prefix to display when communicating to the user about this hot key
 ]]
 M.grid = function(mods, key, actionTable, title)
   local result = {}
   result.triggerKey = hs.hotkey.modal.new(mods, key)
   result.activeWebView = nil
+  result.title = title or "GridCraft"
 
-  print("GridCraft grid: " .. title .. " " .. hs.inspect(mods) .. " " .. hs.inspect(key))
+  print("GridCraft grid: " .. result.title .. " " .. hs.inspect(mods) .. " " .. hs.inspect(key))
 
   -- Press escape to close the grid
   result.triggerKey:bind({}, "escape", function() result.triggerKey:exit() end)
@@ -211,7 +212,7 @@ M.grid = function(mods, key, actionTable, title)
 
   -- Create the web view here, and only show/hide it in the callback functions.
   -- This means it is rendered when new() is called, and show() displays it instantly.
-  result.activeWebView = WebView.webView(title, actionTable, 1024, 768)
+  result.activeWebView = WebView.webView(result.title, actionTable, 1024, 768)
 
   result.triggerKey.entered = function(self)
     WebView.resizeCenter(result.activeWebView, 1024, 768)
