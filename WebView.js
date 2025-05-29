@@ -5,5 +5,5 @@ function toggleSelected(keyId) {
     return;
   }
   element.classList.add('selected');
-  setTimeout(() => element.classList.remove('selected'), 100);
+  setTimeout(() => element.classList.remove('selected'), 150);
 }
