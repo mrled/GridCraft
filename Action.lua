@@ -59,6 +59,18 @@ M.action = function(arg)
         action.icon = appIcon
       end
     end
+  elseif arg.file then
+    action.file = arg.file
+    action.handler = function() hs.execute(string.format("open '%s'", action.file)) end
+    if not arg.description then
+      action.description = Util.getBasename(action.file)
+    end
+    if arg.icon == nil then
+      local fileIcon = Icon.iconMacFile(action.file)
+      if fileIcon then
+        action.icon = fileIcon
+      end
+    end
   elseif arg.submenu then
     action.submenu = Grid.grid(
     -- The first two arguments are for a GLOBAL hotkey, so we set them to nil.

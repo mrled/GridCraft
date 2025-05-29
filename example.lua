@@ -19,12 +19,13 @@ local appsSubmenu = {
   {
     -- Regular applications passed with application pull the icon from the application
     spoon.GridCraft.action { key = "e", application = "Terminal" },
-    spoon.GridCraft.action { key = "r", application = "Firefox" },
+    -- Applicaions will use their name as the description, or you can override it
+    spoon.GridCraft.action { key = "d", application = "Visual Studio Code", description = "VS Code" },
   },
   -- The table for the bottom row
   {
-    -- Applicaions will use their name as the description, or you can override it
-    spoon.GridCraft.action { key = "d", application = "Visual Studio Code", description = "VS Code" },
+    -- Files (including folders) will also take their icon and description from the file
+    spoon.GridCraft.action { key = "d", file = os.getenv("HOME") .. "/Downloads" },
     spoon.GridCraft.action { key = "f", application = "Finder" },
   },
 }

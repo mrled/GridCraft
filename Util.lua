@@ -105,4 +105,18 @@ M.findApplicationPath = function(appName)
   return nil
 end
 
+--[[
+  Get the last component of a file path, or "/" if the path is the root directory
+]]
+M.getBasename = function(path)
+  if not path or path == "" then
+    return nil
+  elseif path == "/" then
+    return "/"
+  end
+  -- Remove trailing slashes
+  path = path:gsub("[/\\]+$", "")
+  return path:match("([^/\\]+)$") or "/"
+end
+
 return M
