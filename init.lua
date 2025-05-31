@@ -26,12 +26,6 @@ M.grid = Grid.grid
 M.iconPhosphor = Icon.iconPhosphor
 M.iconMacFile = Icon.iconMacFile
 M.emptyIcon = Icon.emptyIcon
-
---- GridCraft.exampleConfigFile
---- Variable
---- The path to the example configuration file
-M.exampleConfigFile = hs.spoons.resourcePath("example.lua.txt")
-
 M.examples = Examples
 M.animationSeconds = Constants.animationSeconds
 

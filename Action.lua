@@ -10,7 +10,7 @@ local Util = dofile(hs.spoons.resourcePath("Util.lua"))
 local M = {}
 
 --- GridCraft.Action.action(table) -> table
---- Method
+--- Constructor
 --- Create a new action for a grid
 ---
 --- Parameters:

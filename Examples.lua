@@ -5,6 +5,9 @@
 
 local M = {}
 
+--- GridCraft.Examples.reporoot
+--- Constant
+--- The path to the example in the repository root
 M.reporoot = hs.spoons.resourcePath("example.lua.txt")
 
 return M

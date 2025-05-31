@@ -10,7 +10,7 @@ local M = {}
 
 
 --- GridCraft.Grid.grid(table, string, table, string) -> table
---- Method
+--- Constructor
 --- Create a new grid of hotkeys
 ---
 --- Parameters:

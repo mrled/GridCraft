@@ -121,7 +121,7 @@ end
 
 
 --- GridCraft.WebView.webView(string, table, number, number) -> hs.webview object
---- Function
+--- Constructor
 --- Creates a new web view intended for modal messages.
 ---
 --- Parameters:
