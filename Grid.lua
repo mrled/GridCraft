@@ -1,6 +1,7 @@
---[[
-  The Grid module.
-]]
+--- === GridCraft.Grid ===
+---
+--- A grid of hotkeys.
+
 
 local WebView = dofile(hs.spoons.resourcePath("WebView.lua"))
 
@@ -8,34 +9,39 @@ local WebView = dofile(hs.spoons.resourcePath("WebView.lua"))
 local M = {}
 
 
---[[
-grid(): Create a new grid of hotkeys
-
-Parameters:
-  mods: Modifier keys as could be4 passed to hs.hotkey.modal.new(), like {"cmd", "ctrl"} or {}
-  key: A key to trigger the modal hotkey as could be passed to hs.hotkey.modal.new(), like "t"
-  actionTable: (table) A table of rows, each of which is a table of actions.
-    e.g. to represent the left half of a qwerty keyboard, you might use:
-    {
-      {
-        GridCraft.handler { key = "1", application = "1Password" },
-        GridCraft.handler { key = "2", application = "Day One" },
-        GridCraft.handler { key = "3", application = "Photos" },
-        GridCraft.handler { key = "4", empty = true },
-        GridCraft.handler { key = "5", empty = true },
-      },
-      {
-        GridCraft.handler { key = "q", application = "Messages"},
-        GridCraft.handler { key = "w", application = "Mattermost" },
-        GridCraft.handler { key = "e", application = "Visual Studio Code" },
-        GridCraft.handler { key = "r", application = "Bear" },
-        GridCraft.handler { key = "t", application = "Terminal" },
-      },
-    }
-    Note that we are constrained to using array tables rather than key-value tobles
-    so that the order is preserved.
-  title: (string) (optional) A message prefix to display when communicating to the user about this hot key
-]]
+--- GridCraft.Grid.grid(table, string, table, string) -> table
+--- Constructor
+--- Create a new grid of hotkeys
+---
+--- Parameters:
+---  * mods: Modifier keys as could be4 passed to `hs.hotkey.modal.new()`, like `{"cmd", "ctrl"}` or `{}`
+---  * key: A key to trigger the modal hotkey as could be passed to `hs.hotkey.modal.new()`, like `t`
+---  * actionTable: (table) A table of rows, each of which is a table of actions.
+---       e.g. to represent the left half of a qwerty keyboard, you might use:
+---       ```lua
+---       {
+---         {
+---           GridCraft.handler { key = "1", application = "1Password" },
+---           GridCraft.handler { key = "2", application = "Day One" },
+---           GridCraft.handler { key = "3", application = "Photos" },
+---           GridCraft.handler { key = "4", empty = true },
+---           GridCraft.handler { key = "5", empty = true },
+---         },
+---         {
+---           GridCraft.handler { key = "q", application = "Messages"},
+---           GridCraft.handler { key = "w", application = "Mattermost" },
+---           GridCraft.handler { key = "e", application = "Visual Studio Code" },
+---           GridCraft.handler { key = "r", application = "Bear" },
+---           GridCraft.handler { key = "t", application = "Terminal" },
+---         },
+---       }
+---       ```
+---       Note that we are constrained to using array tables rather than key-value tobles
+---       so that the order is preserved.
+---  * title: (string) (optional) A message prefix to display when communicating to the user about this hot key
+---
+--- Returns:
+---   * A GridCraft grid of hotkeys
 M.grid = function(mods, key, actionTable, title)
   local result = {}
   result.triggerKey = hs.hotkey.modal.new(mods, key)

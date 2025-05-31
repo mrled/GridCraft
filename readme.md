@@ -37,7 +37,7 @@ ln -s /path/to/GridCraft GridCraft.spoon
 
 ## Configuring
 
-See [`example.lua`](./example.lua) for an example `~/.hammerspoon/init.lua` config.
+See [`example.lua.txt`](./example.lua.txt) for an example `~/.hammerspoon/init.lua` config.
 
 ## Other configuration examples and recommendations
 

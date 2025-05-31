@@ -1,8 +1,8 @@
 dist
 phosphor/node_modules
 phosphor/assets
-
-# Hugo build output
 site/public/
 site/resources/
 site/.hugo_build.lock
+.DS_store
+._*

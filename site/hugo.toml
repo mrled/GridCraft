@@ -1,0 +1,18 @@
+baseURL = 'https://pages.micahrl.com/GridCraft'
+languageCode = 'en-us'
+title = 'GridCraft'
+
+[module]
+[[module.imports]]
+path = "github.com/alex-shpak/hugo-book"
+
+[markup]
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
+
+[menu]
+[[menu.before]]
+name = "GitHub"
+url = "https://github.com/mrled/GridCraft"
+weight = 10

@@ -1,0 +1,78 @@
+{{ range .Site.Data.docs }}
+
+  {{ $sanitizedName := .name | urlize }}
+  {{ $module := . }}
+  {{ $content := .doc }}
+
+  {{/* Hammerspoon section order and descriptions */}}
+  {{ $sectionOrder := slice "Deprecated" "Command" "Constant" "Variable" "Function" "Constructor" "Field" "Method" }}
+  {{ $sectionDetails := dict
+    "Deprecated" "API features which will be removed in an upcoming release"
+    "Command" "External shell commands"
+    "Constant" "Useful values which cannot be changed"
+    "Variable" "Configurable values"
+    "Function" "API calls offered directly by the extension"
+    "Constructor" "API calls which return an object, typically one that offers API methods"
+    "Field" "Variables which can only be accessed from an object returned by a constructor"
+    "Method" "API calls which can only be made on an object returned by a constructor"
+  }}
+
+  {{/* Check for submodules */}}
+  {{ if .submodules }}
+    {{ $content = printf "%s\n\n## Submodules\n" $content }}
+    {{ range .submodules }}
+      {{ $fullModuleName := printf "%s.%s" $module.name . }}
+      {{ $moduleLink := printf "../%s" ($fullModuleName | urlize) }}
+      {{ $content = printf "%s* [%s](%s)\n" $content $fullModuleName $moduleLink }}
+    {{ end }}
+  {{ end }}
+
+  {{/* API Overview */}}
+  {{ $content = printf "%s\n\n## API Overview\n" $content }}
+  {{ $activeSections := slice }}
+
+  {{ range $sectionOrder }}
+    {{ $sectionName := . }}
+    {{ $items := index $module $sectionName }}
+    {{ if $items }}
+      {{ $activeSections = $activeSections | append $sectionName }}
+      {{ $sectionDesc := index $sectionDetails $sectionName }}
+      {{ $content = printf "%s* %ss - %s\n" $content $sectionName $sectionDesc }}
+      {{ range $items }}
+        {{ $content = printf "%s  * [%s](#%s)\n" $content .name (.name | urlize) }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+  {{/* API Documentation */}}
+  {{ $content = printf "%s\n\n## API Documentation\n" $content }}
+
+  {{ range $activeSections }}
+    {{ $sectionName := . }}
+    {{ $items := index $module $sectionName }}
+    {{ $content = printf "%s\n### %ss\n" $content $sectionName }}
+
+    {{ range $items }}
+      {{ $content = printf "%s\n#### %s {#%s}\n\n" $content .name (.name | urlize) }}
+      {{ $content = printf "%s<table>\n" $content }}
+      {{ if .def }}
+        {{ $content = printf "%s<tr><td><strong>Signature</strong></td><td><code>%s</code></td></tr>\n" $content .def }}
+      {{ else if .signature }}
+        {{ $content = printf "%s<tr><td><strong>Signature</strong></td><td><code>%s</code></td></tr>\n" $content .signature }}
+      {{ end }}
+      {{ $content = printf "%s<tr><td><strong>Type</strong></td><td>%s</td></tr>\n" $content .type }}
+      {{ $content = printf "%s<tr><td><strong>Description</strong></td><td>%s</td></tr>\n" $content .doc }}
+      {{ $content = printf "%s</table>\n\n" $content }}
+    {{ end }}
+  {{ end }}
+
+  {{ $contentDict := dict "mediaType" "text/markdown" "value" $content }}
+  {{ $page := dict
+    "content" $contentDict
+    "kind" "page"
+    "path" $sanitizedName
+    "title" .name
+  }}
+  {{ $.AddPage $page }}
+
+{{ end }}

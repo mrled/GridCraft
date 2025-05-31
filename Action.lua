@@ -1,6 +1,6 @@
---[[
-  The Action module.
-]]
+--- === GridCraft.Action ===
+---
+--- Hotkeys and their handless.
 
 local Grid = dofile(hs.spoons.resourcePath("Grid.lua"))
 local Icon = dofile(hs.spoons.resourcePath("Icon.lua"))
@@ -9,27 +9,30 @@ local Util = dofile(hs.spoons.resourcePath("Util.lua"))
 
 local M = {}
 
---[[
-action(): A hotkey and its handler
-
-Basic parameters:
-  mods: (table) Modifier keys like {"cmd", "ctrl"} to trigger the action along with the key. Use {} for no modifiers
-  key: (string) A key to trigger the action along with the modifiers, like "x" or "F11".
-    Together, the mods and key are passed to hs.hotkey.bind() to create a regular Hammerspoon hotkey.
-  handler: (function) Code to run when the key is pressed
-  description: (string) A description for the action
-  icon: (string) An <svg> or <img> tag to display as the icon for the action (optional)
-
-Convenience parameters:
-  empty: (boolean) If true, the handler is set to a no-op function and the description is set to "No action".
-    This is useful for creating empty slots in the grid.
-    Overrides handler, description, and icon.
-  application: (string) The name of an application to switch to.
-    Overrides handler.
-    If description/icon are not provided, set to app name/icon.
-  submenu: (table) A table of actions to create a submenu for this action.
-    Overrides handler.
-]]
+--- GridCraft.Action.action(table) -> table
+--- Constructor
+--- Create a new action for a grid
+---
+--- Parameters:
+---  * arg - A table containing the parameters for the action.
+---    * Basic parameters:
+---      * mods: (table) Modifier keys like `{"cmd", "ctrl"}` to trigger the action along with the key. Use `{}` for no modifiers
+---      * key: (string) A key to trigger the action along with the modifiers, like "x" or "F11".
+---      * handler: (function) Code to run when the key is pressed
+---      * description: (string) A description for the action
+---      * icon: (string) An svg or img tag to display as the icon for the action (optional)
+---   * Convenience parameters:
+---     * empty: (boolean) If true, the handler is set to a no-op function and the description is set to "No action".
+---      * This is useful for creating empty slots in the grid.
+---      * Overrides handler, description, and icon.
+---     * application: (string) The name of an application to switch to.
+---      * Overrides handler.
+---      * If description/icon are not provided, set to app name/icon.
+---     * submenu: (table) A table of actions to create a submenu for this action.
+---      * Overrides handler.
+---
+--- Notes:
+---  * Together, the mods and key are passed to `hs.hotkey.bind()` to create a regular Hammerspoon hotkey.
 M.action = function(arg)
   local action = {}
 

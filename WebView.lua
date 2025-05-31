@@ -1,20 +1,23 @@
---[[
-   A centered web view for displaying HTML content.
-]]
+--- === GridCraft.WebView ===
+---
+--- The web view that displays the grid.
 
 local Util = dofile(hs.spoons.resourcePath("Util.lua"))
 
 local M = {}
 
---[[
-  CSS for the view
-]]
+
+--- GridCraft.WebView.css
+--- Constant
+--- The CSS for the web view
 M.css = Util.fileContents(hs.spoons.resourcePath("WebView.css"))
 
---[[
-  JavaScript for the view
-]]
+
+--- GridCraft.WebView.js
+--- Constant
+--- The JavaScript for the web view
 M.js = Util.fileContents(hs.spoons.resourcePath("WebView.js"))
+
 
 local centeredWebView = function(content, width, height)
   -- Initial dimenmsions/position don't matter
@@ -30,9 +33,16 @@ local centeredWebView = function(content, width, height)
   return wv
 end
 
---[[
-  Generate an HTML table from a list of items
-]]
+
+--- GridCraft.WebView.itemTableHtml(table) -> string
+--- Function
+--- Generates an HTML table from a list of items.
+---
+--- Parameters:
+---  * actionTable - A table of rows, each of which is a table of actions.
+---
+--- Returns:
+---  * string containing the HTML for the item table
 local itemTableHtml = function(actionTable)
   local tableHtml = ""
 
@@ -67,9 +77,16 @@ local itemTableHtml = function(actionTable)
 end
 
 
---[[
-  HTML for the entire web view
-]]
+--- GridCraft.WebView.webViewHtml(string, string) -> string
+--- Function
+--- Generates the complete HTML for a web view, including the title, CSS, JS, and item table.
+---
+--- Parameters:
+---  * title - The title of the web view
+---  * itemTable - The HTML table generated from the actionTable
+---
+--- Returns:
+---  * string containing the complete HTML for the web view
 local webViewHtml = function(title, itemTable)
   local webViewMenuMessageTemplate = [[
     <html>
@@ -102,11 +119,19 @@ local webViewHtml = function(title, itemTable)
 end
 
 
---[[
-   Create a new web view intended for modal messages.
 
-   Works like hs.alert, but with complete control over the layout in HTML.
-]]
+--- GridCraft.WebView.webView(string, table, number, number) -> hs.webview object
+--- Constructor
+--- Creates a new web view intended for modal messages.
+---
+--- Parameters:
+---  * title - The title of the web view
+---  * items - A table of rows, each of which is a table of actions.
+---  * width - (optional) The width of the web view (default: 1024)
+---  * height - (optional) The height of the web view (default: 768)
+---
+--- Returns:
+---  * A hs.webview object
 M.webView = function(title, items, width, height)
   local itemTable = itemTableHtml(items)
   local html = webViewHtml(title, itemTable)
@@ -115,9 +140,17 @@ M.webView = function(title, items, width, height)
 end
 
 
---[[
-  Resize and center a web view
-]]
+--- GridCraft.WebView.resizeCenter(hs.webview.object, [number], [number]) -> hs.webview.object
+--- Function
+--- Resizes and centers a web view on the main screen.
+---
+--- Parameters:
+---  * wv - The web view to resize and center
+---  * width - The desired width of the web view
+---  * height - The desired height of the web viewBox
+---
+--- Returns:
+---  * The resized and centered web view
 M.resizeCenter = function(wv, width, height)
   if wv == nil then
     return
@@ -138,6 +171,8 @@ M.resizeCenter = function(wv, width, height)
   local wvTopCoord  = mainFrame.y + (mainFrame.h - height) / 2
 
   wv:frame(hs.geometry.rect(wvLeftCoord, wvTopCoord, width, height))
+
+  return wv
 end
 
 

@@ -1,12 +1,20 @@
---[[
-  Utility functions
-]]
+--- === GridCraft.Util ===
+---
+--- Generic utility functions
 
 local M = {}
 
---[[
-  Get an application icon as a data: URI
-]]
+
+--- GridCraft.Util.getApplicationIconDataUri(string, hs.application) -> string or nil
+--- Function
+--- Get an application icon as a data: URI
+---
+--- Parameters:
+---  * appName - The name of the application (used for logging)
+---  * application - The hs.application object of the application
+---
+--- Returns:
+---  * A string containing a data URI with base64-encoded PNG data of the application icon, or nil if the icon cannot be retrieved
 M.getApplicationIconDataUri = function(appName, application)
   print("getApplicationIconDataUri: " .. appName)
   if application == nil then
@@ -25,9 +33,12 @@ M.getApplicationIconDataUri = function(appName, application)
 end
 
 
---[[
-  Get file contains for a path
-]]
+--- GridCraft.Util.fileContents(string) -> string or nil
+--- Function
+--- Get the contents of a file at a given path
+---
+--- Parameters:
+---  * fullPath - The full path to the file
 M.fileContents = function(fullPath)
   local file = io.open(fullPath, "r")
   if file then
@@ -40,9 +51,12 @@ M.fileContents = function(fullPath)
 end
 
 
---[[
-  Dependency-free base64 encoder
-]]
+--- GridCraft.Util.base64(string) -> string
+--- Function
+--- Encode a string in base64 format
+---
+--- Parameters:
+---  * data - The string to encode
 M.base64 = function(data)
   local b = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
   return ((data:gsub('.', function(x)
@@ -62,9 +76,12 @@ M.base64 = function(data)
 end
 
 
---[[
-  Find an application path by its name
-]]
+--- GridCraft.Util.findApplicationPath(string) -> string or nil
+--- Function
+--- Find an application path by its name
+---
+--- Parameters:
+---  * appName - The name of the application to find
 M.findApplicationPath = function(appName)
   -- If the app name is a fully qualified path, return it directly
   if appName:lower():match("^/") then
@@ -105,12 +122,16 @@ M.findApplicationPath = function(appName)
   return nil
 end
 
---[[
-  Get the last component of a file path, or "/" if the path is the root directory
-]]
+
+--- GridCraft.Util.getBasename(string) -> string
+--- Function
+--- Get the last component of a file path, or "/" if the path is the root directory
+---
+--- Parameters:
+---  * path - The file path to get the basename from
 M.getBasename = function(path)
   if not path or path == "" then
-    return nil
+    return ""
   elseif path == "/" then
     return "/"
   end
