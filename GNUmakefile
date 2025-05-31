@@ -5,7 +5,8 @@
 # Warn on undefined variables
 MAKEFLAGS += --warn-undefined-variables
 # Fail if any command fails.
-.SHELLFLAGS := -eu
+SHELL := /bin/bash
+.SHELLFLAGS := -euo pipefail -c
 
 # Show a nice table of Make targets
 .PHONY: help
@@ -30,7 +31,7 @@ dist/GridCraft.spoon/phosphor/assets/.installed: phosphor/node_modules/@phosphor
 
 dist/GridCraft.spoon: dist/GridCraft.spoon/phosphor/assets/.installed ## Build the Spoon package
 	mkdir -p dist/GridCraft.spoon
-	cp -r *.lua *.css README.md dist/GridCraft.spoon/
+	cp -r *.lua *.css readme.md dist/GridCraft.spoon/
 
 dist/GridCraft.spoon.zip: dist/GridCraft.spoon ## Create the Spoon package zip file
 	cd dist && zip -r GridCraft.spoon.zip GridCraft.spoon
