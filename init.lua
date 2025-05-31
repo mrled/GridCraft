@@ -13,7 +13,20 @@ M.__index = M
 
 -- Spoon Metadata
 M.name = "GridCraft"
-M.version = "0.1.0"
+-- Try to read version from version.txt file, fallback to default
+local function readVersion()
+  local versionPath = hs.spoons.resourcePath("version.txt")
+  local file = io.open(versionPath, "r")
+  if file then
+    local version = file:read("*line")
+    file:close()
+    if version and version ~= "" then
+      return version
+    end
+  end
+  return "0.1.0-devel"
+end
+M.version = readVersion()
 M.author = "Micah R Ledbetter <me@micahrl.com>"
 M.homepage = "https://github.com/mrled/GridCraft"
 M.license = "MIT - https://opensource.org/licenses/MIT"

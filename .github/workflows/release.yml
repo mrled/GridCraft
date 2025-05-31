@@ -3,29 +3,73 @@ name: Build and Release GridCraft Spoon
 on:
   release:
     types: [published]
+  pull_request:
+    branches: [ "**" ]
 
 jobs:
-  build-and-upload:
+  build:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Need full history for proper git describe
 
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '18'
 
-    - name: Build GridCraft Spoon
-      run: make dist/GridCraft.spoon.zip
+    - name: Determine version and artifact name
+      id: version
+      run: |
+        # Get version from git tags
+        if git describe --tags --exact-match HEAD >/dev/null 2>&1; then
+          # On a tagged commit (release)
+          VERSION=$(git describe --tags --exact-match HEAD)
+          ARTIFACT_SUFFIX=""
+          ASSET_NAME="GridCraft.spoon.zip"
+        else
+          # On a branch/PR
+          # Try to get the latest tag, fallback if no tags exist
+          if LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null); then
+            VERSION="${LATEST_TAG}-dev"
+          else
+            VERSION="0.1.0-dev"
+          fi
+          
+          SHORT_HASH=$(git rev-parse --short HEAD)
+          ARTIFACT_SUFFIX="-${SHORT_HASH}"
+          ASSET_NAME="GridCraft.spoon-${SHORT_HASH}.zip"
+        fi
+        
+        echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
+        echo "ARTIFACT_SUFFIX=${ARTIFACT_SUFFIX}" >> $GITHUB_OUTPUT
+        echo "ASSET_NAME=${ASSET_NAME}" >> $GITHUB_OUTPUT
+        echo "Building version: ${VERSION}"
+        echo "Artifact suffix: ${ARTIFACT_SUFFIX}"
+        echo "Asset name: ${ASSET_NAME}"
 
-    - name: Upload Release Asset
+    - name: Build GridCraft Spoon
+      run: |
+        make VERSION="${{ steps.version.outputs.VERSION }}" ARTIFACT_SUFFIX="${{ steps.version.outputs.ARTIFACT_SUFFIX }}" dist/${{ steps.version.outputs.ASSET_NAME }}
+
+    - name: Upload Release Asset (for releases)
+      if: github.event_name == 'release'
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ./dist/GridCraft.spoon.zip
-        asset_name: GridCraft.spoon.zip
+        asset_path: ./dist/${{ steps.version.outputs.ASSET_NAME }}
+        asset_name: ${{ steps.version.outputs.ASSET_NAME }}
         asset_content_type: application/zip
+
+    - name: Upload PR Artifact (for pull requests)
+      if: github.event_name == 'pull_request'
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ steps.version.outputs.ASSET_NAME }}
+        path: ./dist/${{ steps.version.outputs.ASSET_NAME }}
+        retention-days: 30
