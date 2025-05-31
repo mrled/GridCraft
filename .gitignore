@@ -1,3 +1,5 @@
 dist
 phosphor/node_modules
 phosphor/assets
+.DS_store
+._*
