@@ -1,5 +1,0 @@
-+++
-title = "GridCraft"
-+++
-
-# GridCraft
