@@ -54,15 +54,15 @@
 
     {{ range $items }}
       {{ $content = printf "%s\n#### %s {#%s}\n\n" $content .name (.name | urlize) }}
-      {{ $content = printf "%s| | |\n|----------------|------|\n" $content }}
+      {{ $content = printf "%s<table>\n" $content }}
       {{ if .def }}
-        {{ $content = printf "%s| **Signature** | `%s` |\n" $content .def }}
+        {{ $content = printf "%s<tr><td><strong>Signature</strong></td><td><code>%s</code></td></tr>\n" $content .def }}
       {{ else if .signature }}
-        {{ $content = printf "%s| **Signature** | `%s` |\n" $content .signature }}
+        {{ $content = printf "%s<tr><td><strong>Signature</strong></td><td><code>%s</code></td></tr>\n" $content .signature }}
       {{ end }}
-      {{ $content = printf "%s| **Type** | %s |\n" $content .type }}
-      {{ $content = printf "%s| **Description** | %s |\n" $content .doc }}
-      {{ $content = printf "%s\n" $content }}
+      {{ $content = printf "%s<tr><td><strong>Type</strong></td><td>%s</td></tr>\n" $content .type }}
+      {{ $content = printf "%s<tr><td><strong>Description</strong></td><td>%s</td></tr>\n" $content .doc }}
+      {{ $content = printf "%s</table>\n\n" $content }}
     {{ end }}
   {{ end }}
 
