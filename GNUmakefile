@@ -30,7 +30,7 @@ dist/GridCraft.spoon/phosphor/assets/.installed: phosphor/node_modules/@phosphor
 
 dist/GridCraft.spoon: dist/GridCraft.spoon/phosphor/assets/.installed ## Build the Spoon package
 	mkdir -p dist/GridCraft.spoon
-	cp -r *.lua *.css README.md dist/GridCraft.spoon/
+	cp -r *.lua *.css readme.md dist/GridCraft.spoon/
 
 dist/GridCraft.spoon.zip: dist/GridCraft.spoon ## Create the Spoon package zip file
 	cd dist && zip -r GridCraft.spoon.zip GridCraft.spoon
