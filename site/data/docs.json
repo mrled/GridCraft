@@ -17,11 +17,11 @@
     ],
     "Variable" : [
       {
-        "desc" : "The path to the example configuration file",
+        "doc" : "The path to the example configuration file",
         "stripped_doc" : [
           "The path to the example configuration file"
         ],
-        "doc" : "The path to the example configuration file",
+        "desc" : "The path to the example configuration file",
         "name" : "exampleConfigFile",
         "notes" : [
 
@@ -40,30 +40,31 @@
     "stripped_doc" : [
 
     ],
-    "desc" : "An action menu based on Starcraft 2 Grid Hotkeys.",
     "Deprecated" : [
 
     ],
+    "desc" : "An action menu based on Starcraft 2 Grid Hotkeys.",
     "type" : "Module",
     "Constructor" : [
 
     ],
-    "Field" : [
-
-    ],
+    "doc" : "An action menu based on Starcraft 2 Grid Hotkeys.\n\n<https:\/\/github.com\/mrled\/GridCraft>",
     "Method" : [
 
     ],
     "Command" : [
 
     ],
+    "Field" : [
+
+    ],
     "items" : [
       {
-        "desc" : "The path to the example configuration file",
+        "doc" : "The path to the example configuration file",
         "stripped_doc" : [
           "The path to the example configuration file"
         ],
-        "doc" : "The path to the example configuration file",
+        "desc" : "The path to the example configuration file",
         "name" : "exampleConfigFile",
         "notes" : [
 
@@ -79,7 +80,6 @@
         ]
       }
     ],
-    "doc" : "An action menu based on Starcraft 2 Grid Hotkeys.\n\n<https:\/\/github.com\/mrled\/GridCraft>",
     "name" : "GridCraft"
   },
   {
@@ -98,73 +98,25 @@
     "stripped_doc" : [
 
     ],
-    "desc" : "Hotkeys and their handless.",
     "Deprecated" : [
 
     ],
+    "desc" : "Hotkeys and their handless.",
     "type" : "Module",
     "Constructor" : [
-
-    ],
-    "Field" : [
-
-    ],
-    "Method" : [
       {
-        "desc" : "Create a new action for a grid",
+        "doc" : "Create a new action for a grid\n\nParameters:\n * arg - A table containing the parameters for the action.\n    Basic parameters:\n      mods: (table) Modifier keys like {\"cmd\", \"ctrl\"} to trigger the action along with the key. Use {} for no modifiers\n      key: (string) A key to trigger the action along with the modifiers, like \"x\" or \"F11\".\n        Together, the mods and key are passed to hs.hotkey.bind() to create a regular Hammerspoon hotkey.\n      handler: (function) Code to run when the key is pressed\n      description: (string) A description for the action\n      icon: (string) An <svg> or <img> tag to display as the icon for the action (optional)\n    Convenience parameters:\n      empty: (boolean) If true, the handler is set to a no-op function and the description is set to \"No action\".\n        This is useful for creating empty slots in the grid.\n        Overrides handler, description, and icon.\n      application: (string) The name of an application to switch to.\n        Overrides handler.\n        If description\/icon are not provided, set to app name\/icon.\n      submenu: (table) A table of actions to create a submenu for this action.\n        Overrides handler.",
         "stripped_doc" : [
           "Create a new action for a grid",
           ""
         ],
-        "doc" : "Create a new action for a grid\n\nParameters:\n * arg - A table containing the parameters for the action.\n    Basic parameters:\n      mods: (table) Modifier keys like {\"cmd\", \"ctrl\"} to trigger the action along with the key. Use {} for no modifiers\n      key: (string) A key to trigger the action along with the modifiers, like \"x\" or \"F11\".\n        Together, the mods and key are passed to hs.hotkey.bind() to create a regular Hammerspoon hotkey.\n      handler: (function) Code to run when the key is pressed\n      description: (string) A description for the action\n      icon: (string) An <svg> or <img> tag to display as the icon for the action (optional)\n    Convenience parameters:\n      empty: (boolean) If true, the handler is set to a no-op function and the description is set to \"No action\".\n        This is useful for creating empty slots in the grid.\n        Overrides handler, description, and icon.\n      application: (string) The name of an application to switch to.\n        Overrides handler.\n        If description\/icon are not provided, set to app name\/icon.\n      submenu: (table) A table of actions to create a submenu for this action.\n        Overrides handler.",
+        "desc" : "Create a new action for a grid",
         "name" : "action",
         "notes" : [
 
         ],
         "signature" : "GridCraft.Action.action(table) -> table",
-        "type" : "Method",
-        "returns" : [
-
-        ],
-        "def" : "GridCraft.Action.action(table) -> table",
-        "parameters" : [
-          " * arg - A table containing the parameters for the action.",
-          "    Basic parameters:",
-          "      mods: (table) Modifier keys like {\"cmd\", \"ctrl\"} to trigger the action along with the key. Use {} for no modifiers",
-          "      key: (string) A key to trigger the action along with the modifiers, like \"x\" or \"F11\".",
-          "        Together, the mods and key are passed to hs.hotkey.bind() to create a regular Hammerspoon hotkey.",
-          "      handler: (function) Code to run when the key is pressed",
-          "      description: (string) A description for the action",
-          "      icon: (string) An <svg> or <img> tag to display as the icon for the action (optional)",
-          "    Convenience parameters:",
-          "      empty: (boolean) If true, the handler is set to a no-op function and the description is set to \"No action\".",
-          "        This is useful for creating empty slots in the grid.",
-          "        Overrides handler, description, and icon.",
-          "      application: (string) The name of an application to switch to.",
-          "        Overrides handler.",
-          "        If description\/icon are not provided, set to app name\/icon.",
-          "      submenu: (table) A table of actions to create a submenu for this action.",
-          "        Overrides handler."
-        ]
-      }
-    ],
-    "Command" : [
-
-    ],
-    "items" : [
-      {
-        "desc" : "Create a new action for a grid",
-        "stripped_doc" : [
-          "Create a new action for a grid",
-          ""
-        ],
-        "doc" : "Create a new action for a grid\n\nParameters:\n * arg - A table containing the parameters for the action.\n    Basic parameters:\n      mods: (table) Modifier keys like {\"cmd\", \"ctrl\"} to trigger the action along with the key. Use {} for no modifiers\n      key: (string) A key to trigger the action along with the modifiers, like \"x\" or \"F11\".\n        Together, the mods and key are passed to hs.hotkey.bind() to create a regular Hammerspoon hotkey.\n      handler: (function) Code to run when the key is pressed\n      description: (string) A description for the action\n      icon: (string) An <svg> or <img> tag to display as the icon for the action (optional)\n    Convenience parameters:\n      empty: (boolean) If true, the handler is set to a no-op function and the description is set to \"No action\".\n        This is useful for creating empty slots in the grid.\n        Overrides handler, description, and icon.\n      application: (string) The name of an application to switch to.\n        Overrides handler.\n        If description\/icon are not provided, set to app name\/icon.\n      submenu: (table) A table of actions to create a submenu for this action.\n        Overrides handler.",
-        "name" : "action",
-        "notes" : [
-
-        ],
-        "signature" : "GridCraft.Action.action(table) -> table",
-        "type" : "Method",
+        "type" : "Constructor",
         "returns" : [
 
         ],
@@ -191,19 +143,67 @@
       }
     ],
     "doc" : "Hotkeys and their handless.",
+    "Method" : [
+
+    ],
+    "Command" : [
+
+    ],
+    "Field" : [
+
+    ],
+    "items" : [
+      {
+        "doc" : "Create a new action for a grid\n\nParameters:\n * arg - A table containing the parameters for the action.\n    Basic parameters:\n      mods: (table) Modifier keys like {\"cmd\", \"ctrl\"} to trigger the action along with the key. Use {} for no modifiers\n      key: (string) A key to trigger the action along with the modifiers, like \"x\" or \"F11\".\n        Together, the mods and key are passed to hs.hotkey.bind() to create a regular Hammerspoon hotkey.\n      handler: (function) Code to run when the key is pressed\n      description: (string) A description for the action\n      icon: (string) An <svg> or <img> tag to display as the icon for the action (optional)\n    Convenience parameters:\n      empty: (boolean) If true, the handler is set to a no-op function and the description is set to \"No action\".\n        This is useful for creating empty slots in the grid.\n        Overrides handler, description, and icon.\n      application: (string) The name of an application to switch to.\n        Overrides handler.\n        If description\/icon are not provided, set to app name\/icon.\n      submenu: (table) A table of actions to create a submenu for this action.\n        Overrides handler.",
+        "stripped_doc" : [
+          "Create a new action for a grid",
+          ""
+        ],
+        "desc" : "Create a new action for a grid",
+        "name" : "action",
+        "notes" : [
+
+        ],
+        "signature" : "GridCraft.Action.action(table) -> table",
+        "type" : "Constructor",
+        "returns" : [
+
+        ],
+        "def" : "GridCraft.Action.action(table) -> table",
+        "parameters" : [
+          " * arg - A table containing the parameters for the action.",
+          "    Basic parameters:",
+          "      mods: (table) Modifier keys like {\"cmd\", \"ctrl\"} to trigger the action along with the key. Use {} for no modifiers",
+          "      key: (string) A key to trigger the action along with the modifiers, like \"x\" or \"F11\".",
+          "        Together, the mods and key are passed to hs.hotkey.bind() to create a regular Hammerspoon hotkey.",
+          "      handler: (function) Code to run when the key is pressed",
+          "      description: (string) A description for the action",
+          "      icon: (string) An <svg> or <img> tag to display as the icon for the action (optional)",
+          "    Convenience parameters:",
+          "      empty: (boolean) If true, the handler is set to a no-op function and the description is set to \"No action\".",
+          "        This is useful for creating empty slots in the grid.",
+          "        Overrides handler, description, and icon.",
+          "      application: (string) The name of an application to switch to.",
+          "        Overrides handler.",
+          "        If description\/icon are not provided, set to app name\/icon.",
+          "      submenu: (table) A table of actions to create a submenu for this action.",
+          "        Overrides handler."
+        ]
+      }
+    ],
     "name" : "GridCraft.Action"
   },
   {
     "Constant" : [
       {
-        "desc" : "Animation time in ms",
+        "doc" : "Animation time in ms\n\nNotes\n * Must match what's in CSS and JS",
         "stripped_doc" : [
           "Animation time in ms",
           "",
           "Notes",
           " * Must match what's in CSS and JS"
         ],
-        "doc" : "Animation time in ms\n\nNotes\n * Must match what's in CSS and JS",
+        "desc" : "Animation time in ms",
         "name" : "animationMs",
         "notes" : [
 
@@ -219,11 +219,11 @@
         ]
       },
       {
-        "desc" : "Animation time in seconds",
+        "doc" : "Animation time in seconds",
         "stripped_doc" : [
           "Animation time in seconds"
         ],
-        "doc" : "Animation time in seconds",
+        "desc" : "Animation time in seconds",
         "name" : "animationSeconds",
         "notes" : [
 
@@ -251,33 +251,34 @@
     "stripped_doc" : [
 
     ],
-    "desc" : "Constants",
     "Deprecated" : [
 
     ],
+    "desc" : "Constants",
     "type" : "Module",
     "Constructor" : [
 
     ],
-    "Field" : [
-
-    ],
+    "doc" : "Constants",
     "Method" : [
 
     ],
     "Command" : [
 
     ],
+    "Field" : [
+
+    ],
     "items" : [
       {
-        "desc" : "Animation time in ms",
+        "doc" : "Animation time in ms\n\nNotes\n * Must match what's in CSS and JS",
         "stripped_doc" : [
           "Animation time in ms",
           "",
           "Notes",
           " * Must match what's in CSS and JS"
         ],
-        "doc" : "Animation time in ms\n\nNotes\n * Must match what's in CSS and JS",
+        "desc" : "Animation time in ms",
         "name" : "animationMs",
         "notes" : [
 
@@ -293,11 +294,11 @@
         ]
       },
       {
-        "desc" : "Animation time in seconds",
+        "doc" : "Animation time in seconds",
         "stripped_doc" : [
           "Animation time in seconds"
         ],
-        "doc" : "Animation time in seconds",
+        "desc" : "Animation time in seconds",
         "name" : "animationSeconds",
         "notes" : [
 
@@ -313,12 +314,30 @@
         ]
       }
     ],
-    "doc" : "Constants",
     "name" : "GridCraft.Constants"
   },
   {
     "Constant" : [
+      {
+        "doc" : "The path to the example in the repository root",
+        "stripped_doc" : [
+          "The path to the example in the repository root"
+        ],
+        "desc" : "The path to the example in the repository root",
+        "name" : "reporoot",
+        "notes" : [
 
+        ],
+        "signature" : "GridCraft.Examples.reporoot",
+        "type" : "Constant",
+        "returns" : [
+
+        ],
+        "def" : "GridCraft.Examples.reporoot",
+        "parameters" : [
+
+        ]
+      }
     ],
     "submodules" : [
 
@@ -332,27 +351,46 @@
     "stripped_doc" : [
 
     ],
-    "desc" : "Contains paths to all the examples in the documentation site,",
     "Deprecated" : [
 
     ],
+    "desc" : "Contains paths to all the examples in the documentation site,",
     "type" : "Module",
     "Constructor" : [
 
     ],
-    "Field" : [
-
-    ],
+    "doc" : "Contains paths to all the examples in the documentation site,\nbut only works from the git checkout -- not from the installed spoon.",
     "Method" : [
 
     ],
     "Command" : [
 
     ],
-    "items" : [
+    "Field" : [
 
     ],
-    "doc" : "Contains paths to all the examples in the documentation site,\nbut only works from the git checkout -- not from the installed spoon.",
+    "items" : [
+      {
+        "doc" : "The path to the example in the repository root",
+        "stripped_doc" : [
+          "The path to the example in the repository root"
+        ],
+        "desc" : "The path to the example in the repository root",
+        "name" : "reporoot",
+        "notes" : [
+
+        ],
+        "signature" : "GridCraft.Examples.reporoot",
+        "type" : "Constant",
+        "returns" : [
+
+        ],
+        "def" : "GridCraft.Examples.reporoot",
+        "parameters" : [
+
+        ]
+      }
+    ],
     "name" : "GridCraft.Examples"
   },
   {
@@ -371,80 +409,25 @@
     "stripped_doc" : [
 
     ],
-    "desc" : "A grid of hotkeys.",
     "Deprecated" : [
 
     ],
+    "desc" : "A grid of hotkeys.",
     "type" : "Module",
     "Constructor" : [
-
-    ],
-    "Field" : [
-
-    ],
-    "Method" : [
       {
-        "desc" : "Create a new grid of hotkeys",
+        "doc" : "Create a new grid of hotkeys\n\nParameters:\n * mods: Modifier keys as could be4 passed to hs.hotkey.modal.new(), like {\"cmd\", \"ctrl\"} or {}\n * key: A key to trigger the modal hotkey as could be passed to hs.hotkey.modal.new(), like \"t\"\n * actionTable: (table) A table of rows, each of which is a table of actions.\n      e.g. to represent the left half of a qwerty keyboard, you might use:\n      {\n        {\n          GridCraft.handler { key = \"1\", application = \"1Password\" },\n          GridCraft.handler { key = \"2\", application = \"Day One\" },\n          GridCraft.handler { key = \"3\", application = \"Photos\" },\n          GridCraft.handler { key = \"4\", empty = true },\n          GridCraft.handler { key = \"5\", empty = true },\n        },\n        {\n          GridCraft.handler { key = \"q\", application = \"Messages\"},\n          GridCraft.handler { key = \"w\", application = \"Mattermost\" },\n          GridCraft.handler { key = \"e\", application = \"Visual Studio Code\" },\n          GridCraft.handler { key = \"r\", application = \"Bear\" },\n          GridCraft.handler { key = \"t\", application = \"Terminal\" },\n        },\n      }\n      Note that we are constrained to using array tables rather than key-value tobles\n      so that the order is preserved.\n * title: (string) (optional) A message prefix to display when communicating to the user about this hot key\n\nReturns:\n  * A GridCraft grid of hotkeys",
         "stripped_doc" : [
           "Create a new grid of hotkeys",
           ""
         ],
-        "doc" : "Create a new grid of hotkeys\n\nParameters:\n * mods: Modifier keys as could be4 passed to hs.hotkey.modal.new(), like {\"cmd\", \"ctrl\"} or {}\n * key: A key to trigger the modal hotkey as could be passed to hs.hotkey.modal.new(), like \"t\"\n * actionTable: (table) A table of rows, each of which is a table of actions.\n      e.g. to represent the left half of a qwerty keyboard, you might use:\n      {\n        {\n          GridCraft.handler { key = \"1\", application = \"1Password\" },\n          GridCraft.handler { key = \"2\", application = \"Day One\" },\n          GridCraft.handler { key = \"3\", application = \"Photos\" },\n          GridCraft.handler { key = \"4\", empty = true },\n          GridCraft.handler { key = \"5\", empty = true },\n        },\n        {\n          GridCraft.handler { key = \"q\", application = \"Messages\"},\n          GridCraft.handler { key = \"w\", application = \"Mattermost\" },\n          GridCraft.handler { key = \"e\", application = \"Visual Studio Code\" },\n          GridCraft.handler { key = \"r\", application = \"Bear\" },\n          GridCraft.handler { key = \"t\", application = \"Terminal\" },\n        },\n      }\n      Note that we are constrained to using array tables rather than key-value tobles\n      so that the order is preserved.\n * title: (string) (optional) A message prefix to display when communicating to the user about this hot key\n\nReturns:\n  * A GridCraft grid of hotkeys",
+        "desc" : "Create a new grid of hotkeys",
         "name" : "grid",
         "notes" : [
 
         ],
         "signature" : "GridCraft.Grid.grid(table, string, table, string) -> table",
-        "type" : "Method",
-        "returns" : [
-          "  * A GridCraft grid of hotkeys"
-        ],
-        "def" : "GridCraft.Grid.grid(table, string, table, string) -> table",
-        "parameters" : [
-          " * mods: Modifier keys as could be4 passed to hs.hotkey.modal.new(), like {\"cmd\", \"ctrl\"} or {}",
-          " * key: A key to trigger the modal hotkey as could be passed to hs.hotkey.modal.new(), like \"t\"",
-          " * actionTable: (table) A table of rows, each of which is a table of actions.",
-          "      e.g. to represent the left half of a qwerty keyboard, you might use:",
-          "      {",
-          "        {",
-          "          GridCraft.handler { key = \"1\", application = \"1Password\" },",
-          "          GridCraft.handler { key = \"2\", application = \"Day One\" },",
-          "          GridCraft.handler { key = \"3\", application = \"Photos\" },",
-          "          GridCraft.handler { key = \"4\", empty = true },",
-          "          GridCraft.handler { key = \"5\", empty = true },",
-          "        },",
-          "        {",
-          "          GridCraft.handler { key = \"q\", application = \"Messages\"},",
-          "          GridCraft.handler { key = \"w\", application = \"Mattermost\" },",
-          "          GridCraft.handler { key = \"e\", application = \"Visual Studio Code\" },",
-          "          GridCraft.handler { key = \"r\", application = \"Bear\" },",
-          "          GridCraft.handler { key = \"t\", application = \"Terminal\" },",
-          "        },",
-          "      }",
-          "      Note that we are constrained to using array tables rather than key-value tobles",
-          "      so that the order is preserved.",
-          " * title: (string) (optional) A message prefix to display when communicating to the user about this hot key",
-          ""
-        ]
-      }
-    ],
-    "Command" : [
-
-    ],
-    "items" : [
-      {
-        "desc" : "Create a new grid of hotkeys",
-        "stripped_doc" : [
-          "Create a new grid of hotkeys",
-          ""
-        ],
-        "doc" : "Create a new grid of hotkeys\n\nParameters:\n * mods: Modifier keys as could be4 passed to hs.hotkey.modal.new(), like {\"cmd\", \"ctrl\"} or {}\n * key: A key to trigger the modal hotkey as could be passed to hs.hotkey.modal.new(), like \"t\"\n * actionTable: (table) A table of rows, each of which is a table of actions.\n      e.g. to represent the left half of a qwerty keyboard, you might use:\n      {\n        {\n          GridCraft.handler { key = \"1\", application = \"1Password\" },\n          GridCraft.handler { key = \"2\", application = \"Day One\" },\n          GridCraft.handler { key = \"3\", application = \"Photos\" },\n          GridCraft.handler { key = \"4\", empty = true },\n          GridCraft.handler { key = \"5\", empty = true },\n        },\n        {\n          GridCraft.handler { key = \"q\", application = \"Messages\"},\n          GridCraft.handler { key = \"w\", application = \"Mattermost\" },\n          GridCraft.handler { key = \"e\", application = \"Visual Studio Code\" },\n          GridCraft.handler { key = \"r\", application = \"Bear\" },\n          GridCraft.handler { key = \"t\", application = \"Terminal\" },\n        },\n      }\n      Note that we are constrained to using array tables rather than key-value tobles\n      so that the order is preserved.\n * title: (string) (optional) A message prefix to display when communicating to the user about this hot key\n\nReturns:\n  * A GridCraft grid of hotkeys",
-        "name" : "grid",
-        "notes" : [
-
-        ],
-        "signature" : "GridCraft.Grid.grid(table, string, table, string) -> table",
-        "type" : "Method",
+        "type" : "Constructor",
         "returns" : [
           "  * A GridCraft grid of hotkeys"
         ],
@@ -478,6 +461,61 @@
       }
     ],
     "doc" : "A grid of hotkeys.",
+    "Method" : [
+
+    ],
+    "Command" : [
+
+    ],
+    "Field" : [
+
+    ],
+    "items" : [
+      {
+        "doc" : "Create a new grid of hotkeys\n\nParameters:\n * mods: Modifier keys as could be4 passed to hs.hotkey.modal.new(), like {\"cmd\", \"ctrl\"} or {}\n * key: A key to trigger the modal hotkey as could be passed to hs.hotkey.modal.new(), like \"t\"\n * actionTable: (table) A table of rows, each of which is a table of actions.\n      e.g. to represent the left half of a qwerty keyboard, you might use:\n      {\n        {\n          GridCraft.handler { key = \"1\", application = \"1Password\" },\n          GridCraft.handler { key = \"2\", application = \"Day One\" },\n          GridCraft.handler { key = \"3\", application = \"Photos\" },\n          GridCraft.handler { key = \"4\", empty = true },\n          GridCraft.handler { key = \"5\", empty = true },\n        },\n        {\n          GridCraft.handler { key = \"q\", application = \"Messages\"},\n          GridCraft.handler { key = \"w\", application = \"Mattermost\" },\n          GridCraft.handler { key = \"e\", application = \"Visual Studio Code\" },\n          GridCraft.handler { key = \"r\", application = \"Bear\" },\n          GridCraft.handler { key = \"t\", application = \"Terminal\" },\n        },\n      }\n      Note that we are constrained to using array tables rather than key-value tobles\n      so that the order is preserved.\n * title: (string) (optional) A message prefix to display when communicating to the user about this hot key\n\nReturns:\n  * A GridCraft grid of hotkeys",
+        "stripped_doc" : [
+          "Create a new grid of hotkeys",
+          ""
+        ],
+        "desc" : "Create a new grid of hotkeys",
+        "name" : "grid",
+        "notes" : [
+
+        ],
+        "signature" : "GridCraft.Grid.grid(table, string, table, string) -> table",
+        "type" : "Constructor",
+        "returns" : [
+          "  * A GridCraft grid of hotkeys"
+        ],
+        "def" : "GridCraft.Grid.grid(table, string, table, string) -> table",
+        "parameters" : [
+          " * mods: Modifier keys as could be4 passed to hs.hotkey.modal.new(), like {\"cmd\", \"ctrl\"} or {}",
+          " * key: A key to trigger the modal hotkey as could be passed to hs.hotkey.modal.new(), like \"t\"",
+          " * actionTable: (table) A table of rows, each of which is a table of actions.",
+          "      e.g. to represent the left half of a qwerty keyboard, you might use:",
+          "      {",
+          "        {",
+          "          GridCraft.handler { key = \"1\", application = \"1Password\" },",
+          "          GridCraft.handler { key = \"2\", application = \"Day One\" },",
+          "          GridCraft.handler { key = \"3\", application = \"Photos\" },",
+          "          GridCraft.handler { key = \"4\", empty = true },",
+          "          GridCraft.handler { key = \"5\", empty = true },",
+          "        },",
+          "        {",
+          "          GridCraft.handler { key = \"q\", application = \"Messages\"},",
+          "          GridCraft.handler { key = \"w\", application = \"Mattermost\" },",
+          "          GridCraft.handler { key = \"e\", application = \"Visual Studio Code\" },",
+          "          GridCraft.handler { key = \"r\", application = \"Bear\" },",
+          "          GridCraft.handler { key = \"t\", application = \"Terminal\" },",
+          "        },",
+          "      }",
+          "      Note that we are constrained to using array tables rather than key-value tobles",
+          "      so that the order is preserved.",
+          " * title: (string) (optional) A message prefix to display when communicating to the user about this hot key",
+          ""
+        ]
+      }
+    ],
     "name" : "GridCraft.Grid"
   },
   {
@@ -489,12 +527,12 @@
     ],
     "Function" : [
       {
-        "desc" : "Create an icon from a Phosphor icon name and weight",
+        "doc" : "Create an icon from a Phosphor icon name and weight\n\nParameters:\n * name - The name of the Phosphor icon (e.g., \"app-window\")\n * weight - The weight of the icon (e.g., \"regular\", \"bold\", \"duotone\"). Defaults to \"regular\".",
         "stripped_doc" : [
           "Create an icon from a Phosphor icon name and weight",
           ""
         ],
-        "doc" : "Create an icon from a Phosphor icon name and weight\n\nParameters:\n * name - The name of the Phosphor icon (e.g., \"app-window\")\n * weight - The weight of the icon (e.g., \"regular\", \"bold\", \"duotone\"). Defaults to \"regular\".",
+        "desc" : "Create an icon from a Phosphor icon name and weight",
         "name" : "iconPhosphor",
         "notes" : [
 
@@ -511,12 +549,12 @@
         ]
       },
       {
-        "desc" : "Create an icon from the icon of a macOS file (including folders, applications, etc)",
+        "doc" : "Create an icon from the icon of a macOS file (including folders, applications, etc)\n\nParameters:\n * filePath - The path to the file or application for which to get the icon",
         "stripped_doc" : [
           "Create an icon from the icon of a macOS file (including folders, applications, etc)",
           ""
         ],
-        "doc" : "Create an icon from the icon of a macOS file (including folders, applications, etc)\n\nParameters:\n * filePath - The path to the file or application for which to get the icon",
+        "desc" : "Create an icon from the icon of a macOS file (including folders, applications, etc)",
         "name" : "iconMacFile",
         "notes" : [
 
@@ -532,12 +570,12 @@
         ]
       },
       {
-        "desc" : "Create an empty icon, which is a transparent PNG image",
+        "doc" : "Create an empty icon, which is a transparent PNG image\n\nParameters:\n * None\n\nReturns:\n * string containing an <img> tag with the transparent PNG data",
         "stripped_doc" : [
           "Create an empty icon, which is a transparent PNG image",
           ""
         ],
-        "doc" : "Create an empty icon, which is a transparent PNG image\n\nParameters:\n * None\n\nReturns:\n * string containing an <img> tag with the transparent PNG data",
+        "desc" : "Create an empty icon, which is a transparent PNG image",
         "name" : "emptyIcon",
         "notes" : [
 
@@ -560,31 +598,32 @@
     "stripped_doc" : [
 
     ],
-    "desc" : "Icons etc",
     "Deprecated" : [
 
     ],
+    "desc" : "Icons etc",
     "type" : "Module",
     "Constructor" : [
 
     ],
-    "Field" : [
-
-    ],
+    "doc" : "Icons etc",
     "Method" : [
 
     ],
     "Command" : [
 
     ],
+    "Field" : [
+
+    ],
     "items" : [
       {
-        "desc" : "Create an empty icon, which is a transparent PNG image",
+        "doc" : "Create an empty icon, which is a transparent PNG image\n\nParameters:\n * None\n\nReturns:\n * string containing an <img> tag with the transparent PNG data",
         "stripped_doc" : [
           "Create an empty icon, which is a transparent PNG image",
           ""
         ],
-        "doc" : "Create an empty icon, which is a transparent PNG image\n\nParameters:\n * None\n\nReturns:\n * string containing an <img> tag with the transparent PNG data",
+        "desc" : "Create an empty icon, which is a transparent PNG image",
         "name" : "emptyIcon",
         "notes" : [
 
@@ -601,12 +640,12 @@
         ]
       },
       {
-        "desc" : "Create an icon from the icon of a macOS file (including folders, applications, etc)",
+        "doc" : "Create an icon from the icon of a macOS file (including folders, applications, etc)\n\nParameters:\n * filePath - The path to the file or application for which to get the icon",
         "stripped_doc" : [
           "Create an icon from the icon of a macOS file (including folders, applications, etc)",
           ""
         ],
-        "doc" : "Create an icon from the icon of a macOS file (including folders, applications, etc)\n\nParameters:\n * filePath - The path to the file or application for which to get the icon",
+        "desc" : "Create an icon from the icon of a macOS file (including folders, applications, etc)",
         "name" : "iconMacFile",
         "notes" : [
 
@@ -622,12 +661,12 @@
         ]
       },
       {
-        "desc" : "Create an icon from a Phosphor icon name and weight",
+        "doc" : "Create an icon from a Phosphor icon name and weight\n\nParameters:\n * name - The name of the Phosphor icon (e.g., \"app-window\")\n * weight - The weight of the icon (e.g., \"regular\", \"bold\", \"duotone\"). Defaults to \"regular\".",
         "stripped_doc" : [
           "Create an icon from a Phosphor icon name and weight",
           ""
         ],
-        "doc" : "Create an icon from a Phosphor icon name and weight\n\nParameters:\n * name - The name of the Phosphor icon (e.g., \"app-window\")\n * weight - The weight of the icon (e.g., \"regular\", \"bold\", \"duotone\"). Defaults to \"regular\".",
+        "desc" : "Create an icon from a Phosphor icon name and weight",
         "name" : "iconPhosphor",
         "notes" : [
 
@@ -644,7 +683,6 @@
         ]
       }
     ],
-    "doc" : "Icons etc",
     "name" : "GridCraft.Icon"
   },
   {
@@ -656,12 +694,12 @@
     ],
     "Function" : [
       {
-        "desc" : "Get an application icon as a data: URI",
+        "doc" : "Get an application icon as a data: URI\n\nParameters:\n * appName - The name of the application (used for logging)\n * application - The hs.application object of the application\n\nReturns:\n * A string containing a data URI with base64-encoded PNG data of the application icon, or nil if the icon cannot be retrieved",
         "stripped_doc" : [
           "Get an application icon as a data: URI",
           ""
         ],
-        "doc" : "Get an application icon as a data: URI\n\nParameters:\n * appName - The name of the application (used for logging)\n * application - The hs.application object of the application\n\nReturns:\n * A string containing a data URI with base64-encoded PNG data of the application icon, or nil if the icon cannot be retrieved",
+        "desc" : "Get an application icon as a data: URI",
         "name" : "getApplicationIconDataUri",
         "notes" : [
 
@@ -679,12 +717,12 @@
         ]
       },
       {
-        "desc" : "Get the contents of a file at a given path",
+        "doc" : "Get the contents of a file at a given path\n\nParameters:\n * fullPath - The full path to the file",
         "stripped_doc" : [
           "Get the contents of a file at a given path",
           ""
         ],
-        "doc" : "Get the contents of a file at a given path\n\nParameters:\n * fullPath - The full path to the file",
+        "desc" : "Get the contents of a file at a given path",
         "name" : "fileContents",
         "notes" : [
 
@@ -700,12 +738,12 @@
         ]
       },
       {
-        "desc" : "Encode a string in base64 format",
+        "doc" : "Encode a string in base64 format\n\nParameters:\n * data - The string to encode",
         "stripped_doc" : [
           "Encode a string in base64 format",
           ""
         ],
-        "doc" : "Encode a string in base64 format\n\nParameters:\n * data - The string to encode",
+        "desc" : "Encode a string in base64 format",
         "name" : "base64",
         "notes" : [
 
@@ -721,12 +759,12 @@
         ]
       },
       {
-        "desc" : "Find an application path by its name",
+        "doc" : "Find an application path by its name\n\nParameters:\n * appName - The name of the application to find",
         "stripped_doc" : [
           "Find an application path by its name",
           ""
         ],
-        "doc" : "Find an application path by its name\n\nParameters:\n * appName - The name of the application to find",
+        "desc" : "Find an application path by its name",
         "name" : "findApplicationPath",
         "notes" : [
 
@@ -742,12 +780,12 @@
         ]
       },
       {
-        "desc" : "Get the last component of a file path, or \"\/\" if the path is the root directory",
+        "doc" : "Get the last component of a file path, or \"\/\" if the path is the root directory\n\nParameters:\n * path - The file path to get the basename from",
         "stripped_doc" : [
           "Get the last component of a file path, or \"\/\" if the path is the root directory",
           ""
         ],
-        "doc" : "Get the last component of a file path, or \"\/\" if the path is the root directory\n\nParameters:\n * path - The file path to get the basename from",
+        "desc" : "Get the last component of a file path, or \"\/\" if the path is the root directory",
         "name" : "getBasename",
         "notes" : [
 
@@ -769,31 +807,32 @@
     "stripped_doc" : [
 
     ],
-    "desc" : "Generic utility functions",
     "Deprecated" : [
 
     ],
+    "desc" : "Generic utility functions",
     "type" : "Module",
     "Constructor" : [
 
     ],
-    "Field" : [
-
-    ],
+    "doc" : "Generic utility functions",
     "Method" : [
 
     ],
     "Command" : [
 
     ],
+    "Field" : [
+
+    ],
     "items" : [
       {
-        "desc" : "Encode a string in base64 format",
+        "doc" : "Encode a string in base64 format\n\nParameters:\n * data - The string to encode",
         "stripped_doc" : [
           "Encode a string in base64 format",
           ""
         ],
-        "doc" : "Encode a string in base64 format\n\nParameters:\n * data - The string to encode",
+        "desc" : "Encode a string in base64 format",
         "name" : "base64",
         "notes" : [
 
@@ -809,12 +848,12 @@
         ]
       },
       {
-        "desc" : "Get the contents of a file at a given path",
+        "doc" : "Get the contents of a file at a given path\n\nParameters:\n * fullPath - The full path to the file",
         "stripped_doc" : [
           "Get the contents of a file at a given path",
           ""
         ],
-        "doc" : "Get the contents of a file at a given path\n\nParameters:\n * fullPath - The full path to the file",
+        "desc" : "Get the contents of a file at a given path",
         "name" : "fileContents",
         "notes" : [
 
@@ -830,12 +869,12 @@
         ]
       },
       {
-        "desc" : "Find an application path by its name",
+        "doc" : "Find an application path by its name\n\nParameters:\n * appName - The name of the application to find",
         "stripped_doc" : [
           "Find an application path by its name",
           ""
         ],
-        "doc" : "Find an application path by its name\n\nParameters:\n * appName - The name of the application to find",
+        "desc" : "Find an application path by its name",
         "name" : "findApplicationPath",
         "notes" : [
 
@@ -851,12 +890,12 @@
         ]
       },
       {
-        "desc" : "Get an application icon as a data: URI",
+        "doc" : "Get an application icon as a data: URI\n\nParameters:\n * appName - The name of the application (used for logging)\n * application - The hs.application object of the application\n\nReturns:\n * A string containing a data URI with base64-encoded PNG data of the application icon, or nil if the icon cannot be retrieved",
         "stripped_doc" : [
           "Get an application icon as a data: URI",
           ""
         ],
-        "doc" : "Get an application icon as a data: URI\n\nParameters:\n * appName - The name of the application (used for logging)\n * application - The hs.application object of the application\n\nReturns:\n * A string containing a data URI with base64-encoded PNG data of the application icon, or nil if the icon cannot be retrieved",
+        "desc" : "Get an application icon as a data: URI",
         "name" : "getApplicationIconDataUri",
         "notes" : [
 
@@ -874,12 +913,12 @@
         ]
       },
       {
-        "desc" : "Get the last component of a file path, or \"\/\" if the path is the root directory",
+        "doc" : "Get the last component of a file path, or \"\/\" if the path is the root directory\n\nParameters:\n * path - The file path to get the basename from",
         "stripped_doc" : [
           "Get the last component of a file path, or \"\/\" if the path is the root directory",
           ""
         ],
-        "doc" : "Get the last component of a file path, or \"\/\" if the path is the root directory\n\nParameters:\n * path - The file path to get the basename from",
+        "desc" : "Get the last component of a file path, or \"\/\" if the path is the root directory",
         "name" : "getBasename",
         "notes" : [
 
@@ -895,17 +934,16 @@
         ]
       }
     ],
-    "doc" : "Generic utility functions",
     "name" : "GridCraft.Util"
   },
   {
     "Constant" : [
       {
-        "desc" : "The CSS for the web view",
+        "doc" : "The CSS for the web view",
         "stripped_doc" : [
           "The CSS for the web view"
         ],
-        "doc" : "The CSS for the web view",
+        "desc" : "The CSS for the web view",
         "name" : "css",
         "notes" : [
 
@@ -921,11 +959,11 @@
         ]
       },
       {
-        "desc" : "The JavaScript for the web view",
+        "doc" : "The JavaScript for the web view",
         "stripped_doc" : [
           "The JavaScript for the web view"
         ],
-        "doc" : "The JavaScript for the web view",
+        "desc" : "The JavaScript for the web view",
         "name" : "js",
         "notes" : [
 
@@ -946,12 +984,12 @@
     ],
     "Function" : [
       {
-        "desc" : "Generates an HTML table from a list of items.",
+        "doc" : "Generates an HTML table from a list of items.\n\nParameters:\n * actionTable - A table of rows, each of which is a table of actions.\n\nReturns:\n * string containing the HTML for the item table",
         "stripped_doc" : [
           "Generates an HTML table from a list of items.",
           ""
         ],
-        "doc" : "Generates an HTML table from a list of items.\n\nParameters:\n * actionTable - A table of rows, each of which is a table of actions.\n\nReturns:\n * string containing the HTML for the item table",
+        "desc" : "Generates an HTML table from a list of items.",
         "name" : "itemTableHtml",
         "notes" : [
 
@@ -968,12 +1006,12 @@
         ]
       },
       {
-        "desc" : "Generates the complete HTML for a web view, including the title, CSS, JS, and item table.",
+        "doc" : "Generates the complete HTML for a web view, including the title, CSS, JS, and item table.\n\nParameters:\n * title - The title of the web view\n * itemTable - The HTML table generated from the actionTable\n\nReturns:\n * string containing the complete HTML for the web view",
         "stripped_doc" : [
           "Generates the complete HTML for a web view, including the title, CSS, JS, and item table.",
           ""
         ],
-        "doc" : "Generates the complete HTML for a web view, including the title, CSS, JS, and item table.\n\nParameters:\n * title - The title of the web view\n * itemTable - The HTML table generated from the actionTable\n\nReturns:\n * string containing the complete HTML for the web view",
+        "desc" : "Generates the complete HTML for a web view, including the title, CSS, JS, and item table.",
         "name" : "webViewHtml",
         "notes" : [
 
@@ -991,37 +1029,12 @@
         ]
       },
       {
-        "desc" : "Creates a new web view intended for modal messages.",
-        "stripped_doc" : [
-          "Creates a new web view intended for modal messages.",
-          ""
-        ],
-        "doc" : "Creates a new web view intended for modal messages.\n\nParameters:\n * title - The title of the web view\n * items - A table of rows, each of which is a table of actions.\n * width - (optional) The width of the web view (default: 1024)\n * height - (optional) The height of the web view (default: 768)\n\nReturns:\n * A hs.webview object",
-        "name" : "webView",
-        "notes" : [
-
-        ],
-        "signature" : "GridCraft.WebView.webView(string, table, number, number) -> hs.webview object",
-        "type" : "Function",
-        "returns" : [
-          " * A hs.webview object"
-        ],
-        "def" : "GridCraft.WebView.webView(string, table, number, number) -> hs.webview object",
-        "parameters" : [
-          " * title - The title of the web view",
-          " * items - A table of rows, each of which is a table of actions.",
-          " * width - (optional) The width of the web view (default: 1024)",
-          " * height - (optional) The height of the web view (default: 768)",
-          ""
-        ]
-      },
-      {
-        "desc" : "Resizes and centers a web view on the main screen.",
+        "doc" : "Resizes and centers a web view on the main screen.\n\nParameters:\n * wv - The web view to resize and center\n * width - The desired width of the web view\n * height - The desired height of the web viewBox\n\nReturns:\n * The resized and centered web view",
         "stripped_doc" : [
           "Resizes and centers a web view on the main screen.",
           ""
         ],
-        "doc" : "Resizes and centers a web view on the main screen.\n\nParameters:\n * wv - The web view to resize and center\n * width - The desired width of the web view\n * height - The desired height of the web viewBox\n\nReturns:\n * The resized and centered web view",
+        "desc" : "Resizes and centers a web view on the main screen.",
         "name" : "resizeCenter",
         "notes" : [
 
@@ -1046,30 +1059,55 @@
     "stripped_doc" : [
 
     ],
-    "desc" : "The web view that displays the grid.",
     "Deprecated" : [
 
     ],
+    "desc" : "The web view that displays the grid.",
     "type" : "Module",
     "Constructor" : [
+      {
+        "doc" : "Creates a new web view intended for modal messages.\n\nParameters:\n * title - The title of the web view\n * items - A table of rows, each of which is a table of actions.\n * width - (optional) The width of the web view (default: 1024)\n * height - (optional) The height of the web view (default: 768)\n\nReturns:\n * A hs.webview object",
+        "stripped_doc" : [
+          "Creates a new web view intended for modal messages.",
+          ""
+        ],
+        "desc" : "Creates a new web view intended for modal messages.",
+        "name" : "webView",
+        "notes" : [
 
+        ],
+        "signature" : "GridCraft.WebView.webView(string, table, number, number) -> hs.webview object",
+        "type" : "Constructor",
+        "returns" : [
+          " * A hs.webview object"
+        ],
+        "def" : "GridCraft.WebView.webView(string, table, number, number) -> hs.webview object",
+        "parameters" : [
+          " * title - The title of the web view",
+          " * items - A table of rows, each of which is a table of actions.",
+          " * width - (optional) The width of the web view (default: 1024)",
+          " * height - (optional) The height of the web view (default: 768)",
+          ""
+        ]
+      }
     ],
-    "Field" : [
-
-    ],
+    "doc" : "The web view that displays the grid.",
     "Method" : [
 
     ],
     "Command" : [
 
     ],
+    "Field" : [
+
+    ],
     "items" : [
       {
-        "desc" : "The CSS for the web view",
+        "doc" : "The CSS for the web view",
         "stripped_doc" : [
           "The CSS for the web view"
         ],
-        "doc" : "The CSS for the web view",
+        "desc" : "The CSS for the web view",
         "name" : "css",
         "notes" : [
 
@@ -1085,11 +1123,11 @@
         ]
       },
       {
-        "desc" : "The JavaScript for the web view",
+        "doc" : "The JavaScript for the web view",
         "stripped_doc" : [
           "The JavaScript for the web view"
         ],
-        "doc" : "The JavaScript for the web view",
+        "desc" : "The JavaScript for the web view",
         "name" : "js",
         "notes" : [
 
@@ -1105,12 +1143,12 @@
         ]
       },
       {
-        "desc" : "Generates an HTML table from a list of items.",
+        "doc" : "Generates an HTML table from a list of items.\n\nParameters:\n * actionTable - A table of rows, each of which is a table of actions.\n\nReturns:\n * string containing the HTML for the item table",
         "stripped_doc" : [
           "Generates an HTML table from a list of items.",
           ""
         ],
-        "doc" : "Generates an HTML table from a list of items.\n\nParameters:\n * actionTable - A table of rows, each of which is a table of actions.\n\nReturns:\n * string containing the HTML for the item table",
+        "desc" : "Generates an HTML table from a list of items.",
         "name" : "itemTableHtml",
         "notes" : [
 
@@ -1127,12 +1165,12 @@
         ]
       },
       {
-        "desc" : "Resizes and centers a web view on the main screen.",
+        "doc" : "Resizes and centers a web view on the main screen.\n\nParameters:\n * wv - The web view to resize and center\n * width - The desired width of the web view\n * height - The desired height of the web viewBox\n\nReturns:\n * The resized and centered web view",
         "stripped_doc" : [
           "Resizes and centers a web view on the main screen.",
           ""
         ],
-        "doc" : "Resizes and centers a web view on the main screen.\n\nParameters:\n * wv - The web view to resize and center\n * width - The desired width of the web view\n * height - The desired height of the web viewBox\n\nReturns:\n * The resized and centered web view",
+        "desc" : "Resizes and centers a web view on the main screen.",
         "name" : "resizeCenter",
         "notes" : [
 
@@ -1151,37 +1189,12 @@
         ]
       },
       {
-        "desc" : "Creates a new web view intended for modal messages.",
-        "stripped_doc" : [
-          "Creates a new web view intended for modal messages.",
-          ""
-        ],
-        "doc" : "Creates a new web view intended for modal messages.\n\nParameters:\n * title - The title of the web view\n * items - A table of rows, each of which is a table of actions.\n * width - (optional) The width of the web view (default: 1024)\n * height - (optional) The height of the web view (default: 768)\n\nReturns:\n * A hs.webview object",
-        "name" : "webView",
-        "notes" : [
-
-        ],
-        "signature" : "GridCraft.WebView.webView(string, table, number, number) -> hs.webview object",
-        "type" : "Function",
-        "returns" : [
-          " * A hs.webview object"
-        ],
-        "def" : "GridCraft.WebView.webView(string, table, number, number) -> hs.webview object",
-        "parameters" : [
-          " * title - The title of the web view",
-          " * items - A table of rows, each of which is a table of actions.",
-          " * width - (optional) The width of the web view (default: 1024)",
-          " * height - (optional) The height of the web view (default: 768)",
-          ""
-        ]
-      },
-      {
-        "desc" : "Generates the complete HTML for a web view, including the title, CSS, JS, and item table.",
+        "doc" : "Generates the complete HTML for a web view, including the title, CSS, JS, and item table.\n\nParameters:\n * title - The title of the web view\n * itemTable - The HTML table generated from the actionTable\n\nReturns:\n * string containing the complete HTML for the web view",
         "stripped_doc" : [
           "Generates the complete HTML for a web view, including the title, CSS, JS, and item table.",
           ""
         ],
-        "doc" : "Generates the complete HTML for a web view, including the title, CSS, JS, and item table.\n\nParameters:\n * title - The title of the web view\n * itemTable - The HTML table generated from the actionTable\n\nReturns:\n * string containing the complete HTML for the web view",
+        "desc" : "Generates the complete HTML for a web view, including the title, CSS, JS, and item table.",
         "name" : "webViewHtml",
         "notes" : [
 
@@ -1197,9 +1210,33 @@
           " * itemTable - The HTML table generated from the actionTable",
           ""
         ]
+      },
+      {
+        "doc" : "Creates a new web view intended for modal messages.\n\nParameters:\n * title - The title of the web view\n * items - A table of rows, each of which is a table of actions.\n * width - (optional) The width of the web view (default: 1024)\n * height - (optional) The height of the web view (default: 768)\n\nReturns:\n * A hs.webview object",
+        "stripped_doc" : [
+          "Creates a new web view intended for modal messages.",
+          ""
+        ],
+        "desc" : "Creates a new web view intended for modal messages.",
+        "name" : "webView",
+        "notes" : [
+
+        ],
+        "signature" : "GridCraft.WebView.webView(string, table, number, number) -> hs.webview object",
+        "type" : "Constructor",
+        "returns" : [
+          " * A hs.webview object"
+        ],
+        "def" : "GridCraft.WebView.webView(string, table, number, number) -> hs.webview object",
+        "parameters" : [
+          " * title - The title of the web view",
+          " * items - A table of rows, each of which is a table of actions.",
+          " * width - (optional) The width of the web view (default: 1024)",
+          " * height - (optional) The height of the web view (default: 768)",
+          ""
+        ]
       }
     ],
-    "doc" : "The web view that displays the grid.",
     "name" : "GridCraft.WebView"
   }
 ]
