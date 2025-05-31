@@ -1,5 +1,8 @@
 dist
 phosphor/node_modules
 phosphor/assets
+site/public/
+site/resources/
+site/.hugo_build.lock
 .DS_store
 ._*
