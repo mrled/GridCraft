@@ -5,3 +5,8 @@ title = 'GridCraft'
 [module]
 [[module.imports]]
 path = "github.com/alex-shpak/hugo-book"
+
+[markup]
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
