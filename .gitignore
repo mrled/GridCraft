@@ -1,3 +1,8 @@
 dist
 phosphor/node_modules
 phosphor/assets
+
+# Hugo build output
+docs/public/
+docs/resources/
+docs/.hugo_build.lock
