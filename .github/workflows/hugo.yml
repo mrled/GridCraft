@@ -50,6 +50,9 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: '1.24.1'
+      - name: Download Hugo modules
+        run: hugo mod get
+        working-directory: ./site
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
