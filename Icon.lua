@@ -60,7 +60,7 @@ end
 ---  * None
 ---
 --- Returns:
----  * string containing an <img> tag with the transparent PNG data
+---  * string containing an img tag with the transparent PNG data
 M.emptyIcon = function()
   local transparentPng =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII="

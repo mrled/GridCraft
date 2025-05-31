@@ -14,10 +14,11 @@ local M = {}
 --- Create a new grid of hotkeys
 ---
 --- Parameters:
----  * mods: Modifier keys as could be4 passed to hs.hotkey.modal.new(), like {"cmd", "ctrl"} or {}
----  * key: A key to trigger the modal hotkey as could be passed to hs.hotkey.modal.new(), like "t"
+---  * mods: Modifier keys as could be4 passed to `hs.hotkey.modal.new()`, like `{"cmd", "ctrl"}` or `{}`
+---  * key: A key to trigger the modal hotkey as could be passed to `hs.hotkey.modal.new()`, like `t`
 ---  * actionTable: (table) A table of rows, each of which is a table of actions.
 ---       e.g. to represent the left half of a qwerty keyboard, you might use:
+---       ```lua
 ---       {
 ---         {
 ---           GridCraft.handler { key = "1", application = "1Password" },
@@ -34,6 +35,7 @@ local M = {}
 ---           GridCraft.handler { key = "t", application = "Terminal" },
 ---         },
 ---       }
+---       ```
 ---       Note that we are constrained to using array tables rather than key-value tobles
 ---       so that the order is preserved.
 ---  * title: (string) (optional) A message prefix to display when communicating to the user about this hot key
