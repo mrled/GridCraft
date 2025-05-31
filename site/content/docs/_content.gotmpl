@@ -1,0 +1,12 @@
+{{ range .Site.Data.docs }}
+
+  {{ $content := dict "mediaType" "text/markdown" "value" .desc }}
+  {{ $page := dict
+    "content" $content
+    "kind" "page"
+    "path" .name
+    "title" .name
+  }}
+  {{ $.AddPage $page }}
+
+{{ end }}
