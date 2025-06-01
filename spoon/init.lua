@@ -41,12 +41,10 @@ M.author = "Micah R Ledbetter <me@micahrl.com>"
 M.homepage = "https://github.com/mrled/GridCraft"
 M.license = "MIT - https://opensource.org/licenses/MIT"
 
-M.action = Action.action
-M.grid = Grid.grid
-M.iconPhosphor = Icon.iconPhosphor
-M.iconMacFile = Icon.iconMacFile
-M.emptyIcon = Icon.emptyIcon
-M.examples = Examples
-M.animationSeconds = Constants.animationSeconds
+M.Action = Action
+M.Constants = Constants
+M.Examples = Examples
+M.Grid = Grid
+M.Icon = Icon
 
 return M

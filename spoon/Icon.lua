@@ -6,14 +6,14 @@ local Util = dofile(hs.spoons.resourcePath("Util.lua"))
 
 local M = {}
 
---- GridCraft.Icon.iconPhosphor(name, [weight]) -> string or nil
+--- GridCraft.Icon.phosphor(name, [weight]) -> string or nil
 --- Function
 --- Create an icon from a Phosphor icon name and weight
 ---
 --- Parameters:
 ---  * name - The name of the Phosphor icon (e.g., "app-window")
 ---  * weight - The weight of the icon (e.g., "regular", "bold", "duotone"). Defaults to "regular".
-M.iconPhosphor = function(name, weight)
+M.phosphor = function(name, weight)
   if not weight then
     weight = "regular"
   end
@@ -32,13 +32,13 @@ M.iconPhosphor = function(name, weight)
   return iconData
 end
 
---- GridCraft.Icon.iconMacFile(filePath) -> string or nil
+--- GridCraft.Icon.macFile(filePath) -> string or nil
 --- Function
 --- Create an icon from the icon of a macOS file (including folders, applications, etc)
 ---
 --- Parameters:
 ---  * filePath - The path to the file or application for which to get the icon
-M.iconMacFile = function(filePath)
+M.macFile = function(filePath)
   local icon = hs.image.iconForFile(filePath)
   if not icon then
     print("No icon found for file: " .. filePath)
@@ -52,7 +52,7 @@ M.iconMacFile = function(filePath)
   return imgElement
 end
 
---- GridCraft.Icon.emptyIcon() -> string
+--- GridCraft.Icon.empty() -> string
 --- Function
 --- Create an empty icon, which is a transparent PNG image
 ---
@@ -61,7 +61,7 @@ end
 ---
 --- Returns:
 ---  * string containing an img tag with the transparent PNG data
-M.emptyIcon = function()
+M.empty = function()
   local transparentPng =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII="
   return string.format(

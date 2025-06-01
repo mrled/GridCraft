@@ -9,7 +9,7 @@ local Util = dofile(hs.spoons.resourcePath("Util.lua"))
 
 local M = {}
 
---- GridCraft.Action.action(table) -> table
+--- GridCraft.Action.new(table) -> table
 --- Constructor
 --- Create a new action for a grid
 ---
@@ -33,19 +33,19 @@ local M = {}
 ---
 --- Notes:
 ---  * Together, the mods and key are passed to `hs.hotkey.bind()` to create a regular Hammerspoon hotkey.
-M.action = function(arg)
+M.new = function(arg)
   local action = {}
 
   action.mods = arg.mods or {}
   action.key = arg.key
   action.handler = arg.handler or function() end
   action.description = arg.description or ""
-  action.icon = arg.icon or Icon.iconPhosphor("app-window", "regular")
+  action.icon = arg.icon or Icon.phosphor("app-window", "regular")
 
   if arg.empty then
     action.handler = function() end
     action.description = "No action"
-    action.icon = Icon.emptyIcon()
+    action.icon = Icon.empty()
     return action
   elseif arg.application then
     action.application = arg.application
@@ -57,7 +57,7 @@ M.action = function(arg)
       -- Don't use hs.application.find() -- that only works for running apps!
       -- local app = hs.application.find(arg.application)
       local appPath = Util.findApplicationPath(arg.application)
-      local appIcon = Icon.iconMacFile(appPath)
+      local appIcon = Icon.macFile(appPath)
       if appIcon then
         action.icon = appIcon
       end
@@ -69,13 +69,13 @@ M.action = function(arg)
       action.description = Util.getBasename(action.file)
     end
     if arg.icon == nil then
-      local fileIcon = Icon.iconMacFile(action.file)
+      local fileIcon = Icon.macFile(action.file)
       if fileIcon then
         action.icon = fileIcon
       end
     end
   elseif arg.submenu then
-    action.submenu = Grid.grid(
+    action.submenu = Grid.new(
     -- The first two arguments are for a GLOBAL hotkey, so we set them to nil.
       nil,
       nil,

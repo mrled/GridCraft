@@ -9,7 +9,7 @@ local WebView = dofile(hs.spoons.resourcePath("WebView.lua"))
 local M = {}
 
 
---- GridCraft.Grid.grid(table, string, table, string) -> table
+--- GridCraft.Grid.new(table, string, table, string) -> table
 --- Constructor
 --- Create a new grid of hotkeys
 ---
@@ -42,7 +42,7 @@ local M = {}
 ---
 --- Returns:
 ---   * A GridCraft grid of hotkeys
-M.grid = function(mods, key, actionTable, title)
+M.new = function(mods, key, actionTable, title)
   local result = {}
   result.triggerKey = hs.hotkey.modal.new(mods, key)
   result.activeWebView = nil

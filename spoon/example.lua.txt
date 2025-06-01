@@ -20,15 +20,15 @@ local appsSubmenu = {
   -- The table for the top row
   {
     -- Regular applications passed with application pull the icon from the application
-    spoon.GridCraft.action { key = "e", application = "Terminal" },
+    spoon.GridCraft.Action.new { key = "e", application = "Terminal" },
     -- Applicaions will use their name as the description, or you can override it
-    spoon.GridCraft.action { key = "d", application = "Visual Studio Code", description = "VS Code" },
+    spoon.GridCraft.Action.new { key = "d", application = "Visual Studio Code", description = "VS Code" },
   },
   -- The table for the bottom row
   {
     -- Files (including folders) will also take their icon and description from the file
-    spoon.GridCraft.action { key = "d", file = os.getenv("HOME") .. "/Downloads" },
-    spoon.GridCraft.action { key = "f", application = "Finder" },
+    spoon.GridCraft.Action.new { key = "d", file = os.getenv("HOME") .. "/Downloads" },
+    spoon.GridCraft.Action.new { key = "f", application = "Finder" },
   },
 }
 
@@ -36,15 +36,15 @@ local primaryMenu = {
   -- The table for the top row
   {
     -- The E key of the maiun menu invokes the submenu defined above
-    spoon.GridCraft.action {
+    spoon.GridCraft.Action.new {
       key = "e",
       submenu = appsSubmenu,
       description = "apps",
       -- To use a Phosphor icon, pass the icon name and weight.
       -- Phosphor icons are automatically colored the same color as the description text.
-      icon = spoon.GridCraft.iconPhosphor("app-store-logo", "regular")
+      icon = spoon.GridCraft.Icon.phosphor("app-store-logo", "regular")
     },
-    spoon.GridCraft.action {
+    spoon.GridCraft.Action.new {
       key = "r",
       -- You can make custom actions by passing any Lua function to the action parameter,
       -- even one you define yourself!
@@ -58,12 +58,12 @@ local primaryMenu = {
   },
   -- The table for the bottom row
   {
-    spoon.GridCraft.action {
+    spoon.GridCraft.Action.new {
       key = "d",
       -- Reload the Hammerspoon configuration after delay to show the key selection animation.
       -- (Without the delay, the reload happens immediately, before the animationm runs.)
       handler = function()
-        hs.timer.doAfter(spoon.GridCraft.animationSeconds, function()
+        hs.timer.doAfter(spoon.GridCraft.Constants.animationSeconds, function()
           hs.reload()
         end)
       end,
@@ -71,7 +71,7 @@ local primaryMenu = {
       -- The icon can a string with an <svg> or <img> tag, like this:
       icon = [[<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline points="184 104 232 104 232 56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M188.4,192a88,88,0,1,1,1.83-126.23L232,104" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>]]
     },
-    spoon.GridCraft.action {
+    spoon.GridCraft.Action.new {
       key = "f",
       -- Run any Lua code you want
       handler = function()
@@ -79,12 +79,12 @@ local primaryMenu = {
         -- Open the Hammerspoon console
       end,
       description = "Custom",
-      icon = spoon.GridCraft.iconPhosphor("terminal-window", "regular")
+      icon = spoon.GridCraft.Icon.phosphor("terminal-window", "regular")
     },
   },
 }
 
-spoon.GridCraft.grid(
+spoon.GridCraft.Grid.new(
 -- The hokey to invoke this is ctrl-shift-f11
   { "ctrl", "shift" },
   "f11",
