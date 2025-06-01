@@ -5,8 +5,7 @@
 # Warn on undefined variables
 MAKEFLAGS += --warn-undefined-variables
 # Fail if any command fails.
-SHELL := /bin/sh
-.SHELLFLAGS := -ec
+.SHELLFLAGS := -euc
 
 # Build configuration
 VERSION ?= 0.1.0-devel
