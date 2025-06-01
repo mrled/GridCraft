@@ -7,6 +7,9 @@ on:
   # Run on any pull request to any branch
   pull_request: {}
 
+permissions:
+  contents: write  # Required to create releases
+
 jobs:
   build:
     runs-on: ubuntu-latest
