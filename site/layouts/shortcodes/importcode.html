@@ -1,0 +1,25 @@
+{{/* "Import" source code directly into the output HTML file, with syntax highlighting
+   *
+   * This shortcode expects arguments:
+   *     filename:   A path _relative to the calling page_
+   *                 That is, in a file like content/posts/x/index.md,
+   *                 referencing this shortcode with {{< import "x.py" "python3" >}}
+   *                 will insert the file at content/posts/x/x.py.
+   *     language:   A language supported by the Hugo syntax highlighter
+   *     options:    (Optional) A list of options to pass to the Hugo syntax highlighter
+   *
+   * Note that you should call this shortcode with angle brackets, not %.
+   * e.g., put something like this in your content:
+   *     {{< importcode "filename.py" "python3" >}}
+   * If you use the {{% import ... %}} style syntax,
+   * it assumes the output of this shortcode is _markdown_,
+   * which can contain HTML,
+   * but will break for nontrivial code blocks
+   * e.g. comments prefixed with '#' will be interpreted as Markdown titles.
+   * See also <https://gohugo.io/content-management/shortcodes/#shortcodes-with-markdown>
+   */}}
+{{- $filename := (path.Join (path.Dir .Page.File.Path) (.Get 0)) -}}
+{{- $language := .Get 1 -}}
+{{- $options := .Get 2 -}}
+{{- $fileContents := readFile $filename | safeHTML -}}
+{{- highlight $fileContents $language $options -}}
