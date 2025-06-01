@@ -5,8 +5,8 @@
 # Warn on undefined variables
 MAKEFLAGS += --warn-undefined-variables
 # Fail if any command fails.
-SHELL := /bin/bash
-.SHELLFLAGS := -euo pipefail -c
+SHELL := /bin/sh
+.SHELLFLAGS := -ec
 
 # Build configuration
 VERSION ?= 0.1.0-devel
@@ -33,9 +33,11 @@ phosphor/node_modules/@phosphor-icons/core/assets/regular/x.svg:
 .PHONY: phosphor
 phosphor: phosphor/node_modules/@phosphor-icons/core/assets/regular/x.svg ## Install Phosphor icons
 
-dist/GridCraft.spoon/phosphor/assets/.installed: phosphor/node_modules/@phosphor-icons/core/assets/regular/x.svg
-	mkdir -p dist/GridCraft.spoon/phosphor
-	cp -r "phosphor/node_modules/@phosphor-icons/core/assets" dist/GridCraft.spoon/phosphor
+dist/GridCraft.spoon/phosphor/assets/.installed: 
+	mkdir -p dist/GridCraft.spoon/phosphor/assets
+	if [ -d "phosphor/node_modules/@phosphor-icons/core/assets" ]; then \
+		cp -r "phosphor/node_modules/@phosphor-icons/core/assets" dist/GridCraft.spoon/phosphor; \
+	fi
 	touch dist/GridCraft.spoon/phosphor/assets/.installed
 
 dist/GridCraft.spoon: dist/GridCraft.spoon/phosphor/assets/.installed ## Build the Spoon package

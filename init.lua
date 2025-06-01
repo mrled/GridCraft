@@ -18,10 +18,14 @@ local function readVersion()
   local versionPath = hs.spoons.resourcePath("version.txt")
   local file = io.open(versionPath, "r")
   if file then
-    local version = file:read("*line")
+    local version = file:read("*all")
     file:close()
     if version and version ~= "" then
-      return version
+      -- Trim whitespace and newlines
+      version = version:match("^%s*(.-)%s*$")
+      if version and version ~= "" then
+        return version
+      end
     end
   end
   return "0.1.0-devel"
