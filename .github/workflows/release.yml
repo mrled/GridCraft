@@ -53,14 +53,10 @@ jobs:
 
     - name: Upload Release Asset (for releases)
       if: github.event_name == 'release'
-      uses: actions/upload-release-asset@v1
+      run: |
+        gh release upload ${{ github.event.release.tag_name }} ./dist/GridCraft.spoon.zip --name "${{ steps.version.outputs.ASSET_NAME }}"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ./dist/GridCraft.spoon.zip
-        asset_name: ${{ steps.version.outputs.ASSET_NAME }}
-        asset_content_type: application/zip
 
     - name: Upload PR Artifact (for pull requests)
       if: github.event_name == 'pull_request'
