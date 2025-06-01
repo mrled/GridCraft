@@ -36,12 +36,12 @@ For development, you may want to use the repo directly:
 cd /path/to/GridCraft
 make phosphor
 cd ~/.hammerspoon/Spoons
-ln -s /path/to/GridCraft GridCraft.spoon
+ln -s /path/to/GridCraft/spoon GridCraft.spoon
 ```
 
 ## Configuring
 
-See [`example.lua.txt`](./example.lua.txt) for an example `~/.hammerspoon/init.lua` config.
+See [`example.lua.txt`](./spoon/example.lua.txt) for an example `~/.hammerspoon/init.lua` config.
 
 ## Other configuration examples and recommendations
 

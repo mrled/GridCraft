@@ -28,17 +28,17 @@ dist/GridCraft.spoon/phosphor/assets/.installed: phosphor/node_modules/@phosphor
 	cp -r "phosphor/node_modules/@phosphor-icons/core/assets" dist/GridCraft.spoon/phosphor
 	touch dist/GridCraft.spoon/phosphor/assets/.installed
 
-LUASRCS := $(wildcard *.lua *.lua.txt)
+LUASRCS := $(wildcard src/*.lua src/*.lua.txt)
 dist/GridCraft.spoon/version.txt: $(LUASRCS) dist/GridCraft.spoon/phosphor/assets/.installed ## Build the Spoon package
 	mkdir -p dist/GridCraft.spoon
-	cp -r *.lua *.lua.txt *.css readme.md dist/GridCraft.spoon/
+	cp -r src/*.lua src/*.lua.txt *.css readme.md dist/GridCraft.spoon/
 	./getversion.sh > dist/GridCraft.spoon/version.txt
 
 dist/GridCraft.spoon.zip: dist/GridCraft.spoon/version.txt ## Create the Spoon package zip file
 	cd dist && zip -r GridCraft.spoon.zip GridCraft.spoon
 
 # Docs generation requires a running Hammerspoon instance.
-# It looks recursively for all *.lus files,
+# It looks recursively for all *.lua files,
 # so we want to do this on the .spoon directory,
 # not in the root of the project which has other Lua files that don't have Spoon-style doc comments.
 site/data/docs.json: dist/GridCraft.spoon/version.txt ## Generate documentation JSON
