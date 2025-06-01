@@ -10,6 +10,14 @@ It looks like this:
 
 ## Installing
 
+### Installing a release
+
+1. Download `GridCraft.spoon.zip` from the [releases page](https://github.com/mrled/GridCraft/releases)
+2. Extract the zipfile
+3. Double-click `GridCraft.spoon` in the Finder
+
+### Installing from source
+
 Build the spoon and install it from the command-line:
 
 ```sh
