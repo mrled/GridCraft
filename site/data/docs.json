@@ -9,14 +9,13 @@
     "Method": [],
     "Variable": [],
     "desc": "An action menu based on Starcraft 2 Grid Hotkeys.",
-    "doc": "An action menu based on Starcraft 2 Grid Hotkeys.\n\n<https://github.com/mrled/GridCraft>\n\nThis is the main module for GridCraft.\nAll functionality is contained in the submodules.\n\nExample:\n```lua\nspoon.GridCraft.Grid.new(\n  { \"ctrl\", \"shift\" },\n  \"f11\",\n  {\n    {\n      spoon.GridCraft.Action.new { key = \"e\", application = \"Terminal\", icon = spoon.GridCraft.Icon.phosphor(\"terminal-window\", \"regular\") },\n      spoon.GridCraft.Action.new { key = \"d\", application = \"Visual Studio Code\", description = \"VS Code\" },\n    },\n    {\n      spoon.GridCraft.Action.new { key = \"d\", file = os.getenv(\"HOME\") .. \"/Downloads\" },\n      spoon.GridCraft.Action.new { key = \"f\", application = \"Finder\" },\n    },\n  },\n  \"GridCraftExample\"\n)\n```\nFor more complete examples, see:\n* `example.lua.txt` in this directory\n* The documentation at <https://pages.micahrl.com/GridCraft>",
+    "doc": "An action menu based on Starcraft 2 Grid Hotkeys.\n\n<https://github.com/mrled/GridCraft>\n\nThis is the main module for GridCraft.\nAll functionality is contained in the submodules.\n\nExample:\n```lua\nspoon.GridCraft.Grid.new(\n  { \"ctrl\", \"shift\" },\n  \"f11\",\n  {\n    {\n      spoon.GridCraft.Action.new { key = \"e\", application = \"Terminal\", icon = spoon.GridCraft.Icon.phosphor(\"terminal-window\", \"regular\") },\n      spoon.GridCraft.Action.new { key = \"d\", application = \"Visual Studio Code\", description = \"VS Code\" },\n    },\n    {\n      spoon.GridCraft.Action.new { key = \"d\", file = os.getenv(\"HOME\") .. \"/Downloads\" },\n      spoon.GridCraft.Action.new { key = \"f\", application = \"Finder\" },\n    },\n  },\n  \"GridCraftExample\"\n)\n```\nFor more complete examples, see:\n* `../example.lua`\n* The documentation at <https://pages.micahrl.com/GridCraft>",
     "items": [],
     "name": "GridCraft",
     "stripped_doc": [],
     "submodules": [
       "Action",
       "Constants",
-      "Examples",
       "Grid",
       "Icon",
       "Util",
@@ -190,53 +189,6 @@
       }
     ],
     "name": "GridCraft.Constants",
-    "stripped_doc": [],
-    "submodules": [],
-    "type": "Module"
-  },
-  {
-    "Command": [],
-    "Constant": [
-      {
-        "def": "GridCraft.Examples.reporoot",
-        "desc": "The path to the example in the repository root",
-        "doc": "The path to the example in the repository root",
-        "name": "reporoot",
-        "notes": [],
-        "parameters": [],
-        "returns": [],
-        "signature": "GridCraft.Examples.reporoot",
-        "stripped_doc": [
-          "The path to the example in the repository root"
-        ],
-        "type": "Constant"
-      }
-    ],
-    "Constructor": [],
-    "Deprecated": [],
-    "Field": [],
-    "Function": [],
-    "Method": [],
-    "Variable": [],
-    "desc": "Contains paths to all the examples in the documentation site,",
-    "doc": "Contains paths to all the examples in the documentation site,\nbut only works from the git checkout -- not from the installed spoon.",
-    "items": [
-      {
-        "def": "GridCraft.Examples.reporoot",
-        "desc": "The path to the example in the repository root",
-        "doc": "The path to the example in the repository root",
-        "name": "reporoot",
-        "notes": [],
-        "parameters": [],
-        "returns": [],
-        "signature": "GridCraft.Examples.reporoot",
-        "stripped_doc": [
-          "The path to the example in the repository root"
-        ],
-        "type": "Constant"
-      }
-    ],
-    "name": "GridCraft.Examples",
     "stripped_doc": [],
     "submodules": [],
     "type": "Module"
