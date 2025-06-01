@@ -1,0 +1,14 @@
++++
+title = "Simple Submenu"
+weight = 15
++++
+
+This is a 2x2 grid with a submenu
+
+<video muted playsinline controls
+       style="max-width: 100%; height: auto; display: block; margin: 0 auto;"
+       alt="Screen recording of GridKeys">
+  <source src="./screenrecording.mp4" type="video/mp4">
+</video>
+
+{{< importcode "example.lua" "lua" >}}
