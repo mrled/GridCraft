@@ -41,10 +41,12 @@ dist/GridCraft.spoon.zip: dist/GridCraft.spoon/version.txt ## Create the Spoon p
 # It looks recursively for all *.lua files,
 # so we want to do this on the .spoon directory,
 # not in the root of the project which has other Lua files that don't have Spoon-style doc comments.
+# Process the resulting JSON with jq to sort the keys so that the output is deterministic.
 site/data/docs.json: dist/GridCraft.spoon/version.txt ## Generate documentation JSON
 	mkdir -p site/data
 	hs -A -c "hs.doc.builder.genJSON(\"$(CURDIR)/dist/GridCraft.spoon\")" > dist/docsoutput.txt
-	grep -v "^--" < dist/docsoutput.txt > site/data/docs.json
+	grep -v "^--" < dist/docsoutput.txt | \
+		jq -S . > site/data/docs.json
 	@jq empty site/data/docs.json || (echo "Error generating docs.json, see dist/docsoutput.txt" && exit 1)
 
 dist/hammerspoon/.git/HEAD:
