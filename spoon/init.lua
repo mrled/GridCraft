@@ -1,6 +1,6 @@
 --- === GridCraft ===
 ---
---- An action menu based on Starcraft 2 Grid Hotkeys.
+--- An action menu based on StarCraft II Grid Hotkeys.
 ---
 --- <https://github.com/mrled/GridCraft>
 ---
