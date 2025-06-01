@@ -1,13 +1,10 @@
---[[ -*- mode: lua -*-
+--[[
 A simplified example of GridKeys usage with inline documentation.
 
 This one makes a tiny 2x2 grid for the keys:
 
   E R
   D F
-
-Why is this .lua.txt?
-So that Hammerspoon documentation generation doesn't see it as a Lua file and error on invalid docstrings.
 ]]
 
 -- The "@diagnostic" and "spoon = spoon" lines tell VS Code's Lua extension

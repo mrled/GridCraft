@@ -26,12 +26,11 @@
 --- )
 --- ```
 --- For more complete examples, see:
---- * `example.lua.txt` in this directory
+--- * `../example.lua`
 --- * The documentation at <https://pages.micahrl.com/GridCraft>
 
 local Action = dofile(hs.spoons.resourcePath("Action.lua"))
 local Constants = dofile(hs.spoons.resourcePath("Constants.lua"))
-local Examples = dofile(hs.spoons.resourcePath("Examples.lua"))
 local Grid = dofile(hs.spoons.resourcePath("Grid.lua"))
 local Icon = dofile(hs.spoons.resourcePath("Icon.lua"))
 
@@ -68,7 +67,6 @@ M.license = "MIT - https://opensource.org/licenses/MIT"
 
 M.Action = Action
 M.Constants = Constants
-M.Examples = Examples
 M.Grid = Grid
 M.Icon = Icon
 
