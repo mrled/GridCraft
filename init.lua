@@ -14,9 +14,29 @@ local Icon = dofile(hs.spoons.resourcePath("Icon.lua"))
 local M = {}
 M.__index = M
 
+-- Read version from version.txt file
+local function readVersion()
+    local defaultVersion = "devel"
+    local versionPath = hs.spoons.resourcePath("version.txt")
+
+    local file = io.open(versionPath, "r")
+    if not file then return defaultVersion end
+    local content = file:read("*all")
+    file:close()
+
+    -- Trim all whitespace and take first line
+    local trimmed = content:match("^%s*(.-)%s*$")
+    local firstLine = trimmed:match("([^\r\n]*)")
+
+    if not firstLine then
+        return defaultVersion
+    end
+    return firstLine
+end
+
 -- Spoon Metadata
 M.name = "GridCraft"
-M.version = "0.1.0"
+M.version = readVersion()
 M.author = "Micah R Ledbetter <me@micahrl.com>"
 M.homepage = "https://github.com/mrled/GridCraft"
 M.license = "MIT - https://opensource.org/licenses/MIT"
