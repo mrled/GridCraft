@@ -21,10 +21,13 @@ jobs:
         node-version: '18'
 
     - name: Build GridCraft
-      run: make dist/GridCraft.spoon.zip
+      id: build
+      run: |+
+        make dist/GridCraft.spoon.zip
+        echo "version=$(cat dist/GridCraft.spoon/version.txt)" >> $GITHUB_OUTPUT
 
     - name: Upload release artifact
-      if: startsWith(github.ref, 'refs/tags/v')
+      if: startsWith(steps.build.outputs.version, 'v')
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -35,7 +38,7 @@ jobs:
         asset_content_type: application/zip
 
     - name: Upload temporary artifact
-      if: "!startsWith(github.ref, 'refs/tags/v')"
+      if: "!startsWith(steps.build.outputs.version, 'v')"
       uses: actions/upload-artifact@v4
       with:
         name: GridCraft-${{ github.sha }}
