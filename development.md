@@ -20,3 +20,10 @@ make site/data/docs.json
 git add site/data/docs.json
 git commit
 ```
+
+## Docstrings
+
+The Lua docstrings conform to the Hammerspoon format.
+
+* You'll want to have the hammerspoon repo checked out so you can refer to it for examples
+* Especially notice `module.lp`
