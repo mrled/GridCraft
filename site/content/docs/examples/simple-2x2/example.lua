@@ -8,7 +8,7 @@ spoon.GridCraft.Grid.new(
       -- Regular applications passed with application pull the icon from the application
       spoon.GridCraft.Action.new { key = "e", application = "Terminal" },
       -- Applicaions will use their name as the description, or you can override it
-      spoon.GridCraft.Action.new { key = "d", application = "Visual Studio Code", description = "VS Code" },
+      spoon.GridCraft.Action.new { key = "r", application = "Visual Studio Code", description = "VS Code" },
     },
     -- The table for the bottom row
     {
