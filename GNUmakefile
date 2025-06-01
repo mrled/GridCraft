@@ -9,12 +9,6 @@ MAKEFLAGS += --warn-undefined-variables
 
 # Build configuration
 VERSION ?= 0.1.0-devel
-ARTIFACT_SUFFIX ?=
-ifeq ($(ARTIFACT_SUFFIX),)
-	ZIP_NAME := GridCraft.spoon.zip
-else
-	ZIP_NAME := GridCraft.spoon$(ARTIFACT_SUFFIX).zip
-endif
 
 # Show a nice table of Make targets
 .PHONY: help
@@ -42,5 +36,5 @@ dist/GridCraft.spoon: dist/GridCraft.spoon/phosphor/assets/.installed ## Build t
 	cp -r *.lua *.css readme.md dist/GridCraft.spoon/
 	echo "$(VERSION)" > dist/GridCraft.spoon/version.txt
 
-dist/$(ZIP_NAME): dist/GridCraft.spoon ## Create the Spoon package zip file
-	cd dist && zip -r $(ZIP_NAME) GridCraft.spoon
+dist/GridCraft.spoon.zip: dist/GridCraft.spoon ## Create the Spoon package zip file
+	cd dist && zip -r GridCraft.spoon.zip GridCraft.spoon
