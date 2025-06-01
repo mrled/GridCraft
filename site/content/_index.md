@@ -14,9 +14,8 @@ It looks like this:
 ## Screen recording
 
 Here is a screen recording of GridKeys in action.
-(Hit play to start.)
 
-<video autoplay muted playsinline controls
+<video muted playsinline controls
        style="max-width: 100%; height: auto; display: block; margin: 0 auto;"
        alt="Screen recording of GridKeys">
   <source src='{{< static "screenrecording.mp4" >}}' type="video/mp4">
