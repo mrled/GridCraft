@@ -34,9 +34,9 @@ jobs:
           # On a branch/PR
           # Try to get the latest tag, fallback if no tags exist
           if LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null); then
-            VERSION="${LATEST_TAG}-dev"
+            VERSION="${LATEST_TAG}-devel"
           else
-            VERSION="0.1.0-dev"
+            VERSION="0.1.0-devel"
           fi
           
           SHORT_HASH=$(git rev-parse --short HEAD)
