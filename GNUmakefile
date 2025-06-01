@@ -5,7 +5,7 @@
 # Warn on undefined variables
 MAKEFLAGS += --warn-undefined-variables
 # Fail if any command fails.
-.SHELLFLAGS := -eu
+.SHELLFLAGS := -euc
 
 # Show a nice table of Make targets
 .PHONY: help
