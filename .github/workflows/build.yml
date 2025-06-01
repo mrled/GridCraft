@@ -2,10 +2,10 @@ name: Build and Release
 
 on:
   push:
-    branches: [ '**' ]
+    # Run on any tag that starts with 'v'
     tags: [ 'v*' ]
-  pull_request:
-    branches: [ master ]
+  # Run on any pull request to any branch
+  pull_request: {}
 
 jobs:
   build:
@@ -27,16 +27,14 @@ jobs:
         make dist/GridCraft.spoon.zip
         echo "version=$(cat dist/GridCraft.spoon/version.txt)" >> $GITHUB_OUTPUT
 
-    - name: Upload release artifact
+    - name: Create Release
       if: startsWith(steps.build.outputs.version, 'v')
-      uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ./dist/GridCraft.spoon.zip
-        asset_name: GridCraft.spoon.zip
-        asset_content_type: application/zip
+        VERSION: ${{ steps.build.outputs.version }}
+        COMMIT: ${{ github.sha }}
+      run: >
+        gh release create "$VERSION" --title "$VERSION" --generate-notes --target "$COMMIT" dist/GridCraft.spoon.zip
 
     - name: Upload temporary artifact
       if: "!startsWith(steps.build.outputs.version, 'v')"
