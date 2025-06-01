@@ -2,11 +2,10 @@ name: Build and Release
 
 on:
   push:
-    branches: [ master ]
+    branches: [ '**' ]
+    tags: [ 'v*' ]
   pull_request:
     branches: [ master ]
-  release:
-    types: [ published ]
 
 jobs:
   build:
@@ -14,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Deep clone repo, including tags
 
     - name: Setup Node.js
       uses: actions/setup-node@v4
