@@ -3,6 +3,31 @@
 --- An action menu based on Starcraft 2 Grid Hotkeys.
 ---
 --- <https://github.com/mrled/GridCraft>
+---
+--- This is the main module for GridCraft.
+--- All functionality is contained in the submodules.
+---
+--- Example:
+--- ```lua
+--- spoon.GridCraft.Grid.new(
+---   { "ctrl", "shift" },
+---   "f11",
+---   {
+---     {
+---       spoon.GridCraft.Action.new { key = "e", application = "Terminal", icon = spoon.GridCraft.Icon.phosphor("terminal-window", "regular") },
+---       spoon.GridCraft.Action.new { key = "d", application = "Visual Studio Code", description = "VS Code" },
+---     },
+---     {
+---       spoon.GridCraft.Action.new { key = "d", file = os.getenv("HOME") .. "/Downloads" },
+---       spoon.GridCraft.Action.new { key = "f", application = "Finder" },
+---     },
+---   },
+---   "GridCraftExample"
+--- )
+--- ```
+--- For more complete examples, see:
+--- * `example.lua.txt` in this directory
+--- * The documentation at <https://pages.micahrl.com/GridCraft>
 
 local Action = dofile(hs.spoons.resourcePath("Action.lua"))
 local Constants = dofile(hs.spoons.resourcePath("Constants.lua"))
