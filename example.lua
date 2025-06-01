@@ -7,12 +7,6 @@ This one makes a tiny 2x2 grid for the keys:
   D F
 ]]
 
--- The "@diagnostic" and "spoon = spoon" lines tell VS Code's Lua extension
--- that 'spoon' is a global variable injected before running this code.
--- You don't need them in your Hammerspoon config (but they won't hurt).
----@diagnostic disable-next-line: undefined-global, lowercase-global
-spoon = spoon or {}
-
 local appsSubmenu = {
   -- The table for the top row
   {

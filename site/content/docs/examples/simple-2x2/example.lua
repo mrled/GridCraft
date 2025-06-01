@@ -1,9 +1,3 @@
--- The "@diagnostic" and "spoon = spoon" lines tell VS Code's Lua extension
--- that 'spoon' is a global variable injected before running this code.
--- You don't need them in your Hammerspoon config (but they won't hurt).
----@diagnostic disable-next-line: undefined-global, lowercase-global
-spoon = spoon or {}
-
 spoon.GridCraft.Grid.new(
 -- The hokey to invoke this is ctrl-shift-f11
   { "ctrl", "shift" },

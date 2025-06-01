@@ -2,7 +2,8 @@
     "Lua": {
         "diagnostics": {
             "globals": [
-                "hs"
+                "hs",
+                "spoon",
             ]
         }
     }
