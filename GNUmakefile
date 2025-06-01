@@ -28,10 +28,10 @@ dist/GridCraft.spoon/phosphor/assets/.installed: phosphor/node_modules/@phosphor
 	cp -r "phosphor/node_modules/@phosphor-icons/core/assets" dist/GridCraft.spoon/phosphor
 	touch dist/GridCraft.spoon/phosphor/assets/.installed
 
-LUASRCS := $(wildcard src/*.lua src/*.lua.txt)
+LUASRCS := $(wildcard spoon/*.lua spoon/*.lua.txt)
 dist/GridCraft.spoon/version.txt: $(LUASRCS) dist/GridCraft.spoon/phosphor/assets/.installed ## Build the Spoon package
 	mkdir -p dist/GridCraft.spoon
-	cp -r src/*.lua src/*.lua.txt *.css readme.md dist/GridCraft.spoon/
+	cp -r spoon/*.lua spoon/*.lua.txt spoon/*.css spoon/*.js readme.md dist/GridCraft.spoon/
 	./getversion.sh > dist/GridCraft.spoon/version.txt
 
 dist/GridCraft.spoon.zip: dist/GridCraft.spoon/version.txt ## Create the Spoon package zip file
@@ -44,7 +44,7 @@ dist/GridCraft.spoon.zip: dist/GridCraft.spoon/version.txt ## Create the Spoon p
 site/data/docs.json: dist/GridCraft.spoon/version.txt ## Generate documentation JSON
 	mkdir -p site/data
 	hs -c "hs.doc.builder.genJSON(\"$(CURDIR)/dist/GridCraft.spoon\")" > dist/docsoutput.txt
-	@grep -v "^--" < dist/docsoutput.txt > site/data/docs.json
+	grep -v "^--" < dist/docsoutput.txt > site/data/docs.json
 	@jq empty site/data/docs.json || (echo "Error generating docs.json, see dist/docsoutput.txt" && exit 1)
 
 dist/hammerspoon/.git/HEAD:
