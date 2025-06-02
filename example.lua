@@ -79,7 +79,7 @@ spoon.GridCraft.Grid.new(
 -- The hokey to invoke this is ctrl-shift-f11
   { "ctrl", "shift" },
   "f11",
-  -- The table of tables for the hotkey grid, defined above
+  -- The array of arrays for the hotkey grid, defined above
   primaryMenu,
   -- This a title that is just nice for logging in the Hammerspoon console.
   "GridCraftExample"
