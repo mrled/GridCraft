@@ -6,7 +6,7 @@ See a video demo and full documentation at <https://pages.micahrl.com/GridCraft>
 
 It looks like this:
 
-<img src="./site/static/screenshot.png" alt="Screenshot of GridKeys in action" style="max-width: 20em;" />
+<img src="./site/static/screenshot.png" alt="Screenshot of GridCraft in action" style="max-width: 20em;" />
 
 ## Installing
 

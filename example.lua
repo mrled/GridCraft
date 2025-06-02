@@ -1,5 +1,5 @@
 --[[
-A simplified example of GridKeys usage with inline documentation.
+A simplified example of GridCraft usage with inline documentation.
 
 This one makes a tiny 2x2 grid for the keys:
 

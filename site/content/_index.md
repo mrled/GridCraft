@@ -9,7 +9,7 @@ implemented as a [Hammerspoon](https://hammerspoon.org) extension.
 
 It looks like this:
 
-<img src='{{< static "screenshot.png" >}}' style="max-width: 20em;" alt="Screenshot of GridKeys" />
+<img src='{{< static "screenshot.png" >}}' style="max-width: 20em;" alt="Screenshot of GridCraft" />
 
 ## What for?
 
@@ -41,11 +41,11 @@ Take a look at the examples in the left menu to get started.
 
 ## Screen recording
 
-Here is a screen recording of GridKeys in action.
+Here is a screen recording of GridCraft in action.
 
 <video muted playsinline controls
        style="max-width: 100%; height: auto; display: block; margin: 0 auto;"
-       alt="Screen recording of GridKeys">
+       alt="Screen recording of GridCraft">
   <source src='{{< static "screenrecording.mp4" >}}' type="video/mp4">
 </video>
 
