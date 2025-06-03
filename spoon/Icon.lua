@@ -38,16 +38,16 @@ end
 ---
 --- Parameters:
 ---  * filePath - The path to the file or application for which to get the icon
-M.iconMacFile = function(filePath)
+M.macFile = function(filePath)
   if not filePath then
-    hs.printf("⚠️ iconMacFile: filePath is nil")
-    return ""
+    hs.printf("⚠️ Icon.macFile: filePath is nil")
+    return nil
   end
 
   local icon = hs.image.iconForFile(filePath)
   if not icon then
-    hs.printf("⚠️ iconMacFile: no icon found for '%s'", filePath)
-    return ""
+    hs.printf("⚠️ Icon.macFile: no icon found for '%s'", filePath)
+    return nil
   end
 
   local pngData = icon:encodeAsURLString(false, "png")
@@ -57,6 +57,7 @@ M.iconMacFile = function(filePath)
   )
   return imgElement
 end
+
 --- GridCraft.Icon.empty() -> string
 --- Function
 --- Create an empty icon, which is a transparent PNG image
