@@ -4,18 +4,15 @@
 
 /* Set the configuration global variable from the gridcraft-config JSON script element
  */
-function setConfig() {
+function getConfig() {
   const configElement = document.getElementById('gridcraft-config');
   if (!configElement) {
     console.error('Configuration element not found.');
     return;
   }
-  window.GridCraftConfig = JSON.parse(configElement.textContent);
+  const config = JSON.parse(configElement.textContent);
+  return config
 }
-
-/* Call setConfig() once
- */
-setConfig()
 
 /* Toggle the 'selected' class on an element with the given keyId
  *
@@ -31,7 +28,7 @@ function toggleSelected(keyId) {
   }
   const config = getConfig();
   if (!config) {
-    console.error('Configuration not found.');
+    console.error('Configuration not set.');
     return;
   }
   element.classList.add('selected');
