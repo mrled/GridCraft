@@ -553,7 +553,22 @@
     "Command": [],
     "Constant": [],
     "Constructor": [],
-    "Deprecated": [],
+    "Deprecated": [
+      {
+        "def": "GridCraft.Icon.macFile(filePath) -> string or nil",
+        "desc": "Use fromMacIcon() instead.",
+        "doc": "Use fromMacIcon() instead.",
+        "name": "macFile",
+        "notes": [],
+        "parameters": [],
+        "returns": [],
+        "signature": "GridCraft.Icon.macFile(filePath) -> string or nil",
+        "stripped_doc": [
+          "Use fromMacIcon() instead."
+        ],
+        "type": "Deprecated"
+      }
+    ],
     "Field": [],
     "Function": [
       {
@@ -575,18 +590,39 @@
         "type": "Function"
       },
       {
-        "def": "GridCraft.Icon.macFile(filePath) -> string or nil",
+        "def": "GridCraft.Icon.fromMacIcon(filePath) -> string or nil",
         "desc": "Create an icon from the icon of a macOS file (including folders, applications, etc)",
         "doc": "Create an icon from the icon of a macOS file (including folders, applications, etc)\n\nParameters:\n * filePath - The path to the file or application for which to get the icon",
-        "name": "macFile",
+        "name": "fromMacIcon",
         "notes": [],
         "parameters": [
           " * filePath - The path to the file or application for which to get the icon"
         ],
         "returns": [],
-        "signature": "GridCraft.Icon.macFile(filePath) -> string or nil",
+        "signature": "GridCraft.Icon.fromMacIcon(filePath) -> string or nil",
         "stripped_doc": [
           "Create an icon from the icon of a macOS file (including folders, applications, etc)",
+          ""
+        ],
+        "type": "Function"
+      },
+      {
+        "def": "GridCraft.Icon.fileContents(filePath) -> string or nil",
+        "desc": "Create an icon from the contents of a file",
+        "doc": "Create an icon from the contents of a file\n\nParameters:\n * filePath - The path to the file to read\n * fileType - The MIME type of the file, like \"image/png\" or \"image/svg+xml\"\n\nReturns:\n* string containing a data URI with base64-encoded data of the file",
+        "name": "fileContents",
+        "notes": [],
+        "parameters": [
+          " * filePath - The path to the file to read",
+          " * fileType - The MIME type of the file, like \"image/png\" or \"image/svg+xml\"",
+          ""
+        ],
+        "returns": [
+          "* string containing a data URI with base64-encoded data of the file"
+        ],
+        "signature": "GridCraft.Icon.fileContents(filePath) -> string or nil",
+        "stripped_doc": [
+          "Create an icon from the contents of a file",
           ""
         ],
         "type": "Function"
@@ -618,6 +654,20 @@
     "doc": "Icons etc",
     "items": [
       {
+        "def": "GridCraft.Icon.macFile(filePath) -> string or nil",
+        "desc": "Use fromMacIcon() instead.",
+        "doc": "Use fromMacIcon() instead.",
+        "name": "macFile",
+        "notes": [],
+        "parameters": [],
+        "returns": [],
+        "signature": "GridCraft.Icon.macFile(filePath) -> string or nil",
+        "stripped_doc": [
+          "Use fromMacIcon() instead."
+        ],
+        "type": "Deprecated"
+      },
+      {
         "def": "GridCraft.Icon.empty() -> string",
         "desc": "Create an empty icon, which is a transparent PNG image",
         "doc": "Create an empty icon, which is a transparent PNG image\n\nParameters:\n * None\n\nReturns:\n * string containing an img tag with the transparent PNG data",
@@ -638,16 +688,37 @@
         "type": "Function"
       },
       {
-        "def": "GridCraft.Icon.macFile(filePath) -> string or nil",
+        "def": "GridCraft.Icon.fileContents(filePath) -> string or nil",
+        "desc": "Create an icon from the contents of a file",
+        "doc": "Create an icon from the contents of a file\n\nParameters:\n * filePath - The path to the file to read\n * fileType - The MIME type of the file, like \"image/png\" or \"image/svg+xml\"\n\nReturns:\n* string containing a data URI with base64-encoded data of the file",
+        "name": "fileContents",
+        "notes": [],
+        "parameters": [
+          " * filePath - The path to the file to read",
+          " * fileType - The MIME type of the file, like \"image/png\" or \"image/svg+xml\"",
+          ""
+        ],
+        "returns": [
+          "* string containing a data URI with base64-encoded data of the file"
+        ],
+        "signature": "GridCraft.Icon.fileContents(filePath) -> string or nil",
+        "stripped_doc": [
+          "Create an icon from the contents of a file",
+          ""
+        ],
+        "type": "Function"
+      },
+      {
+        "def": "GridCraft.Icon.fromMacIcon(filePath) -> string or nil",
         "desc": "Create an icon from the icon of a macOS file (including folders, applications, etc)",
         "doc": "Create an icon from the icon of a macOS file (including folders, applications, etc)\n\nParameters:\n * filePath - The path to the file or application for which to get the icon",
-        "name": "macFile",
+        "name": "fromMacIcon",
         "notes": [],
         "parameters": [
           " * filePath - The path to the file or application for which to get the icon"
         ],
         "returns": [],
-        "signature": "GridCraft.Icon.macFile(filePath) -> string or nil",
+        "signature": "GridCraft.Icon.fromMacIcon(filePath) -> string or nil",
         "stripped_doc": [
           "Create an icon from the icon of a macOS file (including folders, applications, etc)",
           ""
@@ -682,30 +753,34 @@
     "Command": [],
     "Constant": [],
     "Constructor": [],
-    "Deprecated": [],
-    "Field": [],
-    "Function": [
+    "Deprecated": [
       {
         "def": "GridCraft.Util.getApplicationIconDataUri(string, hs.application) -> string or nil",
         "desc": "Get an application icon as a data: URI",
-        "doc": "Get an application icon as a data: URI\n\nParameters:\n * appName - The name of the application (used for logging)\n * application - The hs.application object of the application\n\nReturns:\n * A string containing a data URI with base64-encoded PNG data of the application icon, or nil if the icon cannot be retrieved",
+        "doc": "Get an application icon as a data: URI\n\nParameters:\n * appName - The name of the application (used for logging)\n * application - The hs.application object of the application\n\nReturns:\n * A string containing a data URI with base64-encoded PNG data of the application icon, or nil if the icon cannot be retrieved\n\nNotes:\n * We don't use this internally so it will be removed in the future.",
         "name": "getApplicationIconDataUri",
-        "notes": [],
+        "notes": [
+          " * We don't use this internally so it will be removed in the future."
+        ],
         "parameters": [
           " * appName - The name of the application (used for logging)",
           " * application - The hs.application object of the application",
           ""
         ],
         "returns": [
-          " * A string containing a data URI with base64-encoded PNG data of the application icon, or nil if the icon cannot be retrieved"
+          " * A string containing a data URI with base64-encoded PNG data of the application icon, or nil if the icon cannot be retrieved",
+          ""
         ],
         "signature": "GridCraft.Util.getApplicationIconDataUri(string, hs.application) -> string or nil",
         "stripped_doc": [
           "Get an application icon as a data: URI",
           ""
         ],
-        "type": "Function"
-      },
+        "type": "Deprecated"
+      }
+    ],
+    "Field": [],
+    "Function": [
       {
         "def": "GridCraft.Util.fileContents(string) -> string or nil",
         "desc": "Get the contents of a file at a given path",
@@ -781,6 +856,30 @@
     "doc": "Generic utility functions",
     "items": [
       {
+        "def": "GridCraft.Util.getApplicationIconDataUri(string, hs.application) -> string or nil",
+        "desc": "Get an application icon as a data: URI",
+        "doc": "Get an application icon as a data: URI\n\nParameters:\n * appName - The name of the application (used for logging)\n * application - The hs.application object of the application\n\nReturns:\n * A string containing a data URI with base64-encoded PNG data of the application icon, or nil if the icon cannot be retrieved\n\nNotes:\n * We don't use this internally so it will be removed in the future.",
+        "name": "getApplicationIconDataUri",
+        "notes": [
+          " * We don't use this internally so it will be removed in the future."
+        ],
+        "parameters": [
+          " * appName - The name of the application (used for logging)",
+          " * application - The hs.application object of the application",
+          ""
+        ],
+        "returns": [
+          " * A string containing a data URI with base64-encoded PNG data of the application icon, or nil if the icon cannot be retrieved",
+          ""
+        ],
+        "signature": "GridCraft.Util.getApplicationIconDataUri(string, hs.application) -> string or nil",
+        "stripped_doc": [
+          "Get an application icon as a data: URI",
+          ""
+        ],
+        "type": "Deprecated"
+      },
+      {
         "def": "GridCraft.Util.base64(string) -> string",
         "desc": "Encode a string in base64 format",
         "doc": "Encode a string in base64 format\n\nParameters:\n * data - The string to encode",
@@ -827,27 +926,6 @@
         "signature": "GridCraft.Util.findApplicationPath(string) -> string or nil",
         "stripped_doc": [
           "Find an application path by its name",
-          ""
-        ],
-        "type": "Function"
-      },
-      {
-        "def": "GridCraft.Util.getApplicationIconDataUri(string, hs.application) -> string or nil",
-        "desc": "Get an application icon as a data: URI",
-        "doc": "Get an application icon as a data: URI\n\nParameters:\n * appName - The name of the application (used for logging)\n * application - The hs.application object of the application\n\nReturns:\n * A string containing a data URI with base64-encoded PNG data of the application icon, or nil if the icon cannot be retrieved",
-        "name": "getApplicationIconDataUri",
-        "notes": [],
-        "parameters": [
-          " * appName - The name of the application (used for logging)",
-          " * application - The hs.application object of the application",
-          ""
-        ],
-        "returns": [
-          " * A string containing a data URI with base64-encoded PNG data of the application icon, or nil if the icon cannot be retrieved"
-        ],
-        "signature": "GridCraft.Util.getApplicationIconDataUri(string, hs.application) -> string or nil",
-        "stripped_doc": [
-          "Get an application icon as a data: URI",
           ""
         ],
         "type": "Function"
