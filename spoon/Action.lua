@@ -48,18 +48,23 @@ M.new = function(arg)
     action.icon = Icon.empty()
     return action
   elseif arg.application then
-    action.application = arg.application
-    action.handler = function() hs.application.launchOrFocus(action.application) end
-    if not arg.description then
-      action.description = action.application
-    end
-    if arg.icon == nil then
-      -- Don't use hs.application.find() -- that only works for running apps!
-      -- local app = hs.application.find(arg.application)
-      local appPath = Util.findApplicationPath(arg.application)
-      local appIcon = Icon.macFile(appPath)
-      if appIcon then
-        action.icon = appIcon
+    local appPath = Util.findApplicationPath(arg.application)
+    local appDesc = arg.description or arg.application
+    if not appPath then
+      print(string.format("No application found for %s", arg.application))
+      action.icon = Icon.phosphor("question-mark", "regular")
+      action.description = string.format("(%s)", appDesc)
+    else
+      action.application = arg.application
+      action.handler = function() hs.application.launchOrFocus(action.application) end
+      action.description = appDesc
+      if arg.icon == nil then
+        -- Don't use hs.application.find() -- that only works for running apps!
+        -- local app = hs.application.find(arg.application)
+        local appIcon = Icon.macFile(appPath)
+        if appIcon then
+          action.icon = appIcon
+        end
       end
     end
   elseif arg.file then
