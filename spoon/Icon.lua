@@ -58,6 +58,29 @@ M.macFile = function(filePath)
   return imgElement
 end
 
+--- GridCraft.Icon.fileContents(filePath) -> string or nil
+--- Function
+--- Create an icon from the contents of a file
+---
+--- Parameters:
+---  * filePath - The path to the file to read
+---  * fileType - The MIME type of the file, like "image/png" or "image/svg+xml"
+---
+--- Returns:
+--- * string containing a data URI with base64-encoded data of the file
+M.fileContents = function(filePath, fileType)
+  local file = io.open(filePath, "rb")
+  if not file then
+    hs.printf("⚠️ Icon.fileContents: could not open file '%s'", filePath)
+    return nil
+  end
+  local contents = file:read("*a")
+  file:close()
+  local base64Data = Util.base64(contents)
+  return string.format([[<img src="data:%s;base64,%s" />]], fileType, base64Data)
+end
+
+
 --- GridCraft.Icon.empty() -> string
 --- Function
 --- Create an empty icon, which is a transparent PNG image

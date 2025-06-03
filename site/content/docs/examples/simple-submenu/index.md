@@ -1,6 +1,6 @@
 +++
 title = "Simple Submenu"
-weight = 15
+weight = 20
 +++
 
 This is a 2x2 grid with a submenu
