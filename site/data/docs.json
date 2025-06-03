@@ -15,7 +15,7 @@
     "stripped_doc": [],
     "submodules": [
       "Action",
-      "Constants",
+      "Configuration",
       "Grid",
       "Icon",
       "Util",
@@ -30,7 +30,7 @@
       {
         "def": "GridCraft.Action.new(table) -> table",
         "desc": "Create a new action for a grid",
-        "doc": "Create a new action for a grid\n\nParameters:\n * arg - A table containing the parameters for the action.\n   * Basic parameters:\n     * mods: (table) Modifier keys like `{\"cmd\", \"ctrl\"}` to trigger the action along with the key. Use `{}` for no modifiers\n     * key: (string) A key to trigger the action along with the modifiers, like \"x\" or \"F11\".\n     * handler: (function) Code to run when the key is pressed\n     * description: (string) A description for the action\n     * icon: (string) An svg or img tag to display as the icon for the action (optional)\n  * Convenience parameters:\n    * empty: (boolean) If true, the handler is set to a no-op function and the description is set to \"No action\".\n     * This is useful for creating empty slots in the grid.\n     * Overrides handler, description, and icon.\n    * application: (string) The name of an application to switch to.\n     * Overrides handler.\n     * If description/icon are not provided, set to app name/icon.\n    * submenu: (table) A table of actions to create a submenu for this action.\n     * Overrides handler.\n\nNotes:\n * Together, the mods and key are passed to `hs.hotkey.bind()` to create a regular Hammerspoon hotkey.",
+        "doc": "Create a new action for a grid\n\nParameters:\n * arg - A table containing the parameters for the action.\n   * Basic parameters:\n     * mods: (table) Modifier keys like `{\"cmd\", \"ctrl\"}` to trigger the action along with the key. Use `{}` for no modifiers\n     * key: (string) A key to trigger the action along with the modifiers, like \"x\" or \"F11\".\n     * handler: (function) Code to run when the key is pressed\n     * description: (string) A description for the action\n     * icon: (string) An svg or img tag to display as the icon for the action (optional)\n   * Convenience parameters:\n     * empty: (boolean) If true, the handler is set to a no-op function and the description is set to \"No action\".\n       This is useful for creating empty slots in the grid.\n       Overrides handler, description, and icon.\n     * application: (string) The name of an application to switch to.\n       Overrides handler.\n       If description/icon are not provided, set to app name/icon.\n     * submenu: (table) A table of actions to create a submenu for this action.\n       Overrides handler.\n\nNotes:\n * Together, the mods and key are passed to `hs.hotkey.bind()` to create a regular Hammerspoon hotkey.",
         "name": "new",
         "notes": [
           " * Together, the mods and key are passed to `hs.hotkey.bind()` to create a regular Hammerspoon hotkey."
@@ -43,15 +43,15 @@
           "     * handler: (function) Code to run when the key is pressed",
           "     * description: (string) A description for the action",
           "     * icon: (string) An svg or img tag to display as the icon for the action (optional)",
-          "  * Convenience parameters:",
-          "    * empty: (boolean) If true, the handler is set to a no-op function and the description is set to \"No action\".",
-          "     * This is useful for creating empty slots in the grid.",
-          "     * Overrides handler, description, and icon.",
-          "    * application: (string) The name of an application to switch to.",
-          "     * Overrides handler.",
-          "     * If description/icon are not provided, set to app name/icon.",
-          "    * submenu: (table) A table of actions to create a submenu for this action.",
-          "     * Overrides handler.",
+          "   * Convenience parameters:",
+          "     * empty: (boolean) If true, the handler is set to a no-op function and the description is set to \"No action\".",
+          "       This is useful for creating empty slots in the grid.",
+          "       Overrides handler, description, and icon.",
+          "     * application: (string) The name of an application to switch to.",
+          "       Overrides handler.",
+          "       If description/icon are not provided, set to app name/icon.",
+          "     * submenu: (table) A table of actions to create a submenu for this action.",
+          "       Overrides handler.",
           ""
         ],
         "returns": [],
@@ -74,7 +74,7 @@
       {
         "def": "GridCraft.Action.new(table) -> table",
         "desc": "Create a new action for a grid",
-        "doc": "Create a new action for a grid\n\nParameters:\n * arg - A table containing the parameters for the action.\n   * Basic parameters:\n     * mods: (table) Modifier keys like `{\"cmd\", \"ctrl\"}` to trigger the action along with the key. Use `{}` for no modifiers\n     * key: (string) A key to trigger the action along with the modifiers, like \"x\" or \"F11\".\n     * handler: (function) Code to run when the key is pressed\n     * description: (string) A description for the action\n     * icon: (string) An svg or img tag to display as the icon for the action (optional)\n  * Convenience parameters:\n    * empty: (boolean) If true, the handler is set to a no-op function and the description is set to \"No action\".\n     * This is useful for creating empty slots in the grid.\n     * Overrides handler, description, and icon.\n    * application: (string) The name of an application to switch to.\n     * Overrides handler.\n     * If description/icon are not provided, set to app name/icon.\n    * submenu: (table) A table of actions to create a submenu for this action.\n     * Overrides handler.\n\nNotes:\n * Together, the mods and key are passed to `hs.hotkey.bind()` to create a regular Hammerspoon hotkey.",
+        "doc": "Create a new action for a grid\n\nParameters:\n * arg - A table containing the parameters for the action.\n   * Basic parameters:\n     * mods: (table) Modifier keys like `{\"cmd\", \"ctrl\"}` to trigger the action along with the key. Use `{}` for no modifiers\n     * key: (string) A key to trigger the action along with the modifiers, like \"x\" or \"F11\".\n     * handler: (function) Code to run when the key is pressed\n     * description: (string) A description for the action\n     * icon: (string) An svg or img tag to display as the icon for the action (optional)\n   * Convenience parameters:\n     * empty: (boolean) If true, the handler is set to a no-op function and the description is set to \"No action\".\n       This is useful for creating empty slots in the grid.\n       Overrides handler, description, and icon.\n     * application: (string) The name of an application to switch to.\n       Overrides handler.\n       If description/icon are not provided, set to app name/icon.\n     * submenu: (table) A table of actions to create a submenu for this action.\n       Overrides handler.\n\nNotes:\n * Together, the mods and key are passed to `hs.hotkey.bind()` to create a regular Hammerspoon hotkey.",
         "name": "new",
         "notes": [
           " * Together, the mods and key are passed to `hs.hotkey.bind()` to create a regular Hammerspoon hotkey."
@@ -87,15 +87,15 @@
           "     * handler: (function) Code to run when the key is pressed",
           "     * description: (string) A description for the action",
           "     * icon: (string) An svg or img tag to display as the icon for the action (optional)",
-          "  * Convenience parameters:",
-          "    * empty: (boolean) If true, the handler is set to a no-op function and the description is set to \"No action\".",
-          "     * This is useful for creating empty slots in the grid.",
-          "     * Overrides handler, description, and icon.",
-          "    * application: (string) The name of an application to switch to.",
-          "     * Overrides handler.",
-          "     * If description/icon are not provided, set to app name/icon.",
-          "    * submenu: (table) A table of actions to create a submenu for this action.",
-          "     * Overrides handler.",
+          "   * Convenience parameters:",
+          "     * empty: (boolean) If true, the handler is set to a no-op function and the description is set to \"No action\".",
+          "       This is useful for creating empty slots in the grid.",
+          "       Overrides handler, description, and icon.",
+          "     * application: (string) The name of an application to switch to.",
+          "       Overrides handler.",
+          "       If description/icon are not provided, set to app name/icon.",
+          "     * submenu: (table) A table of actions to create a submenu for this action.",
+          "       Overrides handler.",
           ""
         ],
         "returns": [],
@@ -114,81 +114,241 @@
   },
   {
     "Command": [],
-    "Constant": [
+    "Constant": [],
+    "Constructor": [
       {
-        "def": "GridCraft.Constants.animationMs",
-        "desc": "Animation time in ms",
-        "doc": "Animation time in ms\n\nNotes\n * Must match what's in CSS and JS",
+        "def": "GridCraft.Configuration.new() -> table",
+        "desc": "Create a new configuration object for a GridCraft grid.",
+        "doc": "Create a new configuration object for a GridCraft grid.\n\nReturns:\n* A GridCraft.Configuration object",
+        "name": "new",
+        "notes": [],
+        "parameters": [],
+        "returns": [
+          "* A GridCraft.Configuration object"
+        ],
+        "signature": "GridCraft.Configuration.new() -> table",
+        "stripped_doc": [
+          "Create a new configuration object for a GridCraft grid.",
+          ""
+        ],
+        "type": "Constructor"
+      }
+    ],
+    "Deprecated": [],
+    "Field": [
+      {
+        "def": "GridCraft.Configuration.animationMs",
+        "desc": "Time for key-seledction animation in ms, default is 150ms.",
+        "doc": "Time for key-seledction animation in ms, default is 150ms.",
         "name": "animationMs",
         "notes": [],
         "parameters": [],
         "returns": [],
-        "signature": "GridCraft.Constants.animationMs",
+        "signature": "GridCraft.Configuration.animationMs",
         "stripped_doc": [
-          "Animation time in ms",
-          "",
-          "Notes",
-          " * Must match what's in CSS and JS"
+          "Time for key-seledction animation in ms, default is 150ms."
         ],
-        "type": "Constant"
+        "type": "Field"
       },
       {
-        "def": "GridCraft.Constants.animationSeconds",
-        "desc": "Animation time in seconds",
-        "doc": "Animation time in seconds",
+        "def": "GridCraft.Configuration.gridMaxWidth",
+        "desc": "The max width for the grid in px, default is 1024",
+        "doc": "The max width for the grid in px, default is 1024",
+        "name": "gridMaxWidth",
+        "notes": [],
+        "parameters": [],
+        "returns": [],
+        "signature": "GridCraft.Configuration.gridMaxWidth",
+        "stripped_doc": [
+          "The max width for the grid in px, default is 1024"
+        ],
+        "type": "Field"
+      },
+      {
+        "def": "GridCraft.Configuration.gridMaxHeight",
+        "desc": "The max height for the grid in px, default is 768",
+        "doc": "The max height for the grid in px, default is 768",
+        "name": "gridMaxHeight",
+        "notes": [],
+        "parameters": [],
+        "returns": [],
+        "signature": "GridCraft.Configuration.gridMaxHeight",
+        "stripped_doc": [
+          "The max height for the grid in px, default is 768"
+        ],
+        "type": "Field"
+      }
+    ],
+    "Function": [],
+    "Method": [
+      {
+        "def": "GridCraft.Configuration:animationSeconds() -> number",
+        "desc": "Time for key-selection animation in seconds (derived from animationMs)",
+        "doc": "Time for key-selection animation in seconds (derived from animationMs)",
         "name": "animationSeconds",
         "notes": [],
         "parameters": [],
         "returns": [],
-        "signature": "GridCraft.Constants.animationSeconds",
+        "signature": "GridCraft.Configuration:animationSeconds() -> number",
         "stripped_doc": [
-          "Animation time in seconds"
+          "Time for key-selection animation in seconds (derived from animationMs)"
         ],
-        "type": "Constant"
+        "type": "Method"
+      },
+      {
+        "def": "GridCraft.Configuration:toJSON() -> string",
+        "desc": "Return the configuration as a JSON string.",
+        "doc": "Return the configuration as a JSON string.",
+        "name": "toJSON",
+        "notes": [],
+        "parameters": [],
+        "returns": [],
+        "signature": "GridCraft.Configuration:toJSON() -> string",
+        "stripped_doc": [
+          "Return the configuration as a JSON string."
+        ],
+        "type": "Method"
+      },
+      {
+        "def": "GridCraft.Configuration:replace() -> GridCraft.Configuration",
+        "desc": "Replace ALL values of the configuration with values from the upddate object",
+        "doc": "Replace ALL values of the configuration with values from the upddate object\n\nParameters:\n * updateConfig - A table containing new configuration values.\n\nReturns:\n* The configuration object itself, for chaining.\n\nNotes:\n* If a key is missing in the updateConfig, the value in the existing configuration will be set to nil.",
+        "name": "replace",
+        "notes": [
+          "* If a key is missing in the updateConfig, the value in the existing configuration will be set to nil."
+        ],
+        "parameters": [
+          " * updateConfig - A table containing new configuration values.",
+          ""
+        ],
+        "returns": [
+          "* The configuration object itself, for chaining.",
+          ""
+        ],
+        "signature": "GridCraft.Configuration:replace() -> GridCraft.Configuration",
+        "stripped_doc": [
+          "Replace ALL values of the configuration with values from the upddate object",
+          ""
+        ],
+        "type": "Method"
       }
     ],
-    "Constructor": [],
-    "Deprecated": [],
-    "Field": [],
-    "Function": [],
-    "Method": [],
     "Variable": [],
-    "desc": "Constants",
-    "doc": "Constants",
+    "desc": "Configuration parameters for a GridCraft grid.",
+    "doc": "Configuration parameters for a GridCraft grid.",
     "items": [
       {
-        "def": "GridCraft.Constants.animationMs",
-        "desc": "Animation time in ms",
-        "doc": "Animation time in ms\n\nNotes\n * Must match what's in CSS and JS",
+        "def": "GridCraft.Configuration.new() -> table",
+        "desc": "Create a new configuration object for a GridCraft grid.",
+        "doc": "Create a new configuration object for a GridCraft grid.\n\nReturns:\n* A GridCraft.Configuration object",
+        "name": "new",
+        "notes": [],
+        "parameters": [],
+        "returns": [
+          "* A GridCraft.Configuration object"
+        ],
+        "signature": "GridCraft.Configuration.new() -> table",
+        "stripped_doc": [
+          "Create a new configuration object for a GridCraft grid.",
+          ""
+        ],
+        "type": "Constructor"
+      },
+      {
+        "def": "GridCraft.Configuration.animationMs",
+        "desc": "Time for key-seledction animation in ms, default is 150ms.",
+        "doc": "Time for key-seledction animation in ms, default is 150ms.",
         "name": "animationMs",
         "notes": [],
         "parameters": [],
         "returns": [],
-        "signature": "GridCraft.Constants.animationMs",
+        "signature": "GridCraft.Configuration.animationMs",
         "stripped_doc": [
-          "Animation time in ms",
-          "",
-          "Notes",
-          " * Must match what's in CSS and JS"
+          "Time for key-seledction animation in ms, default is 150ms."
         ],
-        "type": "Constant"
+        "type": "Field"
       },
       {
-        "def": "GridCraft.Constants.animationSeconds",
-        "desc": "Animation time in seconds",
-        "doc": "Animation time in seconds",
+        "def": "GridCraft.Configuration.gridMaxHeight",
+        "desc": "The max height for the grid in px, default is 768",
+        "doc": "The max height for the grid in px, default is 768",
+        "name": "gridMaxHeight",
+        "notes": [],
+        "parameters": [],
+        "returns": [],
+        "signature": "GridCraft.Configuration.gridMaxHeight",
+        "stripped_doc": [
+          "The max height for the grid in px, default is 768"
+        ],
+        "type": "Field"
+      },
+      {
+        "def": "GridCraft.Configuration.gridMaxWidth",
+        "desc": "The max width for the grid in px, default is 1024",
+        "doc": "The max width for the grid in px, default is 1024",
+        "name": "gridMaxWidth",
+        "notes": [],
+        "parameters": [],
+        "returns": [],
+        "signature": "GridCraft.Configuration.gridMaxWidth",
+        "stripped_doc": [
+          "The max width for the grid in px, default is 1024"
+        ],
+        "type": "Field"
+      },
+      {
+        "def": "GridCraft.Configuration:animationSeconds() -> number",
+        "desc": "Time for key-selection animation in seconds (derived from animationMs)",
+        "doc": "Time for key-selection animation in seconds (derived from animationMs)",
         "name": "animationSeconds",
         "notes": [],
         "parameters": [],
         "returns": [],
-        "signature": "GridCraft.Constants.animationSeconds",
+        "signature": "GridCraft.Configuration:animationSeconds() -> number",
         "stripped_doc": [
-          "Animation time in seconds"
+          "Time for key-selection animation in seconds (derived from animationMs)"
         ],
-        "type": "Constant"
+        "type": "Method"
+      },
+      {
+        "def": "GridCraft.Configuration:replace() -> GridCraft.Configuration",
+        "desc": "Replace ALL values of the configuration with values from the upddate object",
+        "doc": "Replace ALL values of the configuration with values from the upddate object\n\nParameters:\n * updateConfig - A table containing new configuration values.\n\nReturns:\n* The configuration object itself, for chaining.\n\nNotes:\n* If a key is missing in the updateConfig, the value in the existing configuration will be set to nil.",
+        "name": "replace",
+        "notes": [
+          "* If a key is missing in the updateConfig, the value in the existing configuration will be set to nil."
+        ],
+        "parameters": [
+          " * updateConfig - A table containing new configuration values.",
+          ""
+        ],
+        "returns": [
+          "* The configuration object itself, for chaining.",
+          ""
+        ],
+        "signature": "GridCraft.Configuration:replace() -> GridCraft.Configuration",
+        "stripped_doc": [
+          "Replace ALL values of the configuration with values from the upddate object",
+          ""
+        ],
+        "type": "Method"
+      },
+      {
+        "def": "GridCraft.Configuration:toJSON() -> string",
+        "desc": "Return the configuration as a JSON string.",
+        "doc": "Return the configuration as a JSON string.",
+        "name": "toJSON",
+        "notes": [],
+        "parameters": [],
+        "returns": [],
+        "signature": "GridCraft.Configuration:toJSON() -> string",
+        "stripped_doc": [
+          "Return the configuration as a JSON string."
+        ],
+        "type": "Method"
       }
     ],
-    "name": "GridCraft.Constants",
+    "name": "GridCraft.Configuration",
     "stripped_doc": [],
     "submodules": [],
     "type": "Module"
@@ -200,7 +360,7 @@
       {
         "def": "GridCraft.Grid.new(table, string, table, string) -> table",
         "desc": "Create a new grid of hotkeys",
-        "doc": "Create a new grid of hotkeys\n\nParameters:\n * mods: Modifier keys as could be4 passed to `hs.hotkey.modal.new()`, like `{\"cmd\", \"ctrl\"}` or `{}`\n * key: A key to trigger the modal hotkey as could be passed to `hs.hotkey.modal.new()`, like `t`\n * actionTable: (table) A table of rows, each of which is a table of actions.\n      e.g. to represent the left half of a qwerty keyboard, you might use:\n      ```lua\n      {\n        {\n          GridCraft.handler { key = \"1\", application = \"1Password\" },\n          GridCraft.handler { key = \"2\", application = \"Day One\" },\n          GridCraft.handler { key = \"3\", application = \"Photos\" },\n          GridCraft.handler { key = \"4\", empty = true },\n          GridCraft.handler { key = \"5\", empty = true },\n        },\n        {\n          GridCraft.handler { key = \"q\", application = \"Messages\"},\n          GridCraft.handler { key = \"w\", application = \"Mattermost\" },\n          GridCraft.handler { key = \"e\", application = \"Visual Studio Code\" },\n          GridCraft.handler { key = \"r\", application = \"Bear\" },\n          GridCraft.handler { key = \"t\", application = \"Terminal\" },\n        },\n      }\n      ```\n      Note that we are constrained to using array tables rather than key-value tobles\n      so that the order is preserved.\n * title: (string) (optional) A message prefix to display when communicating to the user about this hot key\n\nReturns:\n  * A GridCraft grid of hotkeys",
+        "doc": "Create a new grid of hotkeys\n\nParameters:\n * mods: Modifier keys as could be4 passed to `hs.hotkey.modal.new()`, like `{\"cmd\", \"ctrl\"}` or `{}`\n * key: A key to trigger the modal hotkey as could be passed to `hs.hotkey.modal.new()`, like `t`\n * actionTable: (table) A table of rows, each of which is a table of actions.\n      e.g. to represent the left half of a qwerty keyboard, you might use:\n      ```lua\n      {\n        {\n          GridCraft.handler { key = \"1\", application = \"1Password\" },\n          GridCraft.handler { key = \"2\", application = \"Day One\" },\n          GridCraft.handler { key = \"3\", application = \"Photos\" },\n          GridCraft.handler { key = \"4\", empty = true },\n          GridCraft.handler { key = \"5\", empty = true },\n        },\n        {\n          GridCraft.handler { key = \"q\", application = \"Messages\"},\n          GridCraft.handler { key = \"w\", application = \"Mattermost\" },\n          GridCraft.handler { key = \"e\", application = \"Visual Studio Code\" },\n          GridCraft.handler { key = \"r\", application = \"Bear\" },\n          GridCraft.handler { key = \"t\", application = \"Terminal\" },\n        },\n      }\n      ```\n      Note that we are constrained to using array tables rather than key-value tobles\n      so that the order is preserved.\n * title: (string) (optional) A message prefix to display when communicating to the user about this hot key\n * config: (GridCraft.Configuration) (optional) A configuration object for the grid.\n\nReturns:\n  * A GridCraft grid of hotkeys",
         "name": "new",
         "notes": [],
         "parameters": [
@@ -229,6 +389,7 @@
           "      Note that we are constrained to using array tables rather than key-value tobles",
           "      so that the order is preserved.",
           " * title: (string) (optional) A message prefix to display when communicating to the user about this hot key",
+          " * config: (GridCraft.Configuration) (optional) A configuration object for the grid.",
           ""
         ],
         "returns": [
@@ -245,7 +406,51 @@
     "Deprecated": [],
     "Field": [],
     "Function": [],
-    "Method": [],
+    "Method": [
+      {
+        "def": "GridCraft.Grid:applyConfiguration()",
+        "desc": "Apply the configuration to the grid.",
+        "doc": "Apply the configuration to the grid.\n\nNotes:\n * This is run when the grid is created and when setConfiguration() is called,\n   and makes sure that the configuration is applied to the web view, all submenus, etc.",
+        "name": "applyConfiguration",
+        "notes": [
+          " * This is run when the grid is created and when setConfiguration() is called,",
+          "   and makes sure that the configuration is applied to the web view, all submenus, etc."
+        ],
+        "parameters": [],
+        "returns": [],
+        "signature": "GridCraft.Grid:applyConfiguration()",
+        "stripped_doc": [
+          "Apply the configuration to the grid.",
+          ""
+        ],
+        "type": "Method"
+      },
+      {
+        "def": "GridCraft.Grid:setConfig(config)",
+        "desc": "Set the configuration for the grid.",
+        "doc": "Set the configuration for the grid.\n\nParameters:\n * config - A GridCraft.Configuration object containing the configuration for the grid\n\nReturns:\n* The grid object itself, for chaining\n\nNotes:\n* Mutates the existing grid object, so that all references in closures will get the new values.\n* Sets the configuration on all submenus as well.\n* Use this method instead of changing the .config field directly.",
+        "name": "setConfig",
+        "notes": [
+          "* Mutates the existing grid object, so that all references in closures will get the new values.",
+          "* Sets the configuration on all submenus as well.",
+          "* Use this method instead of changing the .config field directly."
+        ],
+        "parameters": [
+          " * config - A GridCraft.Configuration object containing the configuration for the grid",
+          ""
+        ],
+        "returns": [
+          "* The grid object itself, for chaining",
+          ""
+        ],
+        "signature": "GridCraft.Grid:setConfig(config)",
+        "stripped_doc": [
+          "Set the configuration for the grid.",
+          ""
+        ],
+        "type": "Method"
+      }
+    ],
     "Variable": [],
     "desc": "A grid of hotkeys.",
     "doc": "A grid of hotkeys.",
@@ -253,7 +458,7 @@
       {
         "def": "GridCraft.Grid.new(table, string, table, string) -> table",
         "desc": "Create a new grid of hotkeys",
-        "doc": "Create a new grid of hotkeys\n\nParameters:\n * mods: Modifier keys as could be4 passed to `hs.hotkey.modal.new()`, like `{\"cmd\", \"ctrl\"}` or `{}`\n * key: A key to trigger the modal hotkey as could be passed to `hs.hotkey.modal.new()`, like `t`\n * actionTable: (table) A table of rows, each of which is a table of actions.\n      e.g. to represent the left half of a qwerty keyboard, you might use:\n      ```lua\n      {\n        {\n          GridCraft.handler { key = \"1\", application = \"1Password\" },\n          GridCraft.handler { key = \"2\", application = \"Day One\" },\n          GridCraft.handler { key = \"3\", application = \"Photos\" },\n          GridCraft.handler { key = \"4\", empty = true },\n          GridCraft.handler { key = \"5\", empty = true },\n        },\n        {\n          GridCraft.handler { key = \"q\", application = \"Messages\"},\n          GridCraft.handler { key = \"w\", application = \"Mattermost\" },\n          GridCraft.handler { key = \"e\", application = \"Visual Studio Code\" },\n          GridCraft.handler { key = \"r\", application = \"Bear\" },\n          GridCraft.handler { key = \"t\", application = \"Terminal\" },\n        },\n      }\n      ```\n      Note that we are constrained to using array tables rather than key-value tobles\n      so that the order is preserved.\n * title: (string) (optional) A message prefix to display when communicating to the user about this hot key\n\nReturns:\n  * A GridCraft grid of hotkeys",
+        "doc": "Create a new grid of hotkeys\n\nParameters:\n * mods: Modifier keys as could be4 passed to `hs.hotkey.modal.new()`, like `{\"cmd\", \"ctrl\"}` or `{}`\n * key: A key to trigger the modal hotkey as could be passed to `hs.hotkey.modal.new()`, like `t`\n * actionTable: (table) A table of rows, each of which is a table of actions.\n      e.g. to represent the left half of a qwerty keyboard, you might use:\n      ```lua\n      {\n        {\n          GridCraft.handler { key = \"1\", application = \"1Password\" },\n          GridCraft.handler { key = \"2\", application = \"Day One\" },\n          GridCraft.handler { key = \"3\", application = \"Photos\" },\n          GridCraft.handler { key = \"4\", empty = true },\n          GridCraft.handler { key = \"5\", empty = true },\n        },\n        {\n          GridCraft.handler { key = \"q\", application = \"Messages\"},\n          GridCraft.handler { key = \"w\", application = \"Mattermost\" },\n          GridCraft.handler { key = \"e\", application = \"Visual Studio Code\" },\n          GridCraft.handler { key = \"r\", application = \"Bear\" },\n          GridCraft.handler { key = \"t\", application = \"Terminal\" },\n        },\n      }\n      ```\n      Note that we are constrained to using array tables rather than key-value tobles\n      so that the order is preserved.\n * title: (string) (optional) A message prefix to display when communicating to the user about this hot key\n * config: (GridCraft.Configuration) (optional) A configuration object for the grid.\n\nReturns:\n  * A GridCraft grid of hotkeys",
         "name": "new",
         "notes": [],
         "parameters": [
@@ -282,6 +487,7 @@
           "      Note that we are constrained to using array tables rather than key-value tobles",
           "      so that the order is preserved.",
           " * title: (string) (optional) A message prefix to display when communicating to the user about this hot key",
+          " * config: (GridCraft.Configuration) (optional) A configuration object for the grid.",
           ""
         ],
         "returns": [
@@ -293,6 +499,49 @@
           ""
         ],
         "type": "Constructor"
+      },
+      {
+        "def": "GridCraft.Grid:applyConfiguration()",
+        "desc": "Apply the configuration to the grid.",
+        "doc": "Apply the configuration to the grid.\n\nNotes:\n * This is run when the grid is created and when setConfiguration() is called,\n   and makes sure that the configuration is applied to the web view, all submenus, etc.",
+        "name": "applyConfiguration",
+        "notes": [
+          " * This is run when the grid is created and when setConfiguration() is called,",
+          "   and makes sure that the configuration is applied to the web view, all submenus, etc."
+        ],
+        "parameters": [],
+        "returns": [],
+        "signature": "GridCraft.Grid:applyConfiguration()",
+        "stripped_doc": [
+          "Apply the configuration to the grid.",
+          ""
+        ],
+        "type": "Method"
+      },
+      {
+        "def": "GridCraft.Grid:setConfig(config)",
+        "desc": "Set the configuration for the grid.",
+        "doc": "Set the configuration for the grid.\n\nParameters:\n * config - A GridCraft.Configuration object containing the configuration for the grid\n\nReturns:\n* The grid object itself, for chaining\n\nNotes:\n* Mutates the existing grid object, so that all references in closures will get the new values.\n* Sets the configuration on all submenus as well.\n* Use this method instead of changing the .config field directly.",
+        "name": "setConfig",
+        "notes": [
+          "* Mutates the existing grid object, so that all references in closures will get the new values.",
+          "* Sets the configuration on all submenus as well.",
+          "* Use this method instead of changing the .config field directly."
+        ],
+        "parameters": [
+          " * config - A GridCraft.Configuration object containing the configuration for the grid",
+          ""
+        ],
+        "returns": [
+          "* The grid object itself, for chaining",
+          ""
+        ],
+        "signature": "GridCraft.Grid:setConfig(config)",
+        "stripped_doc": [
+          "Set the configuration for the grid.",
+          ""
+        ],
+        "type": "Method"
       }
     ],
     "name": "GridCraft.Grid",
@@ -662,14 +911,13 @@
       {
         "def": "GridCraft.WebView.webView(string, table, number, number) -> hs.webview object",
         "desc": "Creates a new web view intended for modal messages.",
-        "doc": "Creates a new web view intended for modal messages.\n\nParameters:\n * title - The title of the web view\n * items - A table of rows, each of which is a table of actions.\n * width - (optional) The width of the web view (default: 1024)\n * height - (optional) The height of the web view (default: 768)\n\nReturns:\n * A hs.webview object",
+        "doc": "Creates a new web view intended for modal messages.\n\nParameters:\n * title - (string) The title of the web view\n * items - (table) A list of rows, each of which is a table of actions.\n * config - (table) A GridCraft.Configuration object\n\nReturns:\n * A hs.webview object",
         "name": "webView",
         "notes": [],
         "parameters": [
-          " * title - The title of the web view",
-          " * items - A table of rows, each of which is a table of actions.",
-          " * width - (optional) The width of the web view (default: 1024)",
-          " * height - (optional) The height of the web view (default: 768)",
+          " * title - (string) The title of the web view",
+          " * items - (table) A list of rows, each of which is a table of actions.",
+          " * config - (table) A GridCraft.Configuration object",
           ""
         ],
         "returns": [
@@ -709,12 +957,13 @@
       {
         "def": "GridCraft.WebView.webViewHtml(string, string) -> string",
         "desc": "Generates the complete HTML for a web view, including the title, CSS, JS, and item table.",
-        "doc": "Generates the complete HTML for a web view, including the title, CSS, JS, and item table.\n\nParameters:\n * title - The title of the web view\n * itemTable - The HTML table generated from the actionTable\n\nReturns:\n * string containing the complete HTML for the web view",
+        "doc": "Generates the complete HTML for a web view, including the title, CSS, JS, and item table.\n\nParameters:\n * title - The title of the web view\n * itemTable - The HTML table generated from the actionTable\n * config - A GridCraft.Configuration object containing the configuration for the grid\n\nReturns:\n * string containing the complete HTML for the web view",
         "name": "webViewHtml",
         "notes": [],
         "parameters": [
           " * title - The title of the web view",
           " * itemTable - The HTML table generated from the actionTable",
+          " * config - A GridCraft.Configuration object containing the configuration for the grid",
           ""
         ],
         "returns": [
@@ -753,7 +1002,7 @@
     "Method": [],
     "Variable": [],
     "desc": "The web view that displays the grid.",
-    "doc": "The web view that displays the grid.",
+    "doc": "The web view that displays the grid.\nUsers won't interact with this module directly, but it is used by the GridCraft module.",
     "items": [
       {
         "def": "GridCraft.WebView.css",
@@ -828,12 +1077,13 @@
       {
         "def": "GridCraft.WebView.webViewHtml(string, string) -> string",
         "desc": "Generates the complete HTML for a web view, including the title, CSS, JS, and item table.",
-        "doc": "Generates the complete HTML for a web view, including the title, CSS, JS, and item table.\n\nParameters:\n * title - The title of the web view\n * itemTable - The HTML table generated from the actionTable\n\nReturns:\n * string containing the complete HTML for the web view",
+        "doc": "Generates the complete HTML for a web view, including the title, CSS, JS, and item table.\n\nParameters:\n * title - The title of the web view\n * itemTable - The HTML table generated from the actionTable\n * config - A GridCraft.Configuration object containing the configuration for the grid\n\nReturns:\n * string containing the complete HTML for the web view",
         "name": "webViewHtml",
         "notes": [],
         "parameters": [
           " * title - The title of the web view",
           " * itemTable - The HTML table generated from the actionTable",
+          " * config - A GridCraft.Configuration object containing the configuration for the grid",
           ""
         ],
         "returns": [
@@ -849,14 +1099,13 @@
       {
         "def": "GridCraft.WebView.webView(string, table, number, number) -> hs.webview object",
         "desc": "Creates a new web view intended for modal messages.",
-        "doc": "Creates a new web view intended for modal messages.\n\nParameters:\n * title - The title of the web view\n * items - A table of rows, each of which is a table of actions.\n * width - (optional) The width of the web view (default: 1024)\n * height - (optional) The height of the web view (default: 768)\n\nReturns:\n * A hs.webview object",
+        "doc": "Creates a new web view intended for modal messages.\n\nParameters:\n * title - (string) The title of the web view\n * items - (table) A list of rows, each of which is a table of actions.\n * config - (table) A GridCraft.Configuration object\n\nReturns:\n * A hs.webview object",
         "name": "webView",
         "notes": [],
         "parameters": [
-          " * title - The title of the web view",
-          " * items - A table of rows, each of which is a table of actions.",
-          " * width - (optional) The width of the web view (default: 1024)",
-          " * height - (optional) The height of the web view (default: 768)",
+          " * title - (string) The title of the web view",
+          " * items - (table) A list of rows, each of which is a table of actions.",
+          " * config - (table) A GridCraft.Configuration object",
           ""
         ],
         "returns": [
