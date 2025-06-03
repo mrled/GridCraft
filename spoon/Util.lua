@@ -6,7 +6,7 @@ local M = {}
 
 
 --- GridCraft.Util.getApplicationIconDataUri(string, hs.application) -> string or nil
---- Function
+--- Deprecated
 --- Get an application icon as a data: URI
 ---
 --- Parameters:
@@ -15,6 +15,9 @@ local M = {}
 ---
 --- Returns:
 ---  * A string containing a data URI with base64-encoded PNG data of the application icon, or nil if the icon cannot be retrieved
+---
+--- Notes:
+---  * We don't use this internally so it will be removed in the future.
 M.getApplicationIconDataUri = function(appName, application)
   print("getApplicationIconDataUri: " .. appName)
   if application == nil then
