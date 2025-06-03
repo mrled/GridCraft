@@ -28,7 +28,10 @@ td {
 }
 
 td.selected {
-  animation: keySelect 0.15s ease-out;
+  animation-name: keySelect;
+  /* Don't set the duration here, it will be handled by JavaScript */
+  /* animation-duration: 0.15s; */
+  animation-timing-function: ease-out;
 }
 
 @keyframes keySelect {

@@ -85,7 +85,9 @@ M.new = function(arg)
       nil,
       nil,
       arg.submenu,
-      action.description
+      action.description,
+      -- Pass nil configuration; will later be set by the parent grid with setConfig()
+      nil
     )
     -- Can't set action here, have to do it from the parent modal
   end

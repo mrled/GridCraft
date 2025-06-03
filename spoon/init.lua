@@ -30,7 +30,7 @@
 --- * The documentation at <https://pages.micahrl.com/GridCraft>
 
 local Action = dofile(hs.spoons.resourcePath("Action.lua"))
-local Constants = dofile(hs.spoons.resourcePath("Constants.lua"))
+local Configuration = dofile(hs.spoons.resourcePath("Configuration.lua"))
 local Grid = dofile(hs.spoons.resourcePath("Grid.lua"))
 local Icon = dofile(hs.spoons.resourcePath("Icon.lua"))
 
@@ -66,7 +66,7 @@ M.homepage = "https://github.com/mrled/GridCraft"
 M.license = "MIT - https://opensource.org/licenses/MIT"
 
 M.Action = Action
-M.Constants = Constants
+M.Configuration = Configuration
 M.Grid = Grid
 M.Icon = Icon
 

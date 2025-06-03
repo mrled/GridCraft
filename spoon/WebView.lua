@@ -1,6 +1,7 @@
 --- === GridCraft.WebView ===
 ---
 --- The web view that displays the grid.
+--- Users won't interact with this module directly, but it is used by the GridCraft module.
 
 local Util = dofile(hs.spoons.resourcePath("Util.lua"))
 
@@ -43,7 +44,7 @@ end
 ---
 --- Returns:
 ---  * string containing the HTML for the item table
-local itemTableHtml = function(actionTable)
+M.itemTableHtml = function(actionTable)
   local tableHtml = ""
 
   for _, keyRow in pairs(actionTable) do
@@ -76,7 +77,6 @@ local itemTableHtml = function(actionTable)
   return tableHtml
 end
 
-
 --- GridCraft.WebView.webViewHtml(string, string) -> string
 --- Function
 --- Generates the complete HTML for a web view, including the title, CSS, JS, and item table.
@@ -84,16 +84,18 @@ end
 --- Parameters:
 ---  * title - The title of the web view
 ---  * itemTable - The HTML table generated from the actionTable
+---  * config - A GridCraft.Configuration object containing the configuration for the grid
 ---
 --- Returns:
 ---  * string containing the complete HTML for the web view
-local webViewHtml = function(title, itemTable)
+M.webViewHtml = function(title, itemTable, config)
   local webViewMenuMessageTemplate = [[
     <html>
       <head>
         <title>%s</title>
         <style>%s</style>
-        <script>%s</script>
+        <script id="js-code">%s</script>
+        <script type="application/json" id="gridcraft-config">%s</script>
       </head>
       <body>
         <table>
@@ -108,6 +110,7 @@ local webViewHtml = function(title, itemTable)
     title,
     M.css,
     M.js,
+    config:toJSON(),
     itemTable
   )
 
@@ -125,17 +128,16 @@ end
 --- Creates a new web view intended for modal messages.
 ---
 --- Parameters:
----  * title - The title of the web view
----  * items - A table of rows, each of which is a table of actions.
----  * width - (optional) The width of the web view (default: 1024)
----  * height - (optional) The height of the web view (default: 768)
+---  * title - (string) The title of the web view
+---  * items - (table) A list of rows, each of which is a table of actions.
+---  * config - (table) A GridCraft.Configuration object
 ---
 --- Returns:
 ---  * A hs.webview object
-M.webView = function(title, items, width, height)
-  local itemTable = itemTableHtml(items)
-  local html = webViewHtml(title, itemTable)
-  local wv = centeredWebView(html, width or 1024, height or 768)
+M.webView = function(title, items, config)
+  local itemTable = M.itemTableHtml(items)
+  local html = M.webViewHtml(title, itemTable, config)
+  local wv = centeredWebView(html, config.gridMaxWidth, config.gridMaxHeight)
   return wv
 end
 
