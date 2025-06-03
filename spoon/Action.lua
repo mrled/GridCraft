@@ -61,7 +61,7 @@ M.new = function(arg)
       if arg.icon == nil then
         -- Don't use hs.application.find() -- that only works for running apps!
         -- local app = hs.application.find(arg.application)
-        local appIcon = Icon.macFile(appPath)
+        local appIcon = Icon.fromMacIcon(appPath)
         if appIcon then
           action.icon = appIcon
         end
@@ -74,7 +74,7 @@ M.new = function(arg)
       action.description = Util.getBasename(action.file)
     end
     if arg.icon == nil then
-      local fileIcon = Icon.macFile(action.file)
+      local fileIcon = Icon.fromMacIcon(action.file)
       if fileIcon then
         action.icon = fileIcon
       end

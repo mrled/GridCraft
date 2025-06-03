@@ -32,21 +32,21 @@ M.phosphor = function(name, weight)
   return iconData
 end
 
---- GridCraft.Icon.macFile(filePath) -> string or nil
+--- GridCraft.Icon.fromMacIcon(filePath) -> string or nil
 --- Function
 --- Create an icon from the icon of a macOS file (including folders, applications, etc)
 ---
 --- Parameters:
 ---  * filePath - The path to the file or application for which to get the icon
-M.macFile = function(filePath)
+M.fromMacIcon = function(filePath)
   if not filePath then
-    hs.printf("⚠️ Icon.macFile: filePath is nil")
+    hs.printf("⚠️ Icon.fromMacIcon: filePath is nil")
     return nil
   end
 
   local icon = hs.image.iconForFile(filePath)
   if not icon then
-    hs.printf("⚠️ Icon.macFile: no icon found for '%s'", filePath)
+    hs.printf("⚠️ Icon.fromMacIcon: no icon found for '%s'", filePath)
     return nil
   end
 
@@ -57,6 +57,11 @@ M.macFile = function(filePath)
   )
   return imgElement
 end
+
+--- GridCraft.Icon.macFile(filePath) -> string or nil
+--- Deprecated
+--- Use fromMacIcon() instead.
+M.macFile = M.fromMacIcon
 
 --- GridCraft.Icon.fileContents(filePath) -> string or nil
 --- Function
