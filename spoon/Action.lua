@@ -64,7 +64,7 @@ M.new = function(arg)
       print(string.format("No application found for %s", arg.application))
       action.icon = Icon.phosphor("question-mark", "regular")
       action.description = string.format("(%s)", appDesc)
-      table.insert(action.classes, "notfound")
+      table.insert(action.classes, "not-found")
     else
       action.application = arg.application
       action.handler = function() hs.application.launchOrFocus(action.application) end
@@ -84,7 +84,7 @@ M.new = function(arg)
       print(string.format("No file found for %s", arg.file))
       action.icon = Icon.phosphor("question-mark", "regular")
       action.description = string.format("(%s)", Util.getBasename(arg.file))
-      table.insert(action.classes, "notfound")
+      table.insert(action.classes, "not-found")
     else
       action.file = arg.file
       action.handler = function() hs.execute(string.format("open '%s'", action.file)) end

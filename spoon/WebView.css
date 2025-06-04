@@ -53,8 +53,8 @@ td.custom-handler {}
 /* Actions defined as empty
  */
 td.empty {
-  background-color: rgba(36, 36, 36, 0.5);
   border: 2px dashed rgb(172, 172, 172);
+  color: gray;
 }
 
 /* Placeholder actions that do not have a key assigned
@@ -62,6 +62,11 @@ td.empty {
 td.no-key {
   background-color: transparent;
   border: none;
+}
+
+td.not-found {
+  border: 2px dashed rgb(172, 172, 172);
+  color: gray;
 }
 
 @keyframes keySelect {
