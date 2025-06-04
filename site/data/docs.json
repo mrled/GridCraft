@@ -30,7 +30,7 @@
       {
         "def": "GridCraft.Action.new(table) -> table",
         "desc": "Create a new action for a grid",
-        "doc": "Create a new action for a grid\n\nParameters:\n * arg - A table containing the parameters for the action.\n   * Basic parameters:\n     * mods: (table) Modifier keys like `{\"cmd\", \"ctrl\"}` to trigger the action along with the key. Use `{}` for no modifiers\n     * key: (string) A key to trigger the action along with the modifiers, like \"x\" or \"F11\".\n     * handler: (function) Code to run when the key is pressed\n     * description: (string) A description for the action\n     * icon: (string) An svg or img tag to display as the icon for the action (optional)\n   * Convenience parameters:\n     * empty: (boolean) If true, the handler is set to a no-op function and the description is set to \"No action\".\n       This is useful for creating empty slots in the grid.\n       Overrides handler, description, and icon.\n     * application: (string) The name of an application to switch to.\n       Overrides handler.\n       If description/icon are not provided, set to app name/icon.\n     * submenu: (table) A table of actions to create a submenu for this action.\n       Overrides handler.\n\nNotes:\n * Together, the mods and key are passed to `hs.hotkey.bind()` to create a regular Hammerspoon hotkey.",
+        "doc": "Create a new action for a grid\n\nParameters:\n * arg - A table containing the parameters for the action.\n   * Basic parameters:\n     * mods: (table) Modifier keys like `{\"cmd\", \"ctrl\"}` to trigger the action along with the key. Use `{}` for no modifiers\n     * key: (string) A key to trigger the action along with the modifiers, like \"x\" or \"F11\".\n     * handler: (function) Code to run when the key is pressed\n     * description: (string) A description for the action\n     * icon: (string) An svg or img tag to display as the icon for the action (optional)\n     * classes: (table) A list of classes to apply to the action in the web view (optional)\n   * Convenience parameters:\n     * empty: (boolean) If true, the handler is set to a no-op function and the description is set to \"No action\".\n       This is useful for creating empty slots in the grid.\n       Overrides handler, description, and icon.\n     * application: (string) The name of an application to switch to.\n       Overrides handler.\n       If description/icon are not provided, set to app name/icon.\n     * submenu: (table) A table of actions to create a submenu for this action.\n       Overrides handler.\n\nNotes:\n * Together, the mods and key are passed to `hs.hotkey.bind()` to create a regular Hammerspoon hotkey.",
         "name": "new",
         "notes": [
           " * Together, the mods and key are passed to `hs.hotkey.bind()` to create a regular Hammerspoon hotkey."
@@ -43,6 +43,7 @@
           "     * handler: (function) Code to run when the key is pressed",
           "     * description: (string) A description for the action",
           "     * icon: (string) An svg or img tag to display as the icon for the action (optional)",
+          "     * classes: (table) A list of classes to apply to the action in the web view (optional)",
           "   * Convenience parameters:",
           "     * empty: (boolean) If true, the handler is set to a no-op function and the description is set to \"No action\".",
           "       This is useful for creating empty slots in the grid.",
@@ -74,7 +75,7 @@
       {
         "def": "GridCraft.Action.new(table) -> table",
         "desc": "Create a new action for a grid",
-        "doc": "Create a new action for a grid\n\nParameters:\n * arg - A table containing the parameters for the action.\n   * Basic parameters:\n     * mods: (table) Modifier keys like `{\"cmd\", \"ctrl\"}` to trigger the action along with the key. Use `{}` for no modifiers\n     * key: (string) A key to trigger the action along with the modifiers, like \"x\" or \"F11\".\n     * handler: (function) Code to run when the key is pressed\n     * description: (string) A description for the action\n     * icon: (string) An svg or img tag to display as the icon for the action (optional)\n   * Convenience parameters:\n     * empty: (boolean) If true, the handler is set to a no-op function and the description is set to \"No action\".\n       This is useful for creating empty slots in the grid.\n       Overrides handler, description, and icon.\n     * application: (string) The name of an application to switch to.\n       Overrides handler.\n       If description/icon are not provided, set to app name/icon.\n     * submenu: (table) A table of actions to create a submenu for this action.\n       Overrides handler.\n\nNotes:\n * Together, the mods and key are passed to `hs.hotkey.bind()` to create a regular Hammerspoon hotkey.",
+        "doc": "Create a new action for a grid\n\nParameters:\n * arg - A table containing the parameters for the action.\n   * Basic parameters:\n     * mods: (table) Modifier keys like `{\"cmd\", \"ctrl\"}` to trigger the action along with the key. Use `{}` for no modifiers\n     * key: (string) A key to trigger the action along with the modifiers, like \"x\" or \"F11\".\n     * handler: (function) Code to run when the key is pressed\n     * description: (string) A description for the action\n     * icon: (string) An svg or img tag to display as the icon for the action (optional)\n     * classes: (table) A list of classes to apply to the action in the web view (optional)\n   * Convenience parameters:\n     * empty: (boolean) If true, the handler is set to a no-op function and the description is set to \"No action\".\n       This is useful for creating empty slots in the grid.\n       Overrides handler, description, and icon.\n     * application: (string) The name of an application to switch to.\n       Overrides handler.\n       If description/icon are not provided, set to app name/icon.\n     * submenu: (table) A table of actions to create a submenu for this action.\n       Overrides handler.\n\nNotes:\n * Together, the mods and key are passed to `hs.hotkey.bind()` to create a regular Hammerspoon hotkey.",
         "name": "new",
         "notes": [
           " * Together, the mods and key are passed to `hs.hotkey.bind()` to create a regular Hammerspoon hotkey."
@@ -87,6 +88,7 @@
           "     * handler: (function) Code to run when the key is pressed",
           "     * description: (string) A description for the action",
           "     * icon: (string) An svg or img tag to display as the icon for the action (optional)",
+          "     * classes: (table) A list of classes to apply to the action in the web view (optional)",
           "   * Convenience parameters:",
           "     * empty: (boolean) If true, the handler is set to a no-op function and the description is set to \"No action\".",
           "       This is useful for creating empty slots in the grid.",
@@ -177,6 +179,28 @@
           "The max height for the grid in px, default is 768"
         ],
         "type": "Field"
+      },
+      {
+        "def": "GridCraft.Configuration.displayScreen",
+        "desc": "The screen on which the grid should be displayed.",
+        "doc": "The screen on which the grid should be displayed.\nAllowed values:\n\n  * A string screen name; obtain this from `hs.screen.allScreens()`\n  * The string `primary` to use what macOS considers the primary screen\n  * The string `main` to use the screen with the currently focused window\n  * The string `mouse` to use the screen containing the mouse cursor\n\nIf this value is nil or the configured screen is not found, the primary screen will be used.",
+        "name": "displayScreen",
+        "notes": [],
+        "parameters": [],
+        "returns": [],
+        "signature": "GridCraft.Configuration.displayScreen",
+        "stripped_doc": [
+          "The screen on which the grid should be displayed.",
+          "Allowed values:",
+          "",
+          "  * A string screen name; obtain this from `hs.screen.allScreens()`",
+          "  * The string `primary` to use what macOS considers the primary screen",
+          "  * The string `main` to use the screen with the currently focused window",
+          "  * The string `mouse` to use the screen containing the mouse cursor",
+          "",
+          "If this value is nil or the configured screen is not found, the primary screen will be used."
+        ],
+        "type": "Field"
       }
     ],
     "Function": [],
@@ -265,6 +289,28 @@
         "signature": "GridCraft.Configuration.animationMs",
         "stripped_doc": [
           "Time for key-seledction animation in ms, default is 150ms."
+        ],
+        "type": "Field"
+      },
+      {
+        "def": "GridCraft.Configuration.displayScreen",
+        "desc": "The screen on which the grid should be displayed.",
+        "doc": "The screen on which the grid should be displayed.\nAllowed values:\n\n  * A string screen name; obtain this from `hs.screen.allScreens()`\n  * The string `primary` to use what macOS considers the primary screen\n  * The string `main` to use the screen with the currently focused window\n  * The string `mouse` to use the screen containing the mouse cursor\n\nIf this value is nil or the configured screen is not found, the primary screen will be used.",
+        "name": "displayScreen",
+        "notes": [],
+        "parameters": [],
+        "returns": [],
+        "signature": "GridCraft.Configuration.displayScreen",
+        "stripped_doc": [
+          "The screen on which the grid should be displayed.",
+          "Allowed values:",
+          "",
+          "  * A string screen name; obtain this from `hs.screen.allScreens()`",
+          "  * The string `primary` to use what macOS considers the primary screen",
+          "  * The string `main` to use the screen with the currently focused window",
+          "  * The string `mouse` to use the screen containing the mouse cursor",
+          "",
+          "If this value is nil or the configured screen is not found, the primary screen will be used."
         ],
         "type": "Field"
       },
@@ -1055,15 +1101,34 @@
         "type": "Function"
       },
       {
+        "def": "GridCraft.WebView.configuredScreen(config) -> hs.screen object",
+        "desc": "Returns the screen that is configured for the web view.",
+        "doc": "Returns the screen that is configured for the web view.\n\nParameters:\n* config - (table) A GridCraft.Configuration object containing the configuration for the grid\n\nReturns:\n* The configured screen object, or the primary screen if no specific configuration is set or if any screen is not found.",
+        "name": "configuredScreen",
+        "notes": [],
+        "parameters": [
+          "* config - (table) A GridCraft.Configuration object containing the configuration for the grid",
+          ""
+        ],
+        "returns": [
+          "* The configured screen object, or the primary screen if no specific configuration is set or if any screen is not found."
+        ],
+        "signature": "GridCraft.WebView.configuredScreen(config) -> hs.screen object",
+        "stripped_doc": [
+          "Returns the screen that is configured for the web view.",
+          ""
+        ],
+        "type": "Function"
+      },
+      {
         "def": "GridCraft.WebView.resizeCenter(hs.webview.object, [number], [number]) -> hs.webview.object",
         "desc": "Resizes and centers a web view on the main screen.",
-        "doc": "Resizes and centers a web view on the main screen.\n\nParameters:\n * wv - The web view to resize and center\n * width - The desired width of the web view\n * height - The desired height of the web viewBox\n\nReturns:\n * The resized and centered web view",
+        "doc": "Resizes and centers a web view on the main screen.\n\nParameters:\n * wv - The web view to resize and center\n * config - (table) A GridCraft.Configuration object\n\nReturns:\n * The resized and centered web view",
         "name": "resizeCenter",
         "notes": [],
         "parameters": [
           " * wv - The web view to resize and center",
-          " * width - The desired width of the web view",
-          " * height - The desired height of the web viewBox",
+          " * config - (table) A GridCraft.Configuration object",
           ""
         ],
         "returns": [
@@ -1080,7 +1145,7 @@
     "Method": [],
     "Variable": [],
     "desc": "The web view that displays the grid.",
-    "doc": "The web view that displays the grid.\nUsers won't interact with this module directly, but it is used by the GridCraft module.",
+    "doc": "The web view that displays the grid.\nUsers won't interact with this module directly, but it is used by the GridCraft module.\nWe consider this an internal module and provide no stability guarantees between minor versions.",
     "items": [
       {
         "def": "GridCraft.WebView.css",
@@ -1111,6 +1176,26 @@
         "type": "Constant"
       },
       {
+        "def": "GridCraft.WebView.configuredScreen(config) -> hs.screen object",
+        "desc": "Returns the screen that is configured for the web view.",
+        "doc": "Returns the screen that is configured for the web view.\n\nParameters:\n* config - (table) A GridCraft.Configuration object containing the configuration for the grid\n\nReturns:\n* The configured screen object, or the primary screen if no specific configuration is set or if any screen is not found.",
+        "name": "configuredScreen",
+        "notes": [],
+        "parameters": [
+          "* config - (table) A GridCraft.Configuration object containing the configuration for the grid",
+          ""
+        ],
+        "returns": [
+          "* The configured screen object, or the primary screen if no specific configuration is set or if any screen is not found."
+        ],
+        "signature": "GridCraft.WebView.configuredScreen(config) -> hs.screen object",
+        "stripped_doc": [
+          "Returns the screen that is configured for the web view.",
+          ""
+        ],
+        "type": "Function"
+      },
+      {
         "def": "GridCraft.WebView.itemTableHtml(table) -> string",
         "desc": "Generates an HTML table from a list of items.",
         "doc": "Generates an HTML table from a list of items.\n\nParameters:\n * actionTable - A table of rows, each of which is a table of actions.\n\nReturns:\n * string containing the HTML for the item table",
@@ -1133,13 +1218,12 @@
       {
         "def": "GridCraft.WebView.resizeCenter(hs.webview.object, [number], [number]) -> hs.webview.object",
         "desc": "Resizes and centers a web view on the main screen.",
-        "doc": "Resizes and centers a web view on the main screen.\n\nParameters:\n * wv - The web view to resize and center\n * width - The desired width of the web view\n * height - The desired height of the web viewBox\n\nReturns:\n * The resized and centered web view",
+        "doc": "Resizes and centers a web view on the main screen.\n\nParameters:\n * wv - The web view to resize and center\n * config - (table) A GridCraft.Configuration object\n\nReturns:\n * The resized and centered web view",
         "name": "resizeCenter",
         "notes": [],
         "parameters": [
           " * wv - The web view to resize and center",
-          " * width - The desired width of the web view",
-          " * height - The desired height of the web viewBox",
+          " * config - (table) A GridCraft.Configuration object",
           ""
         ],
         "returns": [
