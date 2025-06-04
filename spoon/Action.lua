@@ -46,11 +46,14 @@ M.new = function(arg)
 
   if not action.key then
     -- No key is provided to invoke the action
+    -- Allow the users to set the description and icon if they want to,
+    -- but otherwise set a completely blank space
     print("No key provided for action, using empty handler")
     table.insert(action.classes, "no-key")
-  end
-
-  if arg.empty then
+    action.handler = function() end
+    action.description = arg.description or ""
+    action.icon = arg.icon or Icon.empty()
+  elseif arg.empty then
     action.handler = function() end
     action.description = "No action"
     action.icon = Icon.empty()
