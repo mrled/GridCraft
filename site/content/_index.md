@@ -11,12 +11,57 @@ It looks like this:
 
 <img src='{{< static "screenshot.png" >}}' style="max-width: 20em;" alt="Screenshot of GridCraft" />
 
+## Installation speedrun
+
+1. First you'll need to install and run [Hammerspoon](https://hammerspoon.org)
+2. Then download [GridCraft](https://github.com/mrled/GridCraft/releases) itself from GitHub
+3. Extract the zip file and double-click `GridCraft.spoon` to install
+4. Configure Hammerspoon; here's a tiny configuration to get started.
+    Drop this into `~/.hammerspoon/init.lua`:
+    ```lua
+    hs.loadSpoon("GridCraft")
+    spoon.GridCraft.Grid.new(
+      { "ctrl", "shift" },
+      "f11",
+      {
+        {
+          spoon.GridCraft.Action.new { key = "e", application = "Terminal" },
+          spoon.GridCraft.Action.new { key = "r", application = "Visual Studio Code", description = "VS Code" },
+        },
+        {
+          spoon.GridCraft.Action.new { key = "d", file = os.getenv("HOME") .. "/Downloads" },
+          spoon.GridCraft.Action.new { key = "f", application = "Finder" },
+        },
+      },
+      "GridCraftExample"
+    )
+    ```
+
+With that configuration, pressing ctrl-shift-f11 will launch a tiny 2x2 grid of applications.
+
+Want more?
+
+* See the configuration examples on the left for examples of using different actions, customizing icons, and writing your own action functions
+* See the optional [configuration object](http://localhost:1313/GridCraft/docs/api/gridcraft.configuration/)
+  for how to customize things like where the grid shows up and the selection animations
+
 ## What for?
 
-This is just a regular app launcher that you invoke with a hotkey;
-the only difference between it and something like
-[Leader Key](https://github.com/mikker/LeaderKey.app)
-is that the hotkeys are laid out in a grid to match your keyboard.
+It's a launcher, but instead of using mnemonic keys as apps like
+[Leader Key](https://github.com/mikker/LeaderKey.app) do,
+you can lay the hotkeys out spacially in a grid to match your keyboard.
+
+It supports more than just apps ---
+Hammerspoon allows you to write custom handlers that run shell scripts, invoke key presses, or do anything else you can do in Lua.
+You can also define nested submenus for more commands.
+
+And it comes with icons.
+Applications and files use their macOS icons by default.
+Any action can specify a custom icon:
+all [Phosphor](https://phosphoricons.com) icons are built in and ready to use,
+or you can use any image on the filesystem, or any emoji or letter.
+
+## Why a spacial layout?
 
 The idea is that instead of trying to use mnemonic hot keys
 like `F` for Finder and `X` for Firefox and `C` for Fantastical and `M` for Find My,
@@ -32,13 +77,6 @@ even if a mnemonic hotkey would sit on the right side of the keyboard.
 
 (Are you a Dvorak or Colemak weirdo? Don't worry, the grid definition is entirely up to you.)
 
-It has all [Phosphor](https://phosphoricons.com) icons built in and ready to use,
-and it supports launching macOS applications/files/folders,
-running any Lua code you want,
-and nested submenus.
-
-Take a look at the examples in the left menu to get started.
-
 ## Screen recording
 
 Here is a screen recording of GridCraft in action.
@@ -48,14 +86,3 @@ Here is a screen recording of GridCraft in action.
        alt="Screen recording of GridCraft">
   <source src='{{< static "screenrecording.mp4" >}}' type="video/mp4">
 </video>
-
-## Colophon
-
-* Made with <3 by [Micah](https://me.micahrl.com)
-* Includes the excellent [Phosphor Icons](https://phosphoricons.com)
-* Documentation site built with [Hugo](https://gohugo.io)
-* Documentation site themed with Alex Shpak's [Hugo Book theme](https://github.com/alex-shpak/hugo-book)
-* See the author's Hammerspoon configuration, including GridCraft layout,
-  [on GitHub](https://github.com/mrled/dhd/blob/master/hbase/.hammerspoon/init.lua)
-
-

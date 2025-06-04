@@ -5,17 +5,14 @@ weight = 70
 
 ## How can I control what monitor displays the grid when it's invoked?
 
-It will open on the monitor of the current application if you
-enable "Displays have separate spaces" in macOS.
+See [GridCraft.Configuration.displayScreen]({{< ref "docs/api/gridcraft.configuration" >}}#displayscreen).
+
+We recommend enabling "Displays have separate spaces" in macOS.
 To do so:
 System Settings.app -> "Desktop and Dock" in left side bar -> "Mission Control" section -> "Displays have separate Spaces".
 Unfortunately this requires logging out and back in.
 
-If you don't have "Displays have separate spaces" enabled,
-it seems to open on different monitors at random.
-
-If you want more control than this,
-[open a ticket](https://github.com/mrled/GridCraft/issues).
+Without this setting enabled, sometimes where the grid opens can be unpredictable.
 
 ## What hotkey should I use to invoke GridCraft?
 
