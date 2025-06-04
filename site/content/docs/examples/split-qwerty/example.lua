@@ -59,6 +59,7 @@ local ergoDoxGrid = {
 }
 
 local ergoDoxConfig = spoon.GridCraft.Configuration.new()
+-- Make sure the grid is wide enough for the ErgoDox layout
 ergoDoxConfig.gridMaxWidth = 2048
 
 spoon.GridCraft.Grid.new(
