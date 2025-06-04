@@ -1,0 +1,12 @@
+{{/* An image thumbnail link shortcode
+   *
+   * This shortcode expects arguments:
+   *     src:          The source image file name, relative to the page
+   *     alt:          The alt text for the image
+   *     resize:       The dimensions for the thumbnail, e.g. "200x200" or "200x" or "x200"
+   */}}
+{{ $img := .Page.Resources.GetMatch (printf "*%s" (.Get "src")) }}
+{{ $thumb := $img.Resize (.Get "resize" | default "200x") }}
+<a href="{{ $img.RelPermalink }}">
+  <img src="{{ $thumb.RelPermalink }}" alt="{{ .Get "alt" }}">
+</a>
