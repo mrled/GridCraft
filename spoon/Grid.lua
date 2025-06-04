@@ -91,7 +91,7 @@ M.new = function(mods, key, actionTable, title, config)
     -- function result.triggerKey:entered()
     self.triggerKey.entered = function(self)
       -- Always resize the web view to ensure it runs on the active screen
-      WebView.resizeCenter(result.activeWebView, thisGrid.config.gridMaxWidth, thisGrid.config.gridMaxHeight)
+      WebView.resizeCenter(result.activeWebView, thisGrid.config)
       thisGrid.activeWebView:show()
     end
 

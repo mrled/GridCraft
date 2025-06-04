@@ -2,6 +2,7 @@
 ---
 --- The web view that displays the grid.
 --- Users won't interact with this module directly, but it is used by the GridCraft module.
+--- We consider this an internal module and provide no stability guarantees between minor versions.
 
 local Util = dofile(hs.spoons.resourcePath("Util.lua"))
 
@@ -20,7 +21,7 @@ M.css = Util.fileContents(hs.spoons.resourcePath("WebView.css"))
 M.js = Util.fileContents(hs.spoons.resourcePath("WebView.js"))
 
 
-local centeredWebView = function(content, width, height)
+local centeredWebView = function(content, config)
   -- Initial dimenmsions/position don't matter
   local wvRect = hs.geometry.rect(10, 10, 10, 10)
   local wv     = hs.webview.new(wvRect)
@@ -30,7 +31,7 @@ local centeredWebView = function(content, width, height)
   wv:closeOnEscape(true)
   wv:html(content)
   -- Resize and center the web view
-  M.resizeCenter(wv, width, height)
+  M.resizeCenter(wv, config)
   return wv
 end
 
@@ -123,6 +124,34 @@ M.webViewHtml = function(title, itemTable, config)
 end
 
 
+--- GridCraft.WebView.configuredScreen(config) -> hs.screen object
+--- Function
+--- Returns the screen that is configured for the web view.
+---
+--- Parameters:
+--- * config - (table) A GridCraft.Configuration object containing the configuration for the grid
+---
+--- Returns:
+--- * The configured screen object, or the primary screen if no specific configuration is set or if any screen is not found.
+M.configuredScreen = function(config)
+  -- Aside from a convenient variable, calling allScreens() will force the screen layout to refresh.
+  local allScreens = hs.screen.allScreens()
+
+  -- The primary screen is the fallback option
+  local primary = hs.screen.primaryScreen()
+
+  if config.displayScreen == "primary" then
+    return primary
+  elseif config.displayScreen == "main" then
+    return hs.screen.mainScreen() or primary
+  elseif config.displayScreen == "mouse" then
+    return hs.mouse.getCurrentScreen() or primary
+  elseif allScreens[config.displayScreen] then
+    return allScreens[config.displayScreen] or primary
+  end
+  return primary
+end
+
 
 --- GridCraft.WebView.webView(string, table, number, number) -> hs.webview object
 --- Constructor
@@ -138,7 +167,7 @@ end
 M.webView = function(title, items, config)
   local itemTable = M.itemTableHtml(items)
   local html = M.webViewHtml(title, itemTable, config)
-  local wv = centeredWebView(html, config.gridMaxWidth, config.gridMaxHeight)
+  local wv = centeredWebView(html, config)
   return wv
 end
 
@@ -149,31 +178,24 @@ end
 ---
 --- Parameters:
 ---  * wv - The web view to resize and center
----  * width - The desired width of the web view
----  * height - The desired height of the web viewBox
+---  * config - (table) A GridCraft.Configuration object
 ---
 --- Returns:
 ---  * The resized and centered web view
-M.resizeCenter = function(wv, width, height)
+M.resizeCenter = function(wv, config)
   if wv == nil then
     return
   end
-
-  -- Force the screen to refresh, to ensure that reloading the config
-  -- will pick up any changes to screen layout since the first load.
-  hs.screen.allScreens()
-
-  -- The screen with the currently focused window
-  local mainScreen  = hs.screen.mainScreen()
+  local screen      = M.configuredScreen(config)
 
   -- A rect containing coordinates of the entire frame, including dock and menu
-  local mainFrame   = mainScreen:fullFrame()
+  local screenFrame = screen:fullFrame()
 
   -- Coordinates to center the web view in the main frame
-  local wvLeftCoord = mainFrame.x + (mainFrame.w - width) / 2
-  local wvTopCoord  = mainFrame.y + (mainFrame.h - height) / 2
+  local wvLeftCoord = screenFrame.x + (screenFrame.w - config.gridMaxWidth) / 2
+  local wvTopCoord  = screenFrame.y + (screenFrame.h - config.gridMaxHeight) / 2
 
-  wv:frame(hs.geometry.rect(wvLeftCoord, wvTopCoord, width, height))
+  wv:frame(hs.geometry.rect(wvLeftCoord, wvTopCoord, config.gridMaxWidth, config.gridMaxHeight))
 
   return wv
 end

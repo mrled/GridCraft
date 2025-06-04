@@ -74,6 +74,18 @@ M.new = function()
         return self
     end
 
+    --- GridCraft.Configuration.displayScreen
+    --- Field
+    --- The screen on which the grid should be displayed.
+    --- Allowed values:
+    ---
+    ---   * A string screen name; obtain this from `hs.screen.allScreens()`
+    ---   * The string `primary` to use what macOS considers the primary screen
+    ---   * The string `main` to use the screen with the currently focused window
+    ---   * The string `mouse` to use the screen containing the mouse cursor
+    --- If this value is nil or the configured screen is not found, the primary screen will be used.
+    config.displayScreen = nil
+
     return config
 end
 
