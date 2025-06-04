@@ -3,17 +3,19 @@ title = "FAQ"
 weight = 70
 +++
 
-## How can I use an image on the filesystem?
+## How can I control what monitor displays the grid when it's invoked?
 
-You can encode an image file as base64 and include it inline, like this:
-`"data:image/svg+xml;base64," .. Util.base64("/path/to/your-icon.png")`
-
-## How can I control what monitor display the grid when it's invoked?
-
-Enabled "Displays have separate spaces" in macOS:
+It will open on the monitor of the current application if you
+enable "Displays have separate spaces" in macOS.
+To do so:
 System Settings.app -> "Desktop and Dock" in left side bar -> "Mission Control" section -> "Displays have separate Spaces".
-
 Unfortunately this requires logging out and back in.
+
+If you don't have "Displays have separate spaces" enabled,
+it seems to open on different monitors at random.
+
+If you want more control than this,
+[open a ticket](https://github.com/mrled/GridCraft/issues).
 
 ## What hotkey should I use to invoke GridCraft?
 
