@@ -56,7 +56,7 @@ M.itemTableHtml = function(actionTable)
       end
       rowHtml = rowHtml .. string.format(
         [[
-          <td id="%s" class="key">
+          <td id="%s" class="key %s">
             <a href="%s">
               %s
               <br/>
@@ -66,6 +66,7 @@ M.itemTableHtml = function(actionTable)
           </td>
           ]],
         action.keyId,
+        table.concat(action.classes, " "),
         action.url or "",  -- href value
         action.icon,
         hotkeyLabel,       -- hotkey

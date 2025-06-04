@@ -34,6 +34,36 @@ td.selected {
   animation-timing-function: ease-out;
 }
 
+/* Actions to launch applications
+ */
+td.application {}
+
+/* Actions to launch files and folders
+ */
+td.file {}
+
+/* Submenus
+ */
+td.submenu {}
+
+/* Actions defined with custom handler functions
+ */
+td.custom-handler {}
+
+/* Actions defined as empty
+ */
+td.empty {
+  background-color: rgba(36, 36, 36, 0.5);
+  border: 2px dashed rgb(172, 172, 172);
+}
+
+/* Placeholder actions that do not have a key assigned
+ */
+td.no-key {
+  background-color: transparent;
+  border: none;
+}
+
 @keyframes keySelect {
   0%   { box-shadow: 0 0 0 rgba(255, 255, 255, 0); background-color: rgba(100, 100, 100, 1); }
   50%  { box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); background-color: rgba(160, 160, 160, 1); }

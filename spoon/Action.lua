@@ -21,6 +21,7 @@ local M = {}
 ---      * handler: (function) Code to run when the key is pressed
 ---      * description: (string) A description for the action
 ---      * icon: (string) An svg or img tag to display as the icon for the action (optional)
+---      * classes: (table) A list of classes to apply to the action in the web view (optional)
 ---    * Convenience parameters:
 ---      * empty: (boolean) If true, the handler is set to a no-op function and the description is set to "No action".
 ---        This is useful for creating empty slots in the grid.
@@ -41,19 +42,29 @@ M.new = function(arg)
   action.handler = arg.handler or function() end
   action.description = arg.description or ""
   action.icon = arg.icon or Icon.phosphor("app-window", "regular")
+  action.classes = arg.classes or {}
+
+  if not action.key then
+    -- No key is provided to invoke the action
+    print("No key provided for action, using empty handler")
+    table.insert(action.classes, "no-key")
+  end
 
   if arg.empty then
     action.handler = function() end
     action.description = "No action"
     action.icon = Icon.empty()
+    table.insert(action.classes, "empty")
     return action
   elseif arg.application then
     local appPath = Util.findApplicationPath(arg.application)
     local appDesc = arg.description or arg.application
+    table.insert(action.classes, "application")
     if not appPath then
       print(string.format("No application found for %s", arg.application))
       action.icon = Icon.phosphor("question-mark", "regular")
       action.description = string.format("(%s)", appDesc)
+      table.insert(action.classes, "notfound")
     else
       action.application = arg.application
       action.handler = function() hs.application.launchOrFocus(action.application) end
@@ -68,18 +79,27 @@ M.new = function(arg)
       end
     end
   elseif arg.file then
-    action.file = arg.file
-    action.handler = function() hs.execute(string.format("open '%s'", action.file)) end
-    if not arg.description then
-      action.description = Util.getBasename(action.file)
-    end
-    if arg.icon == nil then
-      local fileIcon = Icon.fromMacIcon(action.file)
-      if fileIcon then
-        action.icon = fileIcon
+    table.insert(action.classes, "file")
+    if hs.fs.attributes(arg.file) == nil then
+      print(string.format("No file found for %s", arg.file))
+      action.icon = Icon.phosphor("question-mark", "regular")
+      action.description = string.format("(%s)", Util.getBasename(arg.file))
+      table.insert(action.classes, "notfound")
+    else
+      action.file = arg.file
+      action.handler = function() hs.execute(string.format("open '%s'", action.file)) end
+      if not arg.description then
+        action.description = Util.getBasename(action.file)
+      end
+      if arg.icon == nil then
+        local fileIcon = Icon.fromMacIcon(action.file)
+        if fileIcon then
+          action.icon = fileIcon
+        end
       end
     end
   elseif arg.submenu then
+    table.insert(action.classes, "submenu")
     action.submenu = Grid.new(
     -- The first two arguments are for a GLOBAL hotkey, so we set them to nil.
       nil,
@@ -90,6 +110,8 @@ M.new = function(arg)
       nil
     )
     -- Can't set action here, have to do it from the parent modal
+  elseif arg.handler then
+    table.insert(action.classes, "custom-handler")
   end
 
   return action
