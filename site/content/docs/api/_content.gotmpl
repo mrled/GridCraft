@@ -61,7 +61,30 @@
         {{ $content = printf "%s<tr><td><strong>Signature</strong></td><td><code>%s</code></td></tr>\n" $content .signature }}
       {{ end }}
       {{ $content = printf "%s<tr><td><strong>Type</strong></td><td>%s</td></tr>\n" $content .type }}
-      {{ $content = printf "%s<tr><td><strong>Description</strong></td><td>%s</td></tr>\n" $content .doc }}
+      {{ if .desc }}
+        {{ $content = printf "%s<tr><td><strong>Description</strong></td><td>\n\n%s\n\n</td></tr>\n" $content .desc }}
+      {{ end }}
+      {{ if .parameters }}
+        {{ $content = printf "%s<tr><td><strong>Parameters</strong></td><td>\n\n" $content }}
+        {{ range .parameters }}
+          {{ $content = printf "%s%s\n" $content . }}
+        {{ end }}
+        {{ $content = printf "%s\n</td></tr>\n" $content }}
+      {{ end }}
+      {{ if .returns }}
+        {{ $content = printf "%s<tr><td><strong>Returns</strong></td><td>\n\n" $content }}
+        {{ range .returns }}
+          {{ $content = printf "%s%s\n" $content . }}
+        {{ end }}
+        {{ $content = printf "%s\n</td></tr>\n" $content }}
+      {{ end }}
+      {{ if .notes }}
+        {{ $content = printf "%s<tr><td><strong>Notes</strong></td><td>\n\n" $content }}
+        {{ range .notes }}
+          {{ $content = printf "%s%s\n" $content . }}
+        {{ end }}
+        {{ $content = printf "%s\n</td></tr>\n" $content }}
+      {{ end }}
       {{ $content = printf "%s</table>\n\n" $content }}
     {{ end }}
   {{ end }}
